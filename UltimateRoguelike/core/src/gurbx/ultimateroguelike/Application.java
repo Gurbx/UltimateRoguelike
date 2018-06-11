@@ -1,7 +1,5 @@
 package gurbx.ultimateroguelike;
 
-import com.badlogic.ashley.core.Engine;
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -10,13 +8,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import gurbx.ultimateroguelike.screens.ScreenDispatcher;
 import gurbx.ultimateroguelike.utils.Constants;
 
 public class Application extends Game {
-	
 	public SpriteBatch batch;
 	public OrthographicCamera camera;
 	public Viewport viewport;
+	
+	public ScreenDispatcher screenDispatcher;
 	
 	@Override
 	public void create () {

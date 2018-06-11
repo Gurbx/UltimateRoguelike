@@ -9,7 +9,6 @@ import gurbx.ultimateroguelike.systems.RenderSystem;
 public class GameScreen implements Screen {
 	private final Application app;
 	private boolean isInitialized = false;
-//	private ScreenDispatcher screenDispatcher; //Flytta till app
 	private PooledEngine engine;
 	
 	public GameScreen(Application app) {
