@@ -1,19 +1,30 @@
 package gurbx.ultimateroguelike;
 
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
-public class Application extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
+import gurbx.ultimateroguelike.utils.Constants;
+
+public class Application extends Game {
+	
+	public SpriteBatch batch;
+	public OrthographicCamera camera;
+	public Viewport viewport;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		camera = new OrthographicCamera();
+		viewport = new StretchViewport(Constants.VIRTUAL_WIDTH, Constants.VIRTUAL_HEIGHT, camera);
+		viewport.apply();
+		camera.position.set(Constants.VIRTUAL_WIDTH/2, Constants.VIRTUAL_HEIGHT/2, 0);
 	}
 
 	@Override
@@ -21,13 +32,12 @@ public class Application extends ApplicationAdapter {
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		batch.draw(img, 0, 0);
+//		batch.draw(img, 0, 0);
 		batch.end();
 	}
 	
 	@Override
 	public void dispose () {
 		batch.dispose();
-		img.dispose();
 	}
 }
