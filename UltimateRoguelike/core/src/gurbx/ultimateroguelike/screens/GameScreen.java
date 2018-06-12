@@ -7,9 +7,9 @@ import gurbx.ultimateroguelike.Application;
 import gurbx.ultimateroguelike.systems.RenderSystem;
 
 public class GameScreen implements Screen {
-	private final Application app;
+	protected final Application app;
+	protected PooledEngine engine;
 	private boolean isInitialized = false;
-	private PooledEngine engine;
 	
 	public GameScreen(Application app) {
 		this.app = app;
@@ -60,7 +60,6 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
 		
 	}
 
