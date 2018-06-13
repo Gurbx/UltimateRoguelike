@@ -9,9 +9,14 @@ import com.badlogic.gdx.math.Vector2;
 
 import gurbx.ultimateroguelike.Application;
 import gurbx.ultimateroguelike.factories.PlayerFactory;
+import gurbx.ultimateroguelike.world.World;
+import gurbx.ultimateroguelike.world.WorldGenerator;
+import gurbx.ultimateroguelike.world.generator.LevelMapRendererTest;
 
 public class PlayScreen extends GameScreen {
 	private TextureAtlas atlas;
+	
+	LevelMapRendererTest renderTest;
 	
 	public PlayScreen(Application app) {
 		super(app);
@@ -22,8 +27,12 @@ public class PlayScreen extends GameScreen {
 		super.show();
 		atlas =  app.assets.get("img_packed/generalPack.atlas", TextureAtlas.class);
 		
-		Entity player = PlayerFactory.createPlayer(new Vector2(100,100), atlas);
-		engine.addEntity(player);
+//		Entity player = PlayerFactory.createPlayer(new Vector2(100,100), atlas);
+//		engine.addEntity(player);
+		
+		//Test
+		World world = WorldGenerator.generateWorld();
+		renderTest = new LevelMapRendererTest(world.tiles);
 	}
 	
 	@Override
@@ -31,8 +40,14 @@ public class PlayScreen extends GameScreen {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		super.render(delta);
-//		app.batch.begin();
-//		app.batch.end();
+		app.batch.begin();
+		renderTest.render(app.batch);
+		app.batch.end();
 	}
 	
+	@Override
+	public void dispose() {
+		super.dispose();
+		renderTest.dispose();
+	}
 }
