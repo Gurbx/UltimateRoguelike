@@ -1,15 +1,18 @@
 package gurbx.ultimateroguelike.world.generator;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import gurbx.ultimateroguelike.world.WorldConstants;
+
 public class LevelMapRendererTest {
 	private Texture tex;
 	private Sprite sprite;
-	private final int SIZE = 4;
+	private final int SIZE = 6;
 	
 	String[][] tiles;
 	
@@ -29,6 +32,8 @@ public class LevelMapRendererTest {
 		for (int i = 0; i < tiles[0].length; i++) {
 			for (int j = 0; j < tiles.length; j++) {
 				if (tiles[i][j] != null) {
+					if (tiles[i][j].equals(WorldConstants.GROUND)) sprite.setColor(Color.LIGHT_GRAY);
+					if (tiles[i][j].equals(WorldConstants.WALL)) sprite.setColor(Color.WHITE);
 					sprite.setPosition(i*SIZE, j*SIZE);
 					sprite.draw(batch);
 				}

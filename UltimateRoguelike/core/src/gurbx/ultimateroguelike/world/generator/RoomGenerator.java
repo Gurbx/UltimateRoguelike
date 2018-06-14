@@ -19,8 +19,8 @@ public class RoomGenerator {
 		int height = random.nextInt(max_height-min_height) + min_height;
 		
 		Room room = new Room();
-		room.tiles = new String[width][height];
+//		room.tiles = new String[width][height];
 		
-		return null;
+		return room;
 	}
 }
