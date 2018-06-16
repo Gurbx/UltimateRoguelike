@@ -8,7 +8,6 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import gurbx.ultimateroguelike.components.SizeComponent;
 import gurbx.ultimateroguelike.components.TextureComponent;
 import gurbx.ultimateroguelike.components.TransformComponent;
 
@@ -20,7 +19,6 @@ public class RenderSystem extends EntitySystem {
 	
 	private ComponentMapper<TransformComponent> tm = ComponentMapper.getFor(TransformComponent.class);
 	private ComponentMapper<TextureComponent> vm = ComponentMapper.getFor(TextureComponent.class);
-	private ComponentMapper<SizeComponent> sm = ComponentMapper.getFor(SizeComponent.class);
 	
 	public RenderSystem(SpriteBatch batch, OrthographicCamera camera) {
 		this.batch = batch;
@@ -29,7 +27,7 @@ public class RenderSystem extends EntitySystem {
 	
 	@Override
 	public void addedToEngine(Engine engine) {
-		entities = engine.getEntitiesFor(Family.all(TransformComponent.class, TextureComponent.class, SizeComponent.class).get());
+		entities = engine.getEntitiesFor(Family.all(TransformComponent.class, TextureComponent.class).get());
 	}
 
 	@Override
@@ -45,14 +43,10 @@ public class RenderSystem extends EntitySystem {
 			
 			TransformComponent transform = tm.get(e);
 			TextureComponent visual = vm.get(e);
-			SizeComponent size = sm.get(e);
 			
 			batch.draw(visual.region, 
-					transform.position.x, transform.position.y, 
-					size.width*.5f, size.height*.5f, 
-					size.width, size.height, 
-					transform.scale.x, transform.scale.y, 
-					transform.rotation);
+					transform.position.x - visual.region.getRegionWidth() * 0.5f,
+					transform.position.y - visual.region.getRegionHeight() * 0.5f);
 		}
 		
 		batch.end();

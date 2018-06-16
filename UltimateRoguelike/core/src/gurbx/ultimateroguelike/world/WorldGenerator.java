@@ -18,7 +18,7 @@ public class WorldGenerator {
 		
 //		world.tiles = CaveGenerator.generateCaves(world.tiles, (int) ((width*height)/2.3f), random);
 		
-		ArrayList<Room> rooms = generateRooms(world.tiles, 4500, random);
+		ArrayList<Room> rooms = generateRooms(world.tiles, 500, random);
 		
 		System.out.println("Number of rooms: " + rooms.size());
 		

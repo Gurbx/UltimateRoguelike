@@ -16,7 +16,7 @@ import gurbx.ultimateroguelike.world.generator.LevelMapRendererTest;
 public class PlayScreen extends GameScreen {
 	private TextureAtlas atlas;
 	
-	LevelMapRendererTest renderTest;
+//	LevelMapRendererTest renderTest;
 	
 	public PlayScreen(Application app) {
 		super(app);
@@ -27,12 +27,12 @@ public class PlayScreen extends GameScreen {
 		super.show();
 		atlas =  app.assets.get("img_packed/generalPack.atlas", TextureAtlas.class);
 		
-//		Entity player = PlayerFactory.createPlayer(new Vector2(100,100), atlas);
-//		engine.addEntity(player);
+		Entity player = PlayerFactory.createPlayer(new Vector2(100,100), atlas);
+		engine.addEntity(player);
 		
 		//Test
-		World world = WorldGenerator.generateWorld();
-		renderTest = new LevelMapRendererTest(world.tiles);
+//		World world = WorldGenerator.generateWorld();
+//		renderTest = new LevelMapRendererTest(world.tiles);
 	}
 	
 	@Override
@@ -40,14 +40,14 @@ public class PlayScreen extends GameScreen {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		super.render(delta);
-		app.batch.begin();
-		renderTest.render(app.batch);
-		app.batch.end();
+//		app.batch.begin();
+//		renderTest.render(app.batch);
+//		app.batch.end();
 	}
 	
 	@Override
 	public void dispose() {
 		super.dispose();
-		renderTest.dispose();
+//		renderTest.dispose();
 	}
 }

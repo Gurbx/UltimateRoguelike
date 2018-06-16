@@ -5,7 +5,6 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 
-import gurbx.ultimateroguelike.components.SizeComponent;
 import gurbx.ultimateroguelike.components.TextureComponent;
 import gurbx.ultimateroguelike.components.TransformComponent;
 
@@ -20,11 +19,7 @@ public class PlayerFactory {
 		TextureComponent texture = new TextureComponent();
 		texture.region = atlas.findRegion("wall");
 		
-		SizeComponent sizeComponent = new SizeComponent();
-		sizeComponent.width = texture.region.getRegionWidth();
-		sizeComponent.height = texture.region.getRegionHeight();
 		
-		entity.add(sizeComponent);
 		entity.add(transform);
 		entity.add(texture);
 		return entity;
