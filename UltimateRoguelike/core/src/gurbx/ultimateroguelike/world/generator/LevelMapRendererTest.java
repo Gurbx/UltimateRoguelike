@@ -28,12 +28,17 @@ public class LevelMapRendererTest {
 		sprite = new Sprite(tex);
 	}
 	
+	public void setTiles(String[][] tiles) {
+		this.tiles = tiles;
+	}
+	
 	public void render(SpriteBatch batch) {
 		for (int i = 0; i < tiles[0].length; i++) {
 			for (int j = 0; j < tiles.length; j++) {
 				if (tiles[i][j].equals(WorldConstants.EMPTY) == false) {
 					if (tiles[i][j].equals(WorldConstants.GROUND)) sprite.setColor(Color.LIGHT_GRAY);
-					if (tiles[i][j].equals(WorldConstants.ROOM)) sprite.setColor(Color.ORANGE);
+					else if (tiles[i][j].equals(WorldConstants.ROOM)) sprite.setColor(Color.ORANGE);
+					else if (tiles[i][j].equals(WorldConstants.DOOR)) sprite.setColor(Color.RED);
 					sprite.setPosition(i*SIZE, j*SIZE);
 					sprite.draw(batch);
 				}

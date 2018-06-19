@@ -6,5 +6,7 @@ public final class WorldConstants {
 	public static final String GROUND = "0";
 	public static final String WALL = "1";
 	public static final String ROOM = "2";
+	public static final String DOOR = "3";
+	
 
 }
