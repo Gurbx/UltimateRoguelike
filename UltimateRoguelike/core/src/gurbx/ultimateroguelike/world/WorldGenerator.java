@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import gurbx.ultimateroguelike.world.generator.CaveGenerator;
+import gurbx.ultimateroguelike.world.generator.MazeGenerator;
 import gurbx.ultimateroguelike.world.generator.RoomGenerator;
 
 public class WorldGenerator {
@@ -11,16 +12,24 @@ public class WorldGenerator {
 	public static World generateWorld() {
 		Random random = new Random();
 		World world = new World();
-		int width = 100; 
-		int height = 100;
+		int width = 80; 
+		int height = 80;
 	
 		world.tiles = new String[width][height];
+		//Make tiles empty
+		for (int i = 0; i < world.tiles.length; i++) {
+			for (int j = 0; j < world.tiles[i].length; j++) {
+				world.tiles[i][j] = WorldConstants.EMPTY;
+			}
+		}
 		
-//		world.tiles = CaveGenerator.generateCaves(world.tiles, (int) ((width*height)/2.3f), random);
 		
-		ArrayList<Room> rooms = generateRooms(world.tiles, 500, random);
+		ArrayList<Room> rooms = generateRooms(world.tiles, 1000, random);
 		
-		System.out.println("Number of rooms: " + rooms.size());
+//		System.out.println("Number of rooms: " + rooms.size());
+		
+		MazeGenerator mazeGen = new MazeGenerator(random);
+		mazeGen.generateMaze(world.tiles);
 		
 		return world;
 	}
@@ -47,7 +56,7 @@ public class WorldGenerator {
 			boolean positionIsFree = true;
 			for (int j = 0; j < width; j++) {
 				for (int j2 = 0; j2 < height; j2++) {
-					if (tiles[x+j][y+j2] != null) {
+					if (tiles[x+j][y+j2].equals(WorldConstants.EMPTY) == false) {
 						positionIsFree = false;
 					} 
 				}
@@ -66,9 +75,9 @@ public class WorldGenerator {
 				for (int j = 0; j < width; j++) {
 					for (int j2 = 0; j2 < height; j2++) {
 						if (j == 0 || j2 == 0 || j == width-1 || j2 == height-1) {
-							tiles[x+j][y+j2] = WorldConstants.WALL;
+//							tiles[x+j][y+j2] = WorldConstants.WALL;
 						} else {
-							tiles[x+j][y+j2] = WorldConstants.GROUND;
+							tiles[x+j][y+j2] = WorldConstants.ROOM;
 						}
 					}
 				}
@@ -77,8 +86,4 @@ public class WorldGenerator {
 		return rooms;
 	}
 
-	private static void generateMaze(String[][] tiles) {
-		//Pick a random room to start
-		
-	}
 }
