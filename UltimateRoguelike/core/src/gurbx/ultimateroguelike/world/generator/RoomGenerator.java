@@ -2,7 +2,7 @@ package gurbx.ultimateroguelike.world.generator;
 
 import java.util.Random;
 
-import gurbx.ultimateroguelike.world.Room;
+import gurbx.ultimateroguelike.world.utils.Room;
 
 public class RoomGenerator {
 	private int min_width = 4, max_width = 12;

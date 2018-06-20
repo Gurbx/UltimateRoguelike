@@ -7,6 +7,7 @@ import gurbx.ultimateroguelike.world.generator.CaveGenerator;
 import gurbx.ultimateroguelike.world.generator.DungeonConnector;
 import gurbx.ultimateroguelike.world.generator.MazeGenerator;
 import gurbx.ultimateroguelike.world.generator.RoomGenerator;
+import gurbx.ultimateroguelike.world.utils.Room;
 
 public class WorldGenerator {
 	
@@ -24,7 +25,6 @@ public class WorldGenerator {
 			}
 		}
 		
-		
 		ArrayList<Room> rooms = generateRooms(world.tiles, 500, random);
 		
 //		System.out.println("Number of rooms: " + rooms.size());
@@ -32,8 +32,8 @@ public class WorldGenerator {
 		MazeGenerator mazeGen = new MazeGenerator(random);
 		mazeGen.generateMaze(world.tiles);
 		
-		DungeonConnector connector = new DungeonConnector(world.tiles);
-		connector.connectArea();
+		DungeonConnector connector = new DungeonConnector(world.tiles, rooms);
+		connector.connectDungeon(random);
 		return world;
 	}
 

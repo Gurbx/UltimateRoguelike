@@ -38,7 +38,7 @@ public class LevelMapRendererTest {
 				if (tiles[i][j].equals(WorldConstants.EMPTY) == false) {
 					if (tiles[i][j].equals(WorldConstants.GROUND)) sprite.setColor(Color.LIGHT_GRAY);
 					else if (tiles[i][j].equals(WorldConstants.ROOM)) sprite.setColor(Color.ORANGE);
-					else if (tiles[i][j].equals(WorldConstants.DOOR)) sprite.setColor(Color.RED);
+					else if (tiles[i][j].equals(WorldConstants.DOOR)) sprite.setColor(Color.GREEN);
 					sprite.setPosition(i*SIZE, j*SIZE);
 					sprite.draw(batch);
 				}
