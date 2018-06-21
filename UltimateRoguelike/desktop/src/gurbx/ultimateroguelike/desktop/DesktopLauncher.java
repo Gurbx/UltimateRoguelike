@@ -6,6 +6,7 @@ import com.badlogic.gdx.tools.texturepacker.TexturePacker;
 
 import gurbx.ultimateroguelike.Application;
 import gurbx.ultimateroguelike.utils.Constants;
+import gurbx.ultimateroguelike.xtests.WorldMapTestRenderer;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
@@ -16,6 +17,6 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.width = 800;
 		config.height = 480;
-		new LwjglApplication(new Application(), config);
+		new LwjglApplication(new WorldMapTestRenderer(), config);
 	}
 }

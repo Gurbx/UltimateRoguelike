@@ -97,4 +97,22 @@ public class Tile {
 		if (tiles[x][y].equals(WorldConstants.EMPTY) == false) return false;
 		return true;
 	}
+
+	//Used when removing dead ends from World generator
+	public static boolean isDeadEnd(int x, int y, String[][] tiles) {
+		if (tiles[x][y].equals(WorldConstants.GROUND) == false) return false; // can't be dead end if not ground
+		
+		int connections = 0;
+		try { if (tiles[x+1][y].equals(WorldConstants.EMPTY) == false) connections++;
+		} catch (IndexOutOfBoundsException e) {}
+		try { if (tiles[x-1][y].equals(WorldConstants.EMPTY) == false) connections++;
+		} catch (IndexOutOfBoundsException e) {}
+		try { if (tiles[x][y+1].equals(WorldConstants.EMPTY) == false) connections++;
+		} catch (IndexOutOfBoundsException e) {}
+		try { if (tiles[x][y-1].equals(WorldConstants.EMPTY) == false) connections++;
+		} catch (IndexOutOfBoundsException e) {}
+		
+		if (connections < 2) return true;
+		return false;
+	}
 }

@@ -8,14 +8,15 @@ import gurbx.ultimateroguelike.world.generator.DungeonConnector;
 import gurbx.ultimateroguelike.world.generator.MazeGenerator;
 import gurbx.ultimateroguelike.world.generator.RoomGenerator;
 import gurbx.ultimateroguelike.world.utils.Room;
+import gurbx.ultimateroguelike.world.utils.Tile;
 
 public class WorldGenerator {
 	
 	public static World generateWorld() {
 		Random random = new Random();
 		World world = new World();
-		int width = 80; 
-		int height = 80;
+		int width = 50; 
+		int height = 50;
 	
 		world.tiles = new String[width][height];
 		//Make tiles empty
@@ -34,6 +35,7 @@ public class WorldGenerator {
 		
 		DungeonConnector connector = new DungeonConnector(world.tiles, rooms);
 		connector.connectDungeon(random);
+		
 		return world;
 	}
 
@@ -89,4 +91,25 @@ public class WorldGenerator {
 		return rooms;
 	}
 
+	//Remove dead end tiles. amount is how many times map is looped through
+	public static void removeDeadEnds(String[][] tiles, int amount) {
+		ArrayList<Tile> deadEndTiles = new ArrayList<Tile>();
+		
+		for (int i = 0; i < amount; i++) {
+			//Loop
+			for (int j = 0; j < tiles.length; j++) {
+				for (int j2 = 0; j2 < tiles.length; j2++) {
+					
+					if (Tile.isDeadEnd(j, j2, tiles)) {
+						deadEndTiles.add(new Tile(j, j2));
+					}
+				}
+			}
+			//Remove dead end tiles
+			for (int j = 0; j < deadEndTiles.size(); j++) {
+				tiles[deadEndTiles.get(j).x][deadEndTiles.get(j).y] = WorldConstants.EMPTY;
+			}
+			deadEndTiles.clear();
+		}
+	}
 }

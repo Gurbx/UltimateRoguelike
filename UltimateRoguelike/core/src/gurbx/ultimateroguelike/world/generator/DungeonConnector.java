@@ -38,6 +38,7 @@ public class DungeonConnector {
 	public void connectDungeon(Random random) {
 		createDoors(random);
 		
+		//FLOOD FILL
 		for (int i = 0; i < tiles.length; i++) {
 			for (int j = 0; j < tiles[i].length; j++) {
 				if (tiles[i][j].equals(WorldConstants.EMPTY) == false) {

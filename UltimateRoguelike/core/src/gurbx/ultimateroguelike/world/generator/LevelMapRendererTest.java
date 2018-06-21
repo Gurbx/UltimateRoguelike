@@ -1,6 +1,8 @@
 package gurbx.ultimateroguelike.world.generator;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Pixmap.Format;
@@ -32,7 +34,7 @@ public class LevelMapRendererTest {
 		this.tiles = tiles;
 	}
 	
-	public void render(SpriteBatch batch) {
+	public void render(SpriteBatch batch) {		
 		for (int i = 0; i < tiles[0].length; i++) {
 			for (int j = 0; j < tiles.length; j++) {
 				if (tiles[i][j].equals(WorldConstants.EMPTY) == false) {
