@@ -26,7 +26,7 @@ public class MovementSystem extends IteratingSystem {
 	protected void processEntity(Entity entity, float deltaTime) {
 		BodyComponent bodyComp = bm.get(entity);
 		MovementComponent moveComp = mm.get(entity);
-		TransformComponent transConp = tm.get(entity);		
+		TransformComponent transComp = tm.get(entity);		
 		
 		if (moveComp.direction == null) return;
 		
@@ -34,6 +34,8 @@ public class MovementSystem extends IteratingSystem {
 		force.x *= moveComp.speed;
 		force.y *= moveComp.speed;
 		
-		bodyComp.body.applyForce(force, transConp.position, true);
+		System.out.println(force);
+		
+		bodyComp.body.applyForce(force, transComp.position, true);
 	}
 }

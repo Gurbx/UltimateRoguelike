@@ -26,11 +26,11 @@ public class PlayerFactory {
 		
 		BodyComponent bodyComponent = new BodyComponent();
 		bodyComponent.body = BodyBuilder.createDynamicBody(transform.position, 32, 32, world);
-		bodyComponent.body.setLinearDamping(10);
+		bodyComponent.body.setLinearDamping(5);
 		entity.add(bodyComponent);
 		
 		MovementComponent mc = new MovementComponent();
-		mc.speed = 50;
+		mc.speed = 2;
 		entity.add(mc);
 		
 		return entity;

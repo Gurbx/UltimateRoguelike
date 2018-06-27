@@ -40,7 +40,8 @@ public class RawInputHandler implements InputProcessor {
 
 	@Override
 	public boolean keyUp(int keycode) {
-		// TODO Auto-generated method stub
+		direction.set(0,0);
+		listener.walk(direction);
 		return false;
 	}
 	@Override

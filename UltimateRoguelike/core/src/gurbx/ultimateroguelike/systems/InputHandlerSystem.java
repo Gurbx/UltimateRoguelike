@@ -9,6 +9,7 @@ import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.math.Vector2;
 
 import gurbx.ultimateroguelike.components.BodyComponent;
+import gurbx.ultimateroguelike.components.MovementComponent;
 import gurbx.ultimateroguelike.components.TextureComponent;
 import gurbx.ultimateroguelike.components.TransformComponent;
 import gurbx.ultimateroguelike.utils.Constants;
@@ -18,10 +19,11 @@ public class InputHandlerSystem extends EntitySystem implements InputHandlerInte
 	private ImmutableArray<Entity> entities;
 	
 	private ComponentMapper<BodyComponent> bm = ComponentMapper.getFor(BodyComponent.class);
+	private ComponentMapper<MovementComponent> mm = ComponentMapper.getFor(MovementComponent.class);
 	
 	@Override
 	public void addedToEngine(Engine engine) {
-		entities = engine.getEntitiesFor(Family.all(TransformComponent.class, BodyComponent.class).get());
+		entities = engine.getEntitiesFor(Family.all(TransformComponent.class, BodyComponent.class, MovementComponent.class).get());
 	}
 
 	@Override
@@ -29,8 +31,10 @@ public class InputHandlerSystem extends EntitySystem implements InputHandlerInte
 		
 		for (int i = 0; i < entities.size(); ++i) {
 			Entity e = entities.get(i);
-			BodyComponent body = bm.get(e);
-			body.body.applyForce(direction, direction, true);
+			MovementComponent movement = mm.get(e);
+			movement.direction = direction;
+//			BodyComponent body = bm.get(e);
+//			body.body.applyForce(direction, direction, true);
 		}
 	}
 

@@ -45,8 +45,6 @@ public class RenderSystem extends EntitySystem {
 			TransformComponent transform = tm.get(e);
 			TextureComponent visual = vm.get(e);
 			
-			System.out.println("Transform Position: " + transform.position.x);
-			
 			batch.draw(visual.region, 
 					transform.position.x * Constants.PPM - visual.region.getRegionWidth() * 0.5f ,
 					transform.position.y * Constants.PPM - visual.region.getRegionHeight() * 0.5f);
