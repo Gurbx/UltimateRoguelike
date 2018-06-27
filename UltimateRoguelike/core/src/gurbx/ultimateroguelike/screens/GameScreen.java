@@ -1,6 +1,7 @@
 package gurbx.ultimateroguelike.screens;
 
 import com.badlogic.ashley.core.PooledEngine;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
@@ -9,8 +10,11 @@ import com.badlogic.gdx.physics.box2d.World;
 import gurbx.ultimateroguelike.Application;
 import gurbx.ultimateroguelike.systems.AnimationSystem;
 import gurbx.ultimateroguelike.systems.Box2DDebugSystem;
+import gurbx.ultimateroguelike.systems.InputHandlerSystem;
+import gurbx.ultimateroguelike.systems.MovementSystem;
 import gurbx.ultimateroguelike.systems.PhysicsSystem;
 import gurbx.ultimateroguelike.systems.RenderSystem;
+import gurbx.ultimateroguelike.utils.RawInputHandler;
 
 public class GameScreen implements Screen {
 	protected final Application app;
@@ -31,14 +35,25 @@ public class GameScreen implements Screen {
 		engine = new PooledEngine();
 		world = new World(new Vector2(0,0), false);
 		
-		RenderSystem renderSystem = new RenderSystem(app.batch, app.camera);
-		engine.addSystem(renderSystem);
+		InputHandlerSystem inputSystem = new InputHandlerSystem();
+		RawInputHandler rawInputHandler = new RawInputHandler();
+		rawInputHandler.registerListener(inputSystem);
+		Gdx.input.setInputProcessor(rawInputHandler);
+		engine.addSystem(inputSystem);
 		
 		PhysicsSystem physicsSystem = new PhysicsSystem(world);
 		engine.addSystem(physicsSystem);
 		
+		RenderSystem renderSystem = new RenderSystem(app.batch, app.camera);
+		engine.addSystem(renderSystem);
+		
+		MovementSystem movementSystem = new MovementSystem();
+		engine.addSystem(movementSystem);
+		
 		debugSystem = new Box2DDebugSystem(world, app.camera);
 		engine.addSystem(debugSystem);
+		
+		
 		
 		isInitialized = true;	
 	}

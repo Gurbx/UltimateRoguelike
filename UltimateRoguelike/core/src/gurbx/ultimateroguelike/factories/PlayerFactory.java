@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 
 import gurbx.ultimateroguelike.components.BodyComponent;
+import gurbx.ultimateroguelike.components.MovementComponent;
 import gurbx.ultimateroguelike.components.TextureComponent;
 import gurbx.ultimateroguelike.components.TransformComponent;
 
@@ -25,7 +26,12 @@ public class PlayerFactory {
 		
 		BodyComponent bodyComponent = new BodyComponent();
 		bodyComponent.body = BodyBuilder.createDynamicBody(transform.position, 32, 32, world);
+		bodyComponent.body.setLinearDamping(10);
 		entity.add(bodyComponent);
+		
+		MovementComponent mc = new MovementComponent();
+		mc.speed = 50;
+		entity.add(mc);
 		
 		return entity;
 	}

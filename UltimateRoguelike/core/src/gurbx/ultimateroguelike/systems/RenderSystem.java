@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import gurbx.ultimateroguelike.components.TextureComponent;
 import gurbx.ultimateroguelike.components.TransformComponent;
+import gurbx.ultimateroguelike.utils.Constants;
 
 public class RenderSystem extends EntitySystem {
 	private ImmutableArray<Entity> entities;
@@ -44,9 +45,11 @@ public class RenderSystem extends EntitySystem {
 			TransformComponent transform = tm.get(e);
 			TextureComponent visual = vm.get(e);
 			
+			System.out.println("Transform Position: " + transform.position.x);
+			
 			batch.draw(visual.region, 
-					transform.position.x - visual.region.getRegionWidth() * 0.5f,
-					transform.position.y - visual.region.getRegionHeight() * 0.5f);
+					transform.position.x * Constants.PPM - visual.region.getRegionWidth() * 0.5f ,
+					transform.position.y * Constants.PPM - visual.region.getRegionHeight() * 0.5f);
 		}
 		
 		batch.end();

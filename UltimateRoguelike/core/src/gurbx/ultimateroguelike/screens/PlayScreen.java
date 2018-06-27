@@ -12,6 +12,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import gurbx.ultimateroguelike.Application;
 import gurbx.ultimateroguelike.factories.PlayerFactory;
+import gurbx.ultimateroguelike.utils.Constants;
 import gurbx.ultimateroguelike.world.World;
 import gurbx.ultimateroguelike.world.WorldGenerator;
 
@@ -27,7 +28,7 @@ public class PlayScreen extends GameScreen {
 		super.show();
 		atlas =  app.assets.get("img_packed/generalPack.atlas", TextureAtlas.class);
 		
-		Entity player = PlayerFactory.createPlayer(new Vector2(100,100), atlas, world);
+		Entity player = PlayerFactory.createPlayer(new Vector2(100, 100), atlas, world);
 		engine.addEntity(player);
 		
 	}

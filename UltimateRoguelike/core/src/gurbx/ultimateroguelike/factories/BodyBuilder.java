@@ -42,7 +42,7 @@ public class BodyBuilder {
         body = world.createBody(def);
 
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(width/2/Constants.PPM, height/2/Constants.PPM);
+        shape.setAsBox(width/2f/Constants.PPM, height/2f/Constants.PPM);
 
         FixtureDef fixture = new FixtureDef();
         fixture.shape = shape;
