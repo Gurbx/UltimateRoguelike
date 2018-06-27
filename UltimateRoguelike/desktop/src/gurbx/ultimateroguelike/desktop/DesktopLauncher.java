@@ -17,6 +17,6 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.width = 800;
 		config.height = 480;
-		new LwjglApplication(new WorldMapTestRenderer(), config);
+		new LwjglApplication(new Application(), config);
 	}
 }

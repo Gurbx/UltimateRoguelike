@@ -19,7 +19,6 @@ import gurbx.ultimateroguelike.utils.Constants;
 import gurbx.ultimateroguelike.world.World;
 import gurbx.ultimateroguelike.world.WorldConstants;
 import gurbx.ultimateroguelike.world.WorldGenerator;
-import gurbx.ultimateroguelike.world.generator.LevelMapRendererTest;
 
 /**
  * Test program for rendering the generated world as an easy to see map
@@ -66,7 +65,7 @@ public class WorldMapTestRenderer extends ApplicationAdapter {
 		}
 		
 		if (Gdx.input.isKeyJustPressed(Keys.W)) {
-			WorldGenerator.removeDeadEnds(tiles, 1);
+			WorldGenerator.removeDeadEnds(tiles, 99);
 		}
 	}
 	

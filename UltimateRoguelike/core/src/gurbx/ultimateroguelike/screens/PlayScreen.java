@@ -14,12 +14,9 @@ import gurbx.ultimateroguelike.Application;
 import gurbx.ultimateroguelike.factories.PlayerFactory;
 import gurbx.ultimateroguelike.world.World;
 import gurbx.ultimateroguelike.world.WorldGenerator;
-import gurbx.ultimateroguelike.world.generator.LevelMapRendererTest;
 
 public class PlayScreen extends GameScreen {
 	private TextureAtlas atlas;
-	
-	LevelMapRendererTest renderTest;
 	
 	public PlayScreen(Application app) {
 		super(app);
@@ -30,12 +27,21 @@ public class PlayScreen extends GameScreen {
 		super.show();
 		atlas =  app.assets.get("img_packed/generalPack.atlas", TextureAtlas.class);
 		
-//		Entity player = PlayerFactory.createPlayer(new Vector2(100,100), atlas);
-//		engine.addEntity(player);
+		Entity player = PlayerFactory.createPlayer(new Vector2(100,100), atlas, world);
+		engine.addEntity(player);
 		
-		//Test
-		World world = WorldGenerator.generateWorld();
-		renderTest = new LevelMapRendererTest(world.tiles);
+	}
+	
+	@Override
+	protected void update(float delta) {
+		super.update(delta);
+		
+		float speed = 50;
+		//DEBUG
+		if (Gdx.input.isKeyPressed(Keys.A)) app.camera.position.x -= speed*delta;
+		if (Gdx.input.isKeyPressed(Keys.D)) app.camera.position.x += speed*delta;
+		if (Gdx.input.isKeyPressed(Keys.W)) app.camera.position.y += speed*delta;
+		if (Gdx.input.isKeyPressed(Keys.S)) app.camera.position.y -= speed*delta;
 	}
 	
 	@Override
@@ -43,17 +49,13 @@ public class PlayScreen extends GameScreen {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		super.render(delta);
-		if (Gdx.input.isKeyJustPressed(Keys.A)) {
-			renderTest.setTiles(WorldGenerator.generateWorld().tiles);
-		}
-		app.batch.begin();
-		renderTest.render(app.batch);
-		app.batch.end();
+
+//		app.batch.begin();
+//		app.batch.end();
 	}
 	
 	@Override
 	public void dispose() {
 		super.dispose();
-		renderTest.dispose();
 	}
 }

@@ -36,6 +36,8 @@ public class WorldGenerator {
 		DungeonConnector connector = new DungeonConnector(world.tiles, rooms);
 		connector.connectDungeon(random);
 		
+		removeDeadEnds(world.tiles, 999);
+		
 		return world;
 	}
 
@@ -95,13 +97,16 @@ public class WorldGenerator {
 	public static void removeDeadEnds(String[][] tiles, int amount) {
 		ArrayList<Tile> deadEndTiles = new ArrayList<Tile>();
 		
-		for (int i = 0; i < amount; i++) {
+		int i = 0;
+		while (true) {
 			//Loop
+			boolean tileIsRemoved = false;
 			for (int j = 0; j < tiles.length; j++) {
 				for (int j2 = 0; j2 < tiles.length; j2++) {
 					
 					if (Tile.isDeadEnd(j, j2, tiles)) {
 						deadEndTiles.add(new Tile(j, j2));
+						tileIsRemoved = true;
 					}
 				}
 			}
@@ -110,6 +115,9 @@ public class WorldGenerator {
 				tiles[deadEndTiles.get(j).x][deadEndTiles.get(j).y] = WorldConstants.EMPTY;
 			}
 			deadEndTiles.clear();
+			i++;
+			
+			if (tileIsRemoved == false || i >= amount) break;
 		}
 	}
 }
