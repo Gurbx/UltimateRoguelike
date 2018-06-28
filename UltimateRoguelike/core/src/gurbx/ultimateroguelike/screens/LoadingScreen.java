@@ -16,7 +16,8 @@ public class LoadingScreen implements Screen {
 	
 	@Override
 	public void show() {
-		app.assets.load("img_packed/generalPack.atlas", TextureAtlas.class);	
+		app.assets.load("img_packed/generalPack.atlas", TextureAtlas.class);
+		app.assets.load("img_packed/enemiesPack.atlas", TextureAtlas.class);
 	}
 	
 	private void update(float delta) {

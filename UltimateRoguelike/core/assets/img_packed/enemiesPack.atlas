@@ -1,0 +1,300 @@
+
+enemiesPack.png
+size: 1024,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+blob_idle1
+  rotate: false
+  xy: 2, 2
+  size: 26, 23
+  orig: 26, 23
+  offset: 0, 0
+  index: -1
+blob_idle2
+  rotate: false
+  xy: 266, 36
+  size: 26, 23
+  orig: 26, 23
+  offset: 0, 0
+  index: -1
+blob_idle3
+  rotate: false
+  xy: 888, 102
+  size: 26, 23
+  orig: 26, 23
+  offset: 0, 0
+  index: -1
+blob_idle4
+  rotate: false
+  xy: 30, 2
+  size: 26, 23
+  orig: 26, 23
+  offset: 0, 0
+  index: -1
+blob_idle5
+  rotate: false
+  xy: 294, 36
+  size: 26, 23
+  orig: 26, 23
+  offset: 0, 0
+  index: -1
+tentaclebrain_attack1
+  rotate: false
+  xy: 2, 77
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: -1
+tentaclebrain_attack2
+  rotate: false
+  xy: 2, 27
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: -1
+tentaclebrain_attack3
+  rotate: false
+  xy: 68, 77
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: -1
+tentaclebrain_attack4
+  rotate: false
+  xy: 68, 27
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: -1
+tentaclebrain_attack5
+  rotate: false
+  xy: 134, 77
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: -1
+tentaclebrain_attack6
+  rotate: false
+  xy: 134, 27
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: -1
+tentaclebrain_attack7
+  rotate: false
+  xy: 200, 77
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: -1
+tentaclebrain_attack8
+  rotate: false
+  xy: 200, 27
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: -1
+tentaclebrain_death1
+  rotate: false
+  xy: 266, 61
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+tentaclebrain_death2
+  rotate: false
+  xy: 316, 61
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+tentaclebrain_death3
+  rotate: false
+  xy: 366, 61
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+tentaclebrain_death4
+  rotate: false
+  xy: 416, 61
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+tentaclebrain_death5
+  rotate: false
+  xy: 466, 61
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+tentaclebrain_death6
+  rotate: false
+  xy: 516, 61
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+tentaclebrain_death7
+  rotate: false
+  xy: 566, 61
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+tentaclebrain_death10
+  rotate: false
+  xy: 566, 61
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+tentaclebrain_death11
+  rotate: false
+  xy: 566, 61
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+tentaclebrain_death12
+  rotate: false
+  xy: 566, 61
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+tentaclebrain_death13
+  rotate: false
+  xy: 566, 61
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+tentaclebrain_death14
+  rotate: false
+  xy: 566, 61
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+tentaclebrain_death15
+  rotate: false
+  xy: 566, 61
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+tentaclebrain_death16
+  rotate: false
+  xy: 566, 61
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+tentaclebrain_death17
+  rotate: false
+  xy: 566, 61
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+tentaclebrain_death18
+  rotate: false
+  xy: 566, 61
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+tentaclebrain_death19
+  rotate: false
+  xy: 566, 61
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+tentaclebrain_death20
+  rotate: false
+  xy: 566, 61
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+tentaclebrain_death21
+  rotate: false
+  xy: 566, 61
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+tentaclebrain_death8
+  rotate: false
+  xy: 566, 61
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+tentaclebrain_death9
+  rotate: false
+  xy: 566, 61
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+tentaclebrain_idle1
+  rotate: false
+  xy: 616, 77
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: -1
+tentaclebrain_idle2
+  rotate: false
+  xy: 650, 77
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: -1
+tentaclebrain_idle3
+  rotate: false
+  xy: 684, 77
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: -1
+tentaclebrain_idle4
+  rotate: false
+  xy: 718, 77
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: -1
+tentaclebrain_idle5
+  rotate: false
+  xy: 752, 77
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: -1
+tentaclebrain_idle6
+  rotate: false
+  xy: 786, 77
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: -1
+tentaclebrain_idle7
+  rotate: false
+  xy: 820, 77
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: -1
+tentaclebrain_idle8
+  rotate: false
+  xy: 854, 77
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: -1

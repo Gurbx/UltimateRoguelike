@@ -12,6 +12,7 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		//Pack texutres
 //		TexturePacker.process("img_raw", "img_packed", "generalPack");
+		TexturePacker.process("img_raw/enemies", "img_packed", "enemiesPack");
 		
 		//Run application
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
