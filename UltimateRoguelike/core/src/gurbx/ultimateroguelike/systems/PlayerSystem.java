@@ -1,7 +1,6 @@
 package gurbx.ultimateroguelike.systems;
 
 import com.badlogic.ashley.core.Entity;
-import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.Gdx;
@@ -18,6 +17,9 @@ import gurbx.ultimateroguelike.utils.Constants;
 public class PlayerSystem extends IteratingSystem {
 	private OrthographicCamera camera;
 	private final float LERP = 10f;
+	
+	private MovementComponent moveComp;
+	private TransformComponent transComp;
 
 	public PlayerSystem(OrthographicCamera camera) {
 		super(Family.all(PlayerComponent.class, MovementComponent.class).get());
@@ -26,8 +28,8 @@ public class PlayerSystem extends IteratingSystem {
 
 	@Override
 	protected void processEntity(Entity entity, float deltaTime) {
-		MovementComponent moveComp = MovementComponent.MAPPER.get(entity);
-		TransformComponent transComp = TransformComponent.MAPPER.get(entity);
+		moveComp = MovementComponent.MAPPER.get(entity);
+		transComp = TransformComponent.MAPPER.get(entity);
 		
 		//MOVEMENT 
 		moveComp.velocity.x = 0;
@@ -47,13 +49,12 @@ public class PlayerSystem extends IteratingSystem {
 		}
 		
 		//CAMERA
-		handleCamera(deltaTime, transComp);
+		handleCamera(deltaTime);
 	}
 
-	private void handleCamera(float deltaTime, TransformComponent transComp) {
+	private void handleCamera(float deltaTime) {
 		Vector3 position = camera.position;
 		position.x += (transComp.position.x * Constants.PPM  - position.x) * LERP * deltaTime;
 		position.y += (transComp.position.y * Constants.PPM  - position.y) * LERP * deltaTime;
-		camera.update();
 	}
 }

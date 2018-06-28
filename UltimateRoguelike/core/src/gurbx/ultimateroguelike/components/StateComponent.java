@@ -14,7 +14,7 @@ public class StateComponent implements Component {
         time = 0.0f;
     }
 
-    public String get() {
+    public String getState() {
         return state;
     }
 }
