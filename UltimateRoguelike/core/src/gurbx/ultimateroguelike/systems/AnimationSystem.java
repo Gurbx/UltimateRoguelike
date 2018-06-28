@@ -11,18 +11,18 @@ import gurbx.ultimateroguelike.components.TextureComponent;
 
 public class AnimationSystem extends IteratingSystem {
     
-	ComponentMapper<TextureComponent> tm;
-    ComponentMapper<AnimationComponent> am;
-    ComponentMapper<StateComponent> sm;
+//	ComponentMapper<TextureComponent> tm;
+//    ComponentMapper<AnimationComponent> am;
+//    ComponentMapper<StateComponent> sm;
 
     public AnimationSystem(){
         super(Family.all(TextureComponent.class,
                 AnimationComponent.class,
                 StateComponent.class).get());
 
-        tm = ComponentMapper.getFor(TextureComponent.class);
-        am = ComponentMapper.getFor(AnimationComponent.class);
-        sm = ComponentMapper.getFor(StateComponent.class);
+//        tm = ComponentMapper.getFor(TextureComponent.class);
+//        am = ComponentMapper.getFor(AnimationComponent.class);
+//        sm = ComponentMapper.getFor(StateComponent.class);
     }
 
 	@Override

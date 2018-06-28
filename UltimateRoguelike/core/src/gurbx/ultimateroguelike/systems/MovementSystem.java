@@ -4,38 +4,30 @@ import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
 
 import gurbx.ultimateroguelike.components.BodyComponent;
 import gurbx.ultimateroguelike.components.MovementComponent;
-import gurbx.ultimateroguelike.components.TransformComponent;
 
 public class MovementSystem extends IteratingSystem {
-	Vector2 force;
-	
-    private ComponentMapper<BodyComponent> bm = ComponentMapper.getFor(BodyComponent.class);
-    private ComponentMapper<MovementComponent> mm = ComponentMapper.getFor(MovementComponent.class);
-    private ComponentMapper<TransformComponent> tm = ComponentMapper.getFor(TransformComponent.class);
-    
 
 	public MovementSystem() {
-		super(Family.all(BodyComponent.class, MovementComponent.class, TransformComponent.class).get());
+		super(Family.all(BodyComponent.class, MovementComponent.class).get());
 	}
 
 	@Override
 	protected void processEntity(Entity entity, float deltaTime) {
-		BodyComponent bodyComp = bm.get(entity);
-		MovementComponent moveComp = mm.get(entity);
-		TransformComponent transComp = tm.get(entity);		
+		BodyComponent bodyComp = BodyComponent.MAPPER.get(entity);
+		MovementComponent moveComp = MovementComponent.MAPPER.get(entity);
 		
-		if (moveComp.direction == null) return;
 		
-		force = moveComp.direction;
-		force.x *= moveComp.speed;
-		force.y *= moveComp.speed;
+		//Normalize velocity
+		if (moveComp.velocity.len() > 0) {
+			moveComp.velocity = moveComp.velocity.nor().scl(moveComp.speed * deltaTime);
+		}
 		
-		System.out.println(force);
-		
-		bodyComp.body.applyForce(force, transComp.position, true);
+		bodyComp.body.applyLinearImpulse(moveComp.velocity, bodyComp.body.getWorldCenter(), true);		
 	}
 }

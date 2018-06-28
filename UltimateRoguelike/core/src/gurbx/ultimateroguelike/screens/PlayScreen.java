@@ -39,10 +39,10 @@ public class PlayScreen extends GameScreen {
 		
 		float speed = 50;
 		//DEBUG
-		if (Gdx.input.isKeyPressed(Keys.A)) app.camera.position.x -= speed*delta;
-		if (Gdx.input.isKeyPressed(Keys.D)) app.camera.position.x += speed*delta;
-		if (Gdx.input.isKeyPressed(Keys.W)) app.camera.position.y += speed*delta;
-		if (Gdx.input.isKeyPressed(Keys.S)) app.camera.position.y -= speed*delta;
+//		if (Gdx.input.isKeyPressed(Keys.A)) app.camera.position.x -= speed*delta;
+//		if (Gdx.input.isKeyPressed(Keys.D)) app.camera.position.x += speed*delta;/
+//		if (Gdx.input.isKeyPressed(Keys.W)) app.camera.position.y += speed*delta;
+//		if (Gdx.input.isKeyPressed(Keys.S)) app.camera.position.y -= speed*delta;
 	}
 	
 	@Override
