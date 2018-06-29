@@ -47,7 +47,7 @@ public class WorldMapTestRenderer extends ApplicationAdapter {
 		viewport.apply();
 		camera.position.set(Constants.VIRTUAL_WIDTH/2, Constants.VIRTUAL_HEIGHT/2, 0);
 		
-		Dungeon world = DungeonGenerator.generateWorld(null);
+		Dungeon world = DungeonGenerator.generateWorld(null, null);
 		this.tiles = world.tiles;
 		
 		Pixmap pixmap = new Pixmap(SIZE, SIZE, Format.RGBA8888 );
@@ -61,7 +61,7 @@ public class WorldMapTestRenderer extends ApplicationAdapter {
 	
 	private void update(float deltaTime) {
 		if (Gdx.input.isKeyJustPressed(Keys.A)) {
-			this.tiles = DungeonGenerator.generateWorld(null).tiles;
+			this.tiles = DungeonGenerator.generateWorld(null, null).tiles;
 		}
 		
 		if (Gdx.input.isKeyJustPressed(Keys.W)) {

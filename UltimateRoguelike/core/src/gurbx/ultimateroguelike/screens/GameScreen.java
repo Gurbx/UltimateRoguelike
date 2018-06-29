@@ -43,7 +43,7 @@ public class GameScreen implements Screen {
 		
 		engine = new PooledEngine();
 		world = new World(new Vector2(0,0), false);
-		dungeon = DungeonGenerator.generateWorld(dungeonAtlas);
+		dungeon = DungeonGenerator.generateWorld(dungeonAtlas, world);
 		
 		PlayerSystem playerSystem = new PlayerSystem(app.camera);
 		engine.addSystem(playerSystem);

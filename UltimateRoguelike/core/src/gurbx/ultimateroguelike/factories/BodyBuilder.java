@@ -3,6 +3,7 @@ package gurbx.ultimateroguelike.factories;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -22,7 +23,6 @@ public class BodyBuilder {
         PolygonShape shape = new PolygonShape();
         shape.setAsBox((float) width*0.5f / Constants.PPM, (float) height*0.5f / Constants.PPM);
 
-
         FixtureDef fixture = new FixtureDef();
         fixture.shape = shape;
         fixture.density = 1.0f;
@@ -41,8 +41,10 @@ public class BodyBuilder {
         def.fixedRotation = true;
         body = world.createBody(def);
 
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(width/2f/Constants.PPM, height/2f/Constants.PPM);
+        CircleShape shape = new CircleShape();
+        shape.setRadius(width/2f/Constants.PPM);
+//        PolygonShape shape = new PolygonShape();
+//        shape.setAsBox(width/2f/Constants.PPM, height/2f/Constants.PPM);
 
         FixtureDef fixture = new FixtureDef();
         fixture.shape = shape;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.physics.box2d.World;
 
 import gurbx.ultimateroguelike.world.Tile;
 import gurbx.ultimateroguelike.world.Dungeon;
@@ -13,7 +14,7 @@ import gurbx.ultimateroguelike.world.utils.DungeonConstants;
 
 public class DungeonGenerator {
 	
-	public static Dungeon generateWorld(TextureAtlas atlas) {
+	public static Dungeon generateWorld(TextureAtlas atlas, World b2world) {
 		Random random = new Random();
 		Dungeon world = new Dungeon();
 		int width = 50; 
@@ -41,7 +42,7 @@ public class DungeonGenerator {
 		
 		WallCreator.createWalls(world.tiles);
 		
-		initializeTiles(world, atlas);
+		initializeTiles(world, atlas, b2world);
 		
 		return world;
 	}
@@ -127,15 +128,18 @@ public class DungeonGenerator {
 	}
 	
 
-	private static void initializeTiles(Dungeon world, TextureAtlas atlas) {
+	private static void initializeTiles(Dungeon world, TextureAtlas atlas, World b2World) {
 		Tile[][] tilemap = new Tile[world.tiles.length][world.tiles[0].length];
+		boolean isWall;
 		
 		for (int i = 0; i < tilemap.length; i++) {
 			for (int j = 0; j < tilemap[0].length; j++) {
 				if (world.tiles[j][i].equals(DungeonConstants.EMPTY)) {
-					tilemap[j][i] = new Tile(j, i, null, true);
+					tilemap[j][i] = new Tile(j, i, null, true, false, b2World);
 				} else {
-					tilemap[j][i] = new Tile(j,i, atlas.findRegion(world.tiles[j][i]), false);
+					isWall = false;
+					if (world.tiles[j][i].equals(DungeonConstants.WALL)) isWall = true;
+					tilemap[j][i] = new Tile(j,i, atlas.findRegion(world.tiles[j][i]), false, isWall, b2World);
 				}
 			}
 		}
