@@ -13,12 +13,11 @@ import com.badlogic.gdx.math.Vector2;
 import gurbx.ultimateroguelike.Application;
 import gurbx.ultimateroguelike.factories.PlayerFactory;
 import gurbx.ultimateroguelike.utils.Constants;
-import gurbx.ultimateroguelike.world.World;
-import gurbx.ultimateroguelike.world.generator.WorldGenerator;
+import gurbx.ultimateroguelike.world.Dungeon;
+import gurbx.ultimateroguelike.world.generator.DungeonGenerator;
 
 public class PlayScreen extends GameScreen {
-	private TextureAtlas atlas;
-	private TextureAtlas enemyAtlas;
+	
 	
 	public PlayScreen(Application app) {
 		super(app);
@@ -27,10 +26,8 @@ public class PlayScreen extends GameScreen {
 	@Override
 	public void show() {
 		super.show();
-		atlas =  app.assets.get("img_packed/generalPack.atlas", TextureAtlas.class);
-		enemyAtlas = app.assets.get("img_packed/enemiesPack.atlas", TextureAtlas.class);
 		
-		Entity player = PlayerFactory.createPlayer(new Vector2(100, 100), enemyAtlas, world);
+		Entity player = PlayerFactory.createPlayer(new Vector2(10*Constants.TILE_SIZE, 20*Constants.TILE_SIZE), enemyAtlas, world);
 		engine.addEntity(player);
 	}
 	
@@ -44,15 +41,13 @@ public class PlayScreen extends GameScreen {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		super.render(delta);
-
-//		app.batch.begin();
-//		app.batch.end();
 	}
 	
 	@Override
 	public void dispose() {
 		atlas.dispose();
 		enemyAtlas.dispose();
+		dungeonAtlas.dispose();
 		super.dispose();
 	}
 }

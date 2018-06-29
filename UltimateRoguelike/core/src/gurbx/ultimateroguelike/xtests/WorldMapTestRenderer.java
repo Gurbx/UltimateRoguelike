@@ -16,9 +16,9 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import gurbx.ultimateroguelike.utils.Constants;
-import gurbx.ultimateroguelike.world.World;
-import gurbx.ultimateroguelike.world.generator.WorldGenerator;
-import gurbx.ultimateroguelike.world.utils.WorldConstants;
+import gurbx.ultimateroguelike.world.Dungeon;
+import gurbx.ultimateroguelike.world.generator.DungeonGenerator;
+import gurbx.ultimateroguelike.world.utils.DungeonConstants;
 
 /**
  * Test program for rendering the generated world as an easy to see map
@@ -47,7 +47,7 @@ public class WorldMapTestRenderer extends ApplicationAdapter {
 		viewport.apply();
 		camera.position.set(Constants.VIRTUAL_WIDTH/2, Constants.VIRTUAL_HEIGHT/2, 0);
 		
-		World world = WorldGenerator.generateWorld();
+		Dungeon world = DungeonGenerator.generateWorld(null);
 		this.tiles = world.tiles;
 		
 		Pixmap pixmap = new Pixmap(SIZE, SIZE, Format.RGBA8888 );
@@ -61,11 +61,11 @@ public class WorldMapTestRenderer extends ApplicationAdapter {
 	
 	private void update(float deltaTime) {
 		if (Gdx.input.isKeyJustPressed(Keys.A)) {
-			this.tiles = WorldGenerator.generateWorld().tiles;
+			this.tiles = DungeonGenerator.generateWorld(null).tiles;
 		}
 		
 		if (Gdx.input.isKeyJustPressed(Keys.W)) {
-			WorldGenerator.removeDeadEnds(tiles, 99);
+			DungeonGenerator.removeDeadEnds(tiles, 99);
 		}
 	}
 	
@@ -78,10 +78,10 @@ public class WorldMapTestRenderer extends ApplicationAdapter {
 		batch.begin();
 		for (int i = 0; i < tiles[0].length; i++) {
 			for (int j = 0; j < tiles.length; j++) {
-				if (tiles[i][j].equals(WorldConstants.EMPTY) == false) {
-					if (tiles[i][j].equals(WorldConstants.GROUND)) sprite.setColor(Color.LIGHT_GRAY);
-					else if (tiles[i][j].equals(WorldConstants.ROOM)) sprite.setColor(Color.ORANGE);
-					else if (tiles[i][j].equals(WorldConstants.DOOR)) sprite.setColor(Color.GREEN);
+				if (tiles[i][j].equals(DungeonConstants.EMPTY) == false) {
+					if (tiles[i][j].equals(DungeonConstants.GROUND)) sprite.setColor(Color.LIGHT_GRAY);
+					else if (tiles[i][j].equals(DungeonConstants.ROOM)) sprite.setColor(Color.ORANGE);
+					else if (tiles[i][j].equals(DungeonConstants.DOOR)) sprite.setColor(Color.GREEN);
 					sprite.setPosition(i*SIZE, j*SIZE);
 					sprite.draw(batch);
 				}

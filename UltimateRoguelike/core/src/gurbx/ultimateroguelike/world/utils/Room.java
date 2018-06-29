@@ -65,7 +65,7 @@ public class Room {
 			}
 			
 			if (canDoorBePlaced(doorX, doorY, tiles)) {
-				tiles[doorX][doorY] = WorldConstants.DOOR;
+				tiles[doorX][doorY] = DungeonConstants.DOOR;
 				return true; // door successfully created
 			}
 		}
@@ -73,13 +73,13 @@ public class Room {
  	}
 	
 	private boolean canDoorBePlaced(int x, int y, String[][] tiles) {
-		try { if (tiles[x+1][y].equals(WorldConstants.GROUND)) return true;
+		try { if (tiles[x+1][y].equals(DungeonConstants.GROUND)) return true;
 		} catch (ArrayIndexOutOfBoundsException e) {}
-		try { if (tiles[x-1][y].equals(WorldConstants.GROUND)) return true;
+		try { if (tiles[x-1][y].equals(DungeonConstants.GROUND)) return true;
 		} catch (ArrayIndexOutOfBoundsException e) {}
-		try { if (tiles[x][y+1].equals(WorldConstants.GROUND)) return true;
+		try { if (tiles[x][y+1].equals(DungeonConstants.GROUND)) return true;
 		} catch (ArrayIndexOutOfBoundsException e) {}
-		try { if (tiles[x][y-1].equals(WorldConstants.GROUND)) return true;
+		try { if (tiles[x][y-1].equals(DungeonConstants.GROUND)) return true;
 		} catch (ArrayIndexOutOfBoundsException e) {}
 
 		return false;

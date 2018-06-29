@@ -3,7 +3,7 @@ package gurbx.ultimateroguelike.world;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
-public class World {
+public class Dungeon {
 	public String[][] tiles;
 	public Tile[][] tileMap;
 	
@@ -16,15 +16,18 @@ public class World {
 		this.renderPosition = renderPosition;
 	}
 	
-	public void update(float delta) {
-		
-	}
-	
 	public void render(SpriteBatch batch) {
-		for (int y = renderY; y < renderY+renderHeight ; y++) {
-			for (int x = renderX; x < renderX+renderWidth; x++) {
-				tileMap[x][y].render(batch);
+		for (int i = 0; i < tileMap.length; i++) {
+			for (int j = 0; j < tileMap.length; j++) {
+				tileMap[i][j].render(batch);
 			}
 		}
+		
+		
+//		for (int y = renderY; y < renderY+renderHeight ; y++) {
+//			for (int x = renderX; x < renderX+renderWidth; x++) {
+//				tileMap[x][y].render(batch);
+//			}
+//		}
 	}
 }

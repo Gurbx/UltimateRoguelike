@@ -1,0 +1,48 @@
+
+dungeonPack.png
+size: 256,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+chest1
+  rotate: false
+  xy: 2, 2
+  size: 36, 32
+  orig: 36, 32
+  offset: 0, 0
+  index: -1
+chest2
+  rotate: false
+  xy: 200, 68
+  size: 36, 32
+  orig: 36, 32
+  offset: 0, 0
+  index: -1
+chest3
+  rotate: false
+  xy: 40, 2
+  size: 36, 32
+  orig: 36, 32
+  offset: 0, 0
+  index: -1
+ground
+  rotate: false
+  xy: 2, 36
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+grounv2
+  rotate: false
+  xy: 68, 36
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+wall
+  rotate: false
+  xy: 134, 36
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1

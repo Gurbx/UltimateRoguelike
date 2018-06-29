@@ -11,19 +11,24 @@ public class Tile {
 	private int coordX, coordY;
 	private Body body;
 	private TextureRegion texture;
+	private boolean empty;
 	
-	public Tile(int coordX, int coordY) {
+	public Tile(int coordX, int coordY, TextureRegion texture, boolean empty) {
+		this.empty = empty;
+		
 		this.coordX = coordX;
 		this.coordY = coordY;
-	}
-	
-	public void update(float delta) {
 		
+		x = coordX * Constants.TILE_SIZE;
+		y = coordY * Constants.TILE_SIZE;
+		
+		this.texture = texture;
 	}
 	
 	public void render(SpriteBatch batch) {
+		if (empty) return;
 		batch.draw(texture, 
-				x * Constants.PPM - Constants.TILE_SIZE*0.5f, 
-				y * Constants.PPM - Constants.TILE_SIZE*0.5f);
+				x - Constants.TILE_SIZE*0.5f, 
+				y - Constants.TILE_SIZE*0.5f);
 	}
 }

@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.Stack;
 
 import gurbx.ultimateroguelike.world.utils.TileTemp;
-import gurbx.ultimateroguelike.world.utils.WorldConstants;
+import gurbx.ultimateroguelike.world.utils.DungeonConstants;
 
 public class MazeGenerator {
 	private Random random;
@@ -44,7 +44,7 @@ public class MazeGenerator {
 			//Place next tile
 			int n = random.nextInt(neighbours.size());
 			TileTemp t = neighbours.get(n);
-			tiles[t.x][t.y] = WorldConstants.GROUND;
+			tiles[t.x][t.y] = DungeonConstants.GROUND;
 			stack.push(t); // push the tile to the stack
 			buildMaze(t.x, t.y, tiles);
 		}

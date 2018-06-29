@@ -17,6 +17,7 @@ import gurbx.ultimateroguelike.components.TextureComponent;
 import gurbx.ultimateroguelike.components.TransformComponent;
 import gurbx.ultimateroguelike.utils.Constants;
 import gurbx.ultimateroguelike.utils.YComparator;
+import gurbx.ultimateroguelike.world.Dungeon;
 
 public class RenderSystem extends SortedIteratingSystem {
 //	private ImmutableArray<Entity> entities;
@@ -25,11 +26,13 @@ public class RenderSystem extends SortedIteratingSystem {
 	
 	private SpriteBatch batch;
 	private OrthographicCamera camera;
+	private Dungeon dungeon;
 	
-	public RenderSystem(SpriteBatch batch, OrthographicCamera camera) {
+	public RenderSystem(SpriteBatch batch, OrthographicCamera camera, Dungeon dungeon) {
 		super(Family.all(TransformComponent.class, TextureComponent.class).get(), comparator);
 		this.batch = batch;
 		this.camera = camera;
+		this.dungeon = dungeon;
 		
 		renderQueue = new Array<Entity>();
 	}
@@ -44,6 +47,8 @@ public class RenderSystem extends SortedIteratingSystem {
 			
 			batch.setProjectionMatrix(camera.combined);
 			batch.begin();
+			//Render Dungeon
+			dungeon.render(batch);
 			
 			for (Entity entity : renderQueue) {
 				TextureComponent texComp = TextureComponent.MAPPER.get(entity);

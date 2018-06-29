@@ -2,7 +2,7 @@ package gurbx.ultimateroguelike.world.generator;
 
 import java.util.Random;
 
-import gurbx.ultimateroguelike.world.utils.WorldConstants;
+import gurbx.ultimateroguelike.world.utils.DungeonConstants;
 
 public class CaveGenerator {
 
@@ -17,7 +17,7 @@ public class CaveGenerator {
 			int x = random.nextInt(tiles.length);
 			int y = random.nextInt(tiles[0].length);
 			if (tiles[x][y] == null) {
-				tiles[x][y] = WorldConstants.GROUND;
+				tiles[x][y] = DungeonConstants.GROUND;
 				numberGenerated++;
 			}
 		}
@@ -62,6 +62,6 @@ public class CaveGenerator {
 			if (neigbours[i] == null) walls++;
 		}
 		if (walls >= 5) return null;
-		return WorldConstants.GROUND;
+		return DungeonConstants.GROUND;
 	}
 }

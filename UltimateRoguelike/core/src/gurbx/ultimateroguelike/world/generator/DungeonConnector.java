@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import gurbx.ultimateroguelike.world.utils.Room;
-import gurbx.ultimateroguelike.world.utils.WorldConstants;
+import gurbx.ultimateroguelike.world.utils.DungeonConstants;
 
 /**
  * Connects all the regions in the dungeon and creating doors when doing so
@@ -30,7 +30,7 @@ public class DungeonConnector {
 		//count total tiles
 		for (int i = 0; i < connected.length; i++) {
 			for (int j = 0; j < connected.length; j++) {
-				if (tiles[i][j].equals(WorldConstants.EMPTY) == false) totalTiles++;
+				if (tiles[i][j].equals(DungeonConstants.EMPTY) == false) totalTiles++;
 			}
 		}
 	}
@@ -41,7 +41,7 @@ public class DungeonConnector {
 		//FLOOD FILL
 		for (int i = 0; i < tiles.length; i++) {
 			for (int j = 0; j < tiles[i].length; j++) {
-				if (tiles[i][j].equals(WorldConstants.EMPTY) == false) {
+				if (tiles[i][j].equals(DungeonConstants.EMPTY) == false) {
 					floodFill(i, j);
 					System.out.println("CONEECTEED: " + numberOfConnectedTiles + ", Total: " + totalTiles);
 					return;			
@@ -58,7 +58,7 @@ public class DungeonConnector {
 
 	private void floodFill(int x, int y) {
 		if (connected[x][y] == true) return;
-		if (tiles[x][y].equals(WorldConstants.EMPTY)) return;
+		if (tiles[x][y].equals(DungeonConstants.EMPTY)) return;
 //		tiles[x][y] = WorldConstants.DOOR; //TEST
 		connected[x][y] = true;
 		numberOfConnectedTiles ++;

@@ -76,5 +76,9 @@ public class PlayerSystem extends IteratingSystem {
 		Vector3 position = camera.position;
 		position.x += (transComp.position.x * Constants.PPM  - position.x) * LERP * deltaTime;
 		position.y += (transComp.position.y * Constants.PPM  - position.y) * LERP * deltaTime;
+		
+		if (Gdx.input.isKeyPressed(Keys.Q)) camera.zoom -= 10 * deltaTime;
+		if (Gdx.input.isKeyPressed(Keys.E)) camera.zoom += 10 * deltaTime;
 	}
+	
 }

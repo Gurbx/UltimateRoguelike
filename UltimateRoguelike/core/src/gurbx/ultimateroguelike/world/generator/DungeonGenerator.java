@@ -3,17 +3,19 @@ package gurbx.ultimateroguelike.world.generator;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+
 import gurbx.ultimateroguelike.world.Tile;
-import gurbx.ultimateroguelike.world.World;
+import gurbx.ultimateroguelike.world.Dungeon;
 import gurbx.ultimateroguelike.world.utils.Room;
 import gurbx.ultimateroguelike.world.utils.TileTemp;
-import gurbx.ultimateroguelike.world.utils.WorldConstants;
+import gurbx.ultimateroguelike.world.utils.DungeonConstants;
 
-public class WorldGenerator {
+public class DungeonGenerator {
 	
-	public static World generateWorld() {
+	public static Dungeon generateWorld(TextureAtlas atlas) {
 		Random random = new Random();
-		World world = new World();
+		Dungeon world = new Dungeon();
 		int width = 50; 
 		int height = 50;
 	
@@ -21,7 +23,7 @@ public class WorldGenerator {
 		//Make tiles empty
 		for (int i = 0; i < world.tiles.length; i++) {
 			for (int j = 0; j < world.tiles[i].length; j++) {
-				world.tiles[i][j] = WorldConstants.EMPTY;
+				world.tiles[i][j] = DungeonConstants.EMPTY;
 			}
 		}
 		
@@ -37,7 +39,9 @@ public class WorldGenerator {
 		
 		removeDeadEnds(world.tiles, 999);
 		
-		initializeTiles(world);
+		WallCreator.createWalls(world.tiles);
+		
+		initializeTiles(world, atlas);
 		
 		return world;
 	}
@@ -64,7 +68,7 @@ public class WorldGenerator {
 			boolean positionIsFree = true;
 			for (int j = 0; j < width; j++) {
 				for (int j2 = 0; j2 < height; j2++) {
-					if (tiles[x+j][y+j2].equals(WorldConstants.EMPTY) == false) {
+					if (tiles[x+j][y+j2].equals(DungeonConstants.EMPTY) == false) {
 						positionIsFree = false;
 					} 
 				}
@@ -85,7 +89,7 @@ public class WorldGenerator {
 						if (j == 0 || j2 == 0 || j == width-1 || j2 == height-1) {
 //							tiles[x+j][y+j2] = WorldConstants.WALL;
 						} else {
-							tiles[x+j][y+j2] = WorldConstants.ROOM;
+							tiles[x+j][y+j2] = DungeonConstants.ROOM;
 						}
 					}
 				}
@@ -113,7 +117,7 @@ public class WorldGenerator {
 			}
 			//Remove dead end tiles
 			for (int j = 0; j < deadEndTiles.size(); j++) {
-				tiles[deadEndTiles.get(j).x][deadEndTiles.get(j).y] = WorldConstants.EMPTY;
+				tiles[deadEndTiles.get(j).x][deadEndTiles.get(j).y] = DungeonConstants.EMPTY;
 			}
 			deadEndTiles.clear();
 			i++;
@@ -123,12 +127,16 @@ public class WorldGenerator {
 	}
 	
 
-	private static void initializeTiles(World world) {
+	private static void initializeTiles(Dungeon world, TextureAtlas atlas) {
 		Tile[][] tilemap = new Tile[world.tiles.length][world.tiles[0].length];
 		
 		for (int i = 0; i < tilemap.length; i++) {
 			for (int j = 0; j < tilemap[0].length; j++) {
-				tilemap[j][i] = new Tile(j,i);
+				if (world.tiles[j][i].equals(DungeonConstants.EMPTY)) {
+					tilemap[j][i] = new Tile(j, i, null, true);
+				} else {
+					tilemap[j][i] = new Tile(j,i, atlas.findRegion(world.tiles[j][i]), false);
+				}
 			}
 		}
 		

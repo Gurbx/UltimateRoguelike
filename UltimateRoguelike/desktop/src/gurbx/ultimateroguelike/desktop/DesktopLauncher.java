@@ -12,7 +12,8 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		//Pack texutres
 //		TexturePacker.process("img_raw", "img_packed", "generalPack");
-		TexturePacker.process("img_raw/enemies", "img_packed", "enemiesPack");
+//		TexturePacker.process("img_raw/enemies", "img_packed", "enemiesPack");
+//		TexturePacker.process("img_raw/dungeon", "img_packed", "dungeonPack");
 		
 		//Run application
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
