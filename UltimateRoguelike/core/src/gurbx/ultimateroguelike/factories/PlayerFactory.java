@@ -17,11 +17,11 @@ import gurbx.ultimateroguelike.components.TransformComponent;
 
 public class PlayerFactory {
 	
-	public static Entity createPlayer(Vector2 position, TextureAtlas atlas, World world) {
+	public static Entity createPlayer(float x, float y, TextureAtlas atlas, World world) {
 		Entity entity = new Entity();
 		
 		TransformComponent transform = new TransformComponent();
-		transform.position.set(position);
+		transform.position.set(x, y);
 		entity.add(transform);
 		
 		StateComponent stateComp = new StateComponent();

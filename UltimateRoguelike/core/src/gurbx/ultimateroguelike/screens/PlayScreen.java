@@ -12,6 +12,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import gurbx.ultimateroguelike.Application;
 import gurbx.ultimateroguelike.factories.PlayerFactory;
+import gurbx.ultimateroguelike.factories.PropFactory;
 import gurbx.ultimateroguelike.utils.Constants;
 import gurbx.ultimateroguelike.world.Dungeon;
 import gurbx.ultimateroguelike.world.generator.DungeonGenerator;
@@ -27,8 +28,11 @@ public class PlayScreen extends GameScreen {
 	public void show() {
 		super.show();
 		
-		Entity player = PlayerFactory.createPlayer(new Vector2(10*Constants.TILE_SIZE, 20*Constants.TILE_SIZE), enemyAtlas, world);
+		Entity player = PlayerFactory.createPlayer(20*Constants.TILE_SIZE, 20*Constants.TILE_SIZE, enemyAtlas, world);
 		engine.addEntity(player);
+		
+		Entity chest = PropFactory.createDestructible(20*Constants.TILE_SIZE, 20*Constants.TILE_SIZE, dungeonAtlas);
+		engine.addEntity(chest);
 	}
 	
 	@Override

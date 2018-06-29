@@ -61,7 +61,7 @@ public class GameScreen implements Screen {
 		engine.addSystem(renderSystem);
 		
 		debugSystem = new Box2DDebugSystem(world, app.camera);
-		engine.addSystem(debugSystem);
+//		engine.addSystem(debugSystem);
 		
 		isInitialized = true;	
 	}

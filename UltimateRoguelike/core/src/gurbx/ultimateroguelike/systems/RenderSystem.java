@@ -47,7 +47,7 @@ public class RenderSystem extends SortedIteratingSystem {
 			
 			batch.setProjectionMatrix(camera.combined);
 			batch.begin();
-			//Render Dungeon
+
 			dungeon.render(batch);
 			
 			for (Entity entity : renderQueue) {
@@ -61,6 +61,7 @@ public class RenderSystem extends SortedIteratingSystem {
 						transComp.position.y * Constants.PPM - texComp.region.getRegionHeight() * 0.5f);
 			}
 			batch.end();
+			renderQueue.clear();
 		}
 
 	@Override
