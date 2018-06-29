@@ -40,5 +40,4 @@ public class WallCreator {
 		}
 		return false;
 	}
-
 }
