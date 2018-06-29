@@ -17,8 +17,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import gurbx.ultimateroguelike.utils.Constants;
 import gurbx.ultimateroguelike.world.World;
-import gurbx.ultimateroguelike.world.WorldConstants;
-import gurbx.ultimateroguelike.world.WorldGenerator;
+import gurbx.ultimateroguelike.world.generator.WorldGenerator;
+import gurbx.ultimateroguelike.world.utils.WorldConstants;
 
 /**
  * Test program for rendering the generated world as an easy to see map

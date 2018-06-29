@@ -1,4 +1,4 @@
-package gurbx.ultimateroguelike.world;
+package gurbx.ultimateroguelike.world.utils;
 
 public final class WorldConstants {
 	//World tile symbols

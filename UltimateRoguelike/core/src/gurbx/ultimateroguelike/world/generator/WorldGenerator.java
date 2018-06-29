@@ -1,14 +1,13 @@
-package gurbx.ultimateroguelike.world;
+package gurbx.ultimateroguelike.world.generator;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import gurbx.ultimateroguelike.world.generator.CaveGenerator;
-import gurbx.ultimateroguelike.world.generator.DungeonConnector;
-import gurbx.ultimateroguelike.world.generator.MazeGenerator;
-import gurbx.ultimateroguelike.world.generator.RoomGenerator;
+import gurbx.ultimateroguelike.world.Tile;
+import gurbx.ultimateroguelike.world.World;
 import gurbx.ultimateroguelike.world.utils.Room;
-import gurbx.ultimateroguelike.world.utils.Tile;
+import gurbx.ultimateroguelike.world.utils.TileTemp;
+import gurbx.ultimateroguelike.world.utils.WorldConstants;
 
 public class WorldGenerator {
 	
@@ -37,6 +36,8 @@ public class WorldGenerator {
 		connector.connectDungeon(random);
 		
 		removeDeadEnds(world.tiles, 999);
+		
+		initializeTiles(world);
 		
 		return world;
 	}
@@ -95,7 +96,7 @@ public class WorldGenerator {
 
 	//Remove dead end tiles. amount is how many times map is looped through
 	public static void removeDeadEnds(String[][] tiles, int amount) {
-		ArrayList<Tile> deadEndTiles = new ArrayList<Tile>();
+		ArrayList<TileTemp> deadEndTiles = new ArrayList<TileTemp>();
 		
 		int i = 0;
 		while (true) {
@@ -104,8 +105,8 @@ public class WorldGenerator {
 			for (int j = 0; j < tiles.length; j++) {
 				for (int j2 = 0; j2 < tiles.length; j2++) {
 					
-					if (Tile.isDeadEnd(j, j2, tiles)) {
-						deadEndTiles.add(new Tile(j, j2));
+					if (TileTemp.isDeadEnd(j, j2, tiles)) {
+						deadEndTiles.add(new TileTemp(j, j2));
 						tileIsRemoved = true;
 					}
 				}
@@ -119,5 +120,18 @@ public class WorldGenerator {
 			
 			if (tileIsRemoved == false || i >= amount) break;
 		}
+	}
+	
+
+	private static void initializeTiles(World world) {
+		Tile[][] tilemap = new Tile[world.tiles.length][world.tiles[0].length];
+		
+		for (int i = 0; i < tilemap.length; i++) {
+			for (int j = 0; j < tilemap[0].length; j++) {
+				tilemap[j][i] = new Tile(j,i);
+			}
+		}
+		
+		world.tileMap = tilemap;
 	}
 }

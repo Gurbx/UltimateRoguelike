@@ -28,5 +28,7 @@ public class AnimationSystem extends IteratingSystem {
 			texComp = TextureComponent.MAPPER.get(entity);
 			texComp.region = (TextureRegion) animComp.animations.get(stateComp.getState()).getKeyFrame(stateComp.time, stateComp.isLooping);
 		}
+		
+		stateComp.time += deltaTime;
 	}
 }

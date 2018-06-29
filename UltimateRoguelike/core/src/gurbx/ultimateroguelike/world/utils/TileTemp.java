@@ -1,12 +1,10 @@
 package gurbx.ultimateroguelike.world.utils;
 
-import gurbx.ultimateroguelike.world.WorldConstants;
-
-public class Tile {
+public class TileTemp {
 	public int x, y;
 	boolean visited = false;
 	
-	public Tile(int x, int y) {
+	public TileTemp(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}

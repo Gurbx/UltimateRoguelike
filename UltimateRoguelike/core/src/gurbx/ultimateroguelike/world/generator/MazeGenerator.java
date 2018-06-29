@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Stack;
 
-import gurbx.ultimateroguelike.world.WorldConstants;
-import gurbx.ultimateroguelike.world.utils.Tile;
+import gurbx.ultimateroguelike.world.utils.TileTemp;
+import gurbx.ultimateroguelike.world.utils.WorldConstants;
 
 public class MazeGenerator {
 	private Random random;
-	private Stack<Tile> stack;
+	private Stack<TileTemp> stack;
 	
 	public MazeGenerator(Random random) {
 		this.random = new Random();
 	}
 
 	public void generateMaze(String[][] tiles) {
-		stack = new Stack<Tile>();
+		stack = new Stack<TileTemp>();
 		for (int i = 0; i < tiles.length; i++) {
 			for (int j = 0; j < tiles[i].length; j++) {
 				buildMaze(i, j, tiles);
@@ -27,7 +27,7 @@ public class MazeGenerator {
 	//Build a maze from the given point
 	private void buildMaze(int x, int y, String[][] tiles) {
 
-		ArrayList<Tile> neighbours = getAvailableNeighbors(x, y, tiles);
+		ArrayList<TileTemp> neighbours = getAvailableNeighbors(x, y, tiles);
 		
 		//If no neighbor is free, go a step back and check availability there
 		if (neighbours == null || neighbours.isEmpty()) {
@@ -35,7 +35,7 @@ public class MazeGenerator {
 			if (stack.isEmpty()) {
 				return; //Maze is done when stack is empty
 			} else {
-				Tile t = stack.pop();
+				TileTemp t = stack.pop();
 				buildMaze(t.x, t.y, tiles);
 			}
 			return;
@@ -43,7 +43,7 @@ public class MazeGenerator {
 		} else {
 			//Place next tile
 			int n = random.nextInt(neighbours.size());
-			Tile t = neighbours.get(n);
+			TileTemp t = neighbours.get(n);
 			tiles[t.x][t.y] = WorldConstants.GROUND;
 			stack.push(t); // push the tile to the stack
 			buildMaze(t.x, t.y, tiles);
@@ -56,12 +56,12 @@ public class MazeGenerator {
 //	}
 	
 
-	private ArrayList<Tile> getAvailableNeighbors(int x, int y, String[][] tiles) {
-		ArrayList<Tile> neighbours = new ArrayList<Tile>();
-		if (Tile.isAccessible(x-1, y,	 x, y, tiles)) neighbours.add(new Tile(x-1, y));
-		if (Tile.isAccessible(x+1, y,	 x, y, tiles)) neighbours.add(new Tile(x+1, y));
-		if (Tile.isAccessible(x, y+1,	 x, y, tiles)) neighbours.add(new Tile(x, y+1));
-		if (Tile.isAccessible(x, y-1,	 x, y, tiles)) neighbours.add(new Tile(x, y-1));		
+	private ArrayList<TileTemp> getAvailableNeighbors(int x, int y, String[][] tiles) {
+		ArrayList<TileTemp> neighbours = new ArrayList<TileTemp>();
+		if (TileTemp.isAccessible(x-1, y,	 x, y, tiles)) neighbours.add(new TileTemp(x-1, y));
+		if (TileTemp.isAccessible(x+1, y,	 x, y, tiles)) neighbours.add(new TileTemp(x+1, y));
+		if (TileTemp.isAccessible(x, y+1,	 x, y, tiles)) neighbours.add(new TileTemp(x, y+1));
+		if (TileTemp.isAccessible(x, y-1,	 x, y, tiles)) neighbours.add(new TileTemp(x, y-1));		
 		return neighbours;
 	}
 }

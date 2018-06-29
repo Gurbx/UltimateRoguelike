@@ -2,8 +2,6 @@ package gurbx.ultimateroguelike.world.utils;
 
 import java.util.Random;
 
-import gurbx.ultimateroguelike.world.WorldConstants;
-
 public class Room {
 	public boolean connected = false;
 	public int x, y;

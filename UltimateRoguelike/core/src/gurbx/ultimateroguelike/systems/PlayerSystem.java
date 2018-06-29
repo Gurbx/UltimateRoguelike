@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector3;
 
 import gurbx.ultimateroguelike.components.MovementComponent;
 import gurbx.ultimateroguelike.components.PlayerComponent;
+import gurbx.ultimateroguelike.components.StateComponent;
 import gurbx.ultimateroguelike.components.TransformComponent;
 import gurbx.ultimateroguelike.utils.Constants;
 
@@ -20,9 +21,10 @@ public class PlayerSystem extends IteratingSystem {
 	
 	private MovementComponent moveComp;
 	private TransformComponent transComp;
-
+	private StateComponent stateComp;
+	
 	public PlayerSystem(OrthographicCamera camera) {
-		super(Family.all(PlayerComponent.class, MovementComponent.class).get());
+		super(Family.all(PlayerComponent.class, MovementComponent.class, StateComponent.class).get());
 		this.camera = camera;
 	}
 
@@ -30,26 +32,44 @@ public class PlayerSystem extends IteratingSystem {
 	protected void processEntity(Entity entity, float deltaTime) {
 		moveComp = MovementComponent.MAPPER.get(entity);
 		transComp = TransformComponent.MAPPER.get(entity);
+		stateComp = StateComponent.MAPPER.get(entity);
 		
 		//MOVEMENT 
+		handleMovement();
+		
+		//STATES
+		handleStates();
+		
+		//CAMERA
+		handleCamera(deltaTime);
+	}
+
+	private void handleMovement() {
 		moveComp.velocity.x = 0;
 		moveComp.velocity.y = 0;
 		
 		if (Gdx.input.isKeyPressed(Keys.A)) {
-			moveComp.velocity.x = -1;
+			moveComp.velocity.x += -1;
 		}
 		if (Gdx.input.isKeyPressed(Keys.D)) {
-			moveComp.velocity.x = 1;
+			moveComp.velocity.x += 1;
 		}
 		if (Gdx.input.isKeyPressed(Keys.S)) {
-			moveComp.velocity.y = -1;
+			moveComp.velocity.y += -1;
 		}
 		if (Gdx.input.isKeyPressed(Keys.W)) {
-			moveComp.velocity.y = 1;
+			moveComp.velocity.y += 1;
 		}
-		
-		//CAMERA
-		handleCamera(deltaTime);
+	}
+
+	private void handleStates() {		
+		if ((moveComp.velocity.x == 0 && moveComp.velocity.y == 0) == false) {
+			if (stateComp.getState().equals(StateComponent.RUN) == false) {
+				stateComp.set(StateComponent.RUN);
+			}
+		} else if (stateComp.getState().equals(StateComponent.IDLE) == false) {
+			stateComp.set(StateComponent.IDLE);
+		}
 	}
 
 	private void handleCamera(float deltaTime) {

@@ -2,7 +2,7 @@ package gurbx.ultimateroguelike.world.generator;
 
 import java.util.Random;
 
-import gurbx.ultimateroguelike.world.WorldConstants;
+import gurbx.ultimateroguelike.world.utils.WorldConstants;
 
 public class CaveGenerator {
 

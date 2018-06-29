@@ -55,43 +55,8 @@ public class RenderSystem extends SortedIteratingSystem {
 						transComp.position.x * Constants.PPM - texComp.region.getRegionWidth() * 0.5f ,
 						transComp.position.y * Constants.PPM - texComp.region.getRegionHeight() * 0.5f);
 			}
-			
-			
 			batch.end();
 		}
-	
-	
-//	public RenderSystem(SpriteBatch batch, OrthographicCamera camera) {
-//		this.batch = batch;
-//		this.camera = camera;
-//	}
-	
-//	@Override
-//	public void addedToEngine(Engine engine) {
-//		entities = engine.getEntitiesFor(Family.all(TransformComponent.class, TextureComponent.class).get());
-//	}
-//
-//	@Override
-//	public void update(float deltaTime) {
-//		camera.update();
-//		
-//		batch.begin();
-//		batch.setProjectionMatrix(camera.combined);
-//		
-//		for (int i = 0; i < entities.size(); ++i) {
-//			
-//			Entity e = entities.get(i);
-//			
-//			TransformComponent transform = tm.get(e);
-//			TextureComponent visual = vm.get(e);
-//			
-//			batch.draw(visual.region, 
-//					transform.position.x * Constants.PPM - visual.region.getRegionWidth() * 0.5f ,
-//					transform.position.y * Constants.PPM - visual.region.getRegionHeight() * 0.5f);
-//		}
-//		
-//		batch.end();
-//	}
 
 	@Override
 	protected void processEntity(Entity entity, float deltaTime) {

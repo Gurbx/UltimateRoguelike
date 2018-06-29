@@ -3,8 +3,8 @@ package gurbx.ultimateroguelike.world.generator;
 import java.util.ArrayList;
 import java.util.Random;
 
-import gurbx.ultimateroguelike.world.WorldConstants;
 import gurbx.ultimateroguelike.world.utils.Room;
+import gurbx.ultimateroguelike.world.utils.WorldConstants;
 
 /**
  * Connects all the regions in the dungeon and creating doors when doing so

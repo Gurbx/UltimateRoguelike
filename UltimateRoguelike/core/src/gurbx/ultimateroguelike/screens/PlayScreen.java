@@ -14,10 +14,11 @@ import gurbx.ultimateroguelike.Application;
 import gurbx.ultimateroguelike.factories.PlayerFactory;
 import gurbx.ultimateroguelike.utils.Constants;
 import gurbx.ultimateroguelike.world.World;
-import gurbx.ultimateroguelike.world.WorldGenerator;
+import gurbx.ultimateroguelike.world.generator.WorldGenerator;
 
 public class PlayScreen extends GameScreen {
 	private TextureAtlas atlas;
+	private TextureAtlas enemyAtlas;
 	
 	public PlayScreen(Application app) {
 		super(app);
@@ -27,22 +28,15 @@ public class PlayScreen extends GameScreen {
 	public void show() {
 		super.show();
 		atlas =  app.assets.get("img_packed/generalPack.atlas", TextureAtlas.class);
+		enemyAtlas = app.assets.get("img_packed/enemiesPack.atlas", TextureAtlas.class);
 		
-		Entity player = PlayerFactory.createPlayer(new Vector2(100, 100), atlas, world);
+		Entity player = PlayerFactory.createPlayer(new Vector2(100, 100), enemyAtlas, world);
 		engine.addEntity(player);
-		
 	}
 	
 	@Override
 	protected void update(float delta) {
 		super.update(delta);
-		
-		float speed = 50;
-		//DEBUG
-//		if (Gdx.input.isKeyPressed(Keys.A)) app.camera.position.x -= speed*delta;
-//		if (Gdx.input.isKeyPressed(Keys.D)) app.camera.position.x += speed*delta;/
-//		if (Gdx.input.isKeyPressed(Keys.W)) app.camera.position.y += speed*delta;
-//		if (Gdx.input.isKeyPressed(Keys.S)) app.camera.position.y -= speed*delta;
 	}
 	
 	@Override
@@ -57,6 +51,8 @@ public class PlayScreen extends GameScreen {
 	
 	@Override
 	public void dispose() {
+		atlas.dispose();
+		enemyAtlas.dispose();
 		super.dispose();
 	}
 }
