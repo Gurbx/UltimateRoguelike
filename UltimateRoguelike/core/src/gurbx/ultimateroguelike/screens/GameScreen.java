@@ -11,9 +11,10 @@ import com.badlogic.gdx.physics.box2d.World;
 import gurbx.ultimateroguelike.Application;
 import gurbx.ultimateroguelike.systems.AnimationSystem;
 import gurbx.ultimateroguelike.systems.Box2DDebugSystem;
+import gurbx.ultimateroguelike.systems.CameraSystem;
 import gurbx.ultimateroguelike.systems.MovementSystem;
 import gurbx.ultimateroguelike.systems.PhysicsSystem;
-import gurbx.ultimateroguelike.systems.PlayerSystem;
+import gurbx.ultimateroguelike.systems.PlayerMovementSystem;
 import gurbx.ultimateroguelike.systems.RenderSystem;
 import gurbx.ultimateroguelike.world.Dungeon;
 import gurbx.ultimateroguelike.world.generator.DungeonGenerator;
@@ -45,7 +46,7 @@ public class GameScreen implements Screen {
 		world = new World(new Vector2(0,0), false);
 		dungeon = DungeonGenerator.generateWorld(dungeonAtlas, world);
 		
-		PlayerSystem playerSystem = new PlayerSystem(app.camera);
+		PlayerMovementSystem playerSystem = new PlayerMovementSystem();
 		engine.addSystem(playerSystem);
 		
 		MovementSystem movementSystem = new MovementSystem();
@@ -53,6 +54,9 @@ public class GameScreen implements Screen {
 		
 		PhysicsSystem physicsSystem = new PhysicsSystem(world);
 		engine.addSystem(physicsSystem);
+		
+		CameraSystem cameraSystem = new CameraSystem(app.camera);
+		engine.addSystem(cameraSystem);
 		
 		AnimationSystem animationSystem = new AnimationSystem();
 		engine.addSystem(animationSystem);

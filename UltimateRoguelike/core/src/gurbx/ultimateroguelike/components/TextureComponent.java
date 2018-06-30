@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.Pool.Poolable;
 public class TextureComponent implements Component, Poolable {
 	public static final ComponentMapper<TextureComponent> MAPPER = ComponentMapper.getFor(TextureComponent.class);
 	public TextureRegion region;
+	public boolean flipX;
 
 	@Override
 	public void reset() {

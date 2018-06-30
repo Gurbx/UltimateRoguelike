@@ -14,6 +14,7 @@ import gurbx.ultimateroguelike.components.PlayerComponent;
 import gurbx.ultimateroguelike.components.StateComponent;
 import gurbx.ultimateroguelike.components.TextureComponent;
 import gurbx.ultimateroguelike.components.TransformComponent;
+import gurbx.ultimateroguelike.systems.CameraSystem;
 
 public class PlayerFactory {
 	
@@ -22,6 +23,8 @@ public class PlayerFactory {
 		
 		TransformComponent transform = new TransformComponent();
 		transform.position.set(x, y);
+		//SET CAMERA PROJECTION
+		CameraSystem.setCameraTarget(transform.position);
 		entity.add(transform);
 		
 		StateComponent stateComp = new StateComponent();

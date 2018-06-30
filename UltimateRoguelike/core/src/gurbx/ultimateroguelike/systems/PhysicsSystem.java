@@ -14,7 +14,7 @@ import gurbx.ultimateroguelike.components.TransformComponent;
 
 public class PhysicsSystem extends IteratingSystem {
    
-	private static final float MAX_STEP_TIME = 1/45f;
+	private static final float MAX_STEP_TIME = 1/120f;
     private static float accumulator = 0f;
 
     private World world;

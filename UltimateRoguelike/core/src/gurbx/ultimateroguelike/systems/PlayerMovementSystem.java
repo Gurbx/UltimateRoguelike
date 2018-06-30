@@ -11,21 +11,19 @@ import com.badlogic.gdx.math.Vector3;
 import gurbx.ultimateroguelike.components.MovementComponent;
 import gurbx.ultimateroguelike.components.PlayerComponent;
 import gurbx.ultimateroguelike.components.StateComponent;
+import gurbx.ultimateroguelike.components.TextureComponent;
 import gurbx.ultimateroguelike.components.TransformComponent;
 import gurbx.ultimateroguelike.utils.Constants;
 
 
-public class PlayerSystem extends IteratingSystem {
-	private OrthographicCamera camera;
-	private final float LERP = 10f;
-	
+public class PlayerMovementSystem extends IteratingSystem {	
 	private MovementComponent moveComp;
 	private TransformComponent transComp;
 	private StateComponent stateComp;
+	private TextureComponent textureComp;
 	
-	public PlayerSystem(OrthographicCamera camera) {
-		super(Family.all(PlayerComponent.class, MovementComponent.class, StateComponent.class).get());
-		this.camera = camera;
+	public PlayerMovementSystem() {
+		super(Family.all(PlayerComponent.class, MovementComponent.class, StateComponent.class, TextureComponent.class).get());
 	}
 
 	@Override
@@ -33,15 +31,13 @@ public class PlayerSystem extends IteratingSystem {
 		moveComp = MovementComponent.MAPPER.get(entity);
 		transComp = TransformComponent.MAPPER.get(entity);
 		stateComp = StateComponent.MAPPER.get(entity);
+		textureComp = TextureComponent.MAPPER.get(entity);
 		
 		//MOVEMENT 
 		handleMovement();
 		
 		//STATES
 		handleStates();
-		
-		//CAMERA
-		handleCamera(deltaTime);
 	}
 
 	private void handleMovement() {
@@ -50,9 +46,11 @@ public class PlayerSystem extends IteratingSystem {
 		
 		if (Gdx.input.isKeyPressed(Keys.A)) {
 			moveComp.velocity.x += -1;
+			if (textureComp.flipX != true) textureComp.flipX = true;
 		}
 		if (Gdx.input.isKeyPressed(Keys.D)) {
 			moveComp.velocity.x += 1;
+			if (textureComp.flipX == true) textureComp.flipX = false;
 		}
 		if (Gdx.input.isKeyPressed(Keys.S)) {
 			moveComp.velocity.y += -1;
@@ -70,15 +68,6 @@ public class PlayerSystem extends IteratingSystem {
 		} else if (stateComp.getState().equals(StateComponent.IDLE) == false) {
 			stateComp.set(StateComponent.IDLE);
 		}
-	}
-
-	private void handleCamera(float deltaTime) {
-		Vector3 position = camera.position;
-		position.x += (transComp.position.x * Constants.PPM  - position.x) * LERP * deltaTime;
-		position.y += (transComp.position.y * Constants.PPM  - position.y) * LERP * deltaTime;
-		
-		if (Gdx.input.isKeyPressed(Keys.Q)) camera.zoom -= 10 * deltaTime;
-		if (Gdx.input.isKeyPressed(Keys.E)) camera.zoom += 10 * deltaTime;
 	}
 	
 }

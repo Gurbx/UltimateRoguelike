@@ -56,6 +56,11 @@ public class RenderSystem extends SortedIteratingSystem {
 				
 				if (texComp.region == null) continue;
 				
+				//Flip horizontal if needed
+				if (texComp.flipX != texComp.region.isFlipX()) {
+					texComp.region.flip(true, false);
+				}
+				
 				batch.draw(texComp.region, 
 						transComp.position.x * Constants.PPM - texComp.region.getRegionWidth() * 0.5f ,
 						transComp.position.y * Constants.PPM - texComp.region.getRegionHeight() * 0.5f);
