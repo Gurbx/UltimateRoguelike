@@ -1,5 +1,7 @@
 package gurbx.ultimateroguelike.screens;
 
+import com.badlogic.ashley.core.Component;
+import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -7,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Disposable;
 
 import box2dLight.RayHandler;
 import gurbx.ultimateroguelike.Application;
@@ -105,7 +108,6 @@ public class GameScreen implements Screen {
 	@Override
 	public void pause() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -125,6 +127,13 @@ public class GameScreen implements Screen {
 		if (debugSystem!= null) debugSystem.dispose();
 		if (lightSystem != null) lightSystem.dispose();
 		rayHandler.dispose();
+		
+		//Dispose disposable components
+//		for (Entity e : engine.getEntities()) {
+//			for (Component c : e.getComponents()) {
+//				if (c instanceof Disposable) ((Disposable) c).dispose();
+//			}
+//		}
 	}
 
 }

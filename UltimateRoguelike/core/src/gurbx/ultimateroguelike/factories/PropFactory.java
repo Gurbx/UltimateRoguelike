@@ -17,7 +17,7 @@ public class PropFactory {
 		e.add(tfc);
 		
 		TextureComponent tc = new TextureComponent();
-		tc.region = atlas.findRegion("chest3");
+		tc.region = atlas.findRegion("crate");
 		e.add(tc);
 		
 		return e;

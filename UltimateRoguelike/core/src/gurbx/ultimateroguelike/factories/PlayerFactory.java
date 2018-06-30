@@ -50,7 +50,8 @@ public class PlayerFactory {
 		lightComponent.light = new PointLight(rayHandler, 64);
 		lightComponent.light.attachToBody(bodyComponent.body);
 		lightComponent.light.setColor(1f, 0.6f, 0.6f, 0.8f);
-		lightComponent.light.setDistance(6f);
+		lightComponent.light.setDistance(14f);
+		entity.add(lightComponent);
 		
 		MovementComponent mc = new MovementComponent();
 		mc.acceleration = 10;
