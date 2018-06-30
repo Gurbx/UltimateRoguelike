@@ -15,6 +15,8 @@ import gurbx.ultimateroguelike.screens.ScreenDispatcher;
 import gurbx.ultimateroguelike.utils.Constants;
 
 public class Application extends Game {
+	public final static boolean DEBUG = false;
+	
 	public SpriteBatch batch;
 	public OrthographicCamera camera;
 	public Viewport viewport;

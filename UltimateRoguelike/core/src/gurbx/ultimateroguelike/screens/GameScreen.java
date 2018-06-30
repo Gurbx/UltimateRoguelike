@@ -8,10 +8,12 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 
+import box2dLight.RayHandler;
 import gurbx.ultimateroguelike.Application;
 import gurbx.ultimateroguelike.systems.AnimationSystem;
 import gurbx.ultimateroguelike.systems.Box2DDebugSystem;
 import gurbx.ultimateroguelike.systems.CameraSystem;
+import gurbx.ultimateroguelike.systems.LightSystem;
 import gurbx.ultimateroguelike.systems.MovementSystem;
 import gurbx.ultimateroguelike.systems.PhysicsSystem;
 import gurbx.ultimateroguelike.systems.PlayerMovementSystem;
@@ -25,6 +27,7 @@ public class GameScreen implements Screen {
 	private boolean isInitialized = false;
 	
 	protected World world;
+	protected RayHandler rayHandler;
 	protected Dungeon dungeon;
 	
 	protected TextureAtlas atlas;
@@ -33,6 +36,7 @@ public class GameScreen implements Screen {
 	
 	//Disposable
 	private Box2DDebugSystem debugSystem;
+	private LightSystem lightSystem;
 	
 	public GameScreen(Application app) {
 		this.app = app;
@@ -44,6 +48,7 @@ public class GameScreen implements Screen {
 		
 		engine = new PooledEngine();
 		world = new World(new Vector2(0,0), false);
+		rayHandler = new RayHandler(world);
 		dungeon = DungeonGenerator.generateWorld(dungeonAtlas, world);
 		
 		PlayerMovementSystem playerSystem = new PlayerMovementSystem();
@@ -64,8 +69,14 @@ public class GameScreen implements Screen {
 		RenderSystem renderSystem = new RenderSystem(app.batch, app.camera, dungeon);
 		engine.addSystem(renderSystem);
 		
-		debugSystem = new Box2DDebugSystem(world, app.camera);
-		engine.addSystem(debugSystem);
+		//Add light system if not debug mode
+		if (Application.DEBUG) {
+			debugSystem = new Box2DDebugSystem(world, app.camera);
+			engine.addSystem(debugSystem);
+		} else {
+			lightSystem = new LightSystem(rayHandler, app.camera);
+			engine.addSystem(lightSystem);
+		}
 		
 		isInitialized = true;	
 	}
@@ -112,6 +123,8 @@ public class GameScreen implements Screen {
 	@Override
 	public void dispose() {
 		if (debugSystem!= null) debugSystem.dispose();
+		if (lightSystem != null) lightSystem.dispose();
+		rayHandler.dispose();
 	}
 
 }
