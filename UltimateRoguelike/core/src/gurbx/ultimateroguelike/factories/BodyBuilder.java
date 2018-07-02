@@ -1,5 +1,6 @@
 package gurbx.ultimateroguelike.factories;
 
+import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -12,7 +13,7 @@ import gurbx.ultimateroguelike.utils.Constants;
 
 public class BodyBuilder {
 	
-	public static Body createBlockBody(float x, float y, int width, int height,  World world, Object object) {
+	public static Body createTileBody(float x, float y, int width, int height,  World world) {
         Body body;
         BodyDef def = new BodyDef();
         def.type = BodyDef.BodyType.StaticBody;
@@ -27,13 +28,13 @@ public class BodyBuilder {
         fixture.shape = shape;
         fixture.density = 1.0f;
 
-        body.createFixture(fixture).setUserData(object);
+        body.createFixture(fixture);
         shape.dispose();
         return body;
     }
 
     public static Body createDynamicBody(Vector2 position, float width, float height,
-                                         World world) {
+                                         World world, Object object) {
         Body body;
         BodyDef def = new BodyDef();
         def.type = BodyDef.BodyType.DynamicBody;
@@ -49,10 +50,9 @@ public class BodyBuilder {
         FixtureDef fixture = new FixtureDef();
         fixture.shape = shape;
         fixture.density = 1.0f;
-        body.createFixture(fixture);
+        body.createFixture(fixture).setUserData(object);;
 
         shape.dispose();
         return body;
     }
-
 }

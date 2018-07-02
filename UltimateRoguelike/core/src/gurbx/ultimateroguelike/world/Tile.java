@@ -27,7 +27,7 @@ public class Tile {
 		this.texture = texture;
 		
 		if (!empty && wall) {
-			body = BodyBuilder.createBlockBody(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE, world, this);
+			body = BodyBuilder.createTileBody(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE, world);
 		}
 	}
 	

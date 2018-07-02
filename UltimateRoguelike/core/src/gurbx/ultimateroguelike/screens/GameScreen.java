@@ -1,5 +1,8 @@
 package gurbx.ultimateroguelike.screens;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
@@ -16,11 +19,14 @@ import gurbx.ultimateroguelike.Application;
 import gurbx.ultimateroguelike.systems.AnimationSystem;
 import gurbx.ultimateroguelike.systems.Box2DDebugSystem;
 import gurbx.ultimateroguelike.systems.CameraSystem;
+import gurbx.ultimateroguelike.systems.DamageSystem;
 import gurbx.ultimateroguelike.systems.LightSystem;
 import gurbx.ultimateroguelike.systems.MovementSystem;
 import gurbx.ultimateroguelike.systems.PhysicsSystem;
 import gurbx.ultimateroguelike.systems.PlayerMovementSystem;
 import gurbx.ultimateroguelike.systems.RenderSystem;
+import gurbx.ultimateroguelike.utils.CollisionListener;
+import gurbx.ultimateroguelike.utils.CollisionSystem;
 import gurbx.ultimateroguelike.world.Dungeon;
 import gurbx.ultimateroguelike.world.generator.DungeonGenerator;
 
@@ -37,12 +43,16 @@ public class GameScreen implements Screen {
 	protected TextureAtlas enemyAtlas;
 	protected TextureAtlas dungeonAtlas;
 	
+	//Collision
+	private final List<CollisionListener> collisionListeners;
+	
 	//Disposable
 	private Box2DDebugSystem debugSystem;
 	private LightSystem lightSystem;
 	
 	public GameScreen(Application app) {
 		this.app = app;
+		collisionListeners = new LinkedList<CollisionListener>();
 	}
 
 	@Override
@@ -53,6 +63,12 @@ public class GameScreen implements Screen {
 		world = new World(new Vector2(0,0), false);
 		rayHandler = new RayHandler(world);
 		dungeon = DungeonGenerator.generateWorld(dungeonAtlas, world);
+		
+		CollisionSystem collisionSystem = new CollisionSystem(world, collisionListeners);
+		
+		DamageSystem damageSystem = new DamageSystem();
+		collisionListeners.add(damageSystem);
+		engine.addSystem(damageSystem);
 		
 		PlayerMovementSystem playerSystem = new PlayerMovementSystem();
 		engine.addSystem(playerSystem);

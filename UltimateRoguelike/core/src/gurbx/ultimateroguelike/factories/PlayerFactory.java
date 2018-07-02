@@ -11,6 +11,7 @@ import box2dLight.PointLight;
 import box2dLight.RayHandler;
 import gurbx.ultimateroguelike.components.AnimationComponent;
 import gurbx.ultimateroguelike.components.BodyComponent;
+import gurbx.ultimateroguelike.components.DamageComponent;
 import gurbx.ultimateroguelike.components.LightComponent;
 import gurbx.ultimateroguelike.components.MovementComponent;
 import gurbx.ultimateroguelike.components.PlayerComponent;
@@ -41,13 +42,17 @@ public class PlayerFactory {
 		TextureComponent texture = new TextureComponent();
 		entity.add(texture);
 		
+		DamageComponent damageComponent = new DamageComponent();
+		damageComponent.damage = 3;
+		entity.add(damageComponent);
+		
 		BodyComponent bodyComponent = new BodyComponent();
-		bodyComponent.body = BodyBuilder.createDynamicBody(transform.position, 32, 32, world);
+		bodyComponent.body = BodyBuilder.createDynamicBody(transform.position, 32, 32, world, entity);
 		bodyComponent.body.setLinearDamping(15);
 		entity.add(bodyComponent);
 		
 		LightComponent lightComponent = new LightComponent();
-		lightComponent.light = new PointLight(rayHandler, 64);
+		lightComponent.light = new PointLight(rayHandler, 128);
 		lightComponent.light.attachToBody(bodyComponent.body);
 		lightComponent.light.setColor(1f, 0.6f, 0.6f, 0.8f);
 		lightComponent.light.setDistance(14f);
