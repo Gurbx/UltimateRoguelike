@@ -33,8 +33,10 @@ public class PlayScreen extends GameScreen {
 		Entity player = PlayerFactory.createPlayer(20*Constants.TILE_SIZE, 20*Constants.TILE_SIZE, enemyAtlas, world, rayHandler);
 		engine.addEntity(player);
 		
-		Entity chest = PropFactory.createDestructible(20*Constants.TILE_SIZE, 20*Constants.TILE_SIZE, dungeonAtlas, world);
-		engine.addEntity(chest);
+		for (int i = 0; i < 10; i++) {
+			Entity chest = PropFactory.createDestructible(20*Constants.TILE_SIZE, 20*Constants.TILE_SIZE, dungeonAtlas, world, rayHandler);
+			engine.addEntity(chest);
+		}
 	}
 	
 	@Override

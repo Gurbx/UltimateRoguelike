@@ -20,6 +20,7 @@ import gurbx.ultimateroguelike.systems.AnimationSystem;
 import gurbx.ultimateroguelike.systems.Box2DDebugSystem;
 import gurbx.ultimateroguelike.systems.CameraSystem;
 import gurbx.ultimateroguelike.systems.DamageSystem;
+import gurbx.ultimateroguelike.systems.DeathSystem;
 import gurbx.ultimateroguelike.systems.LightSystem;
 import gurbx.ultimateroguelike.systems.MovementSystem;
 import gurbx.ultimateroguelike.systems.PhysicsSystem;
@@ -69,6 +70,9 @@ public class GameScreen implements Screen {
 		DamageSystem damageSystem = new DamageSystem();
 		collisionListeners.add(damageSystem);
 		engine.addSystem(damageSystem);
+		
+		DeathSystem deathSystem = new DeathSystem(world);
+		engine.addSystem(deathSystem);
 		
 		PlayerMovementSystem playerSystem = new PlayerMovementSystem();
 		engine.addSystem(playerSystem);
@@ -140,16 +144,17 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void dispose() {
+		
+		//Dispose disposable components
+		for (Entity e : engine.getEntities()) {
+			for (Component c : e.getComponents()) {
+				if (c instanceof Disposable) ((Disposable) c).dispose();
+			}
+		}
+		
 		if (debugSystem!= null) debugSystem.dispose();
 		if (lightSystem != null) lightSystem.dispose();
 		rayHandler.dispose();
-		
-		//Dispose disposable components
-//		for (Entity e : engine.getEntities()) {
-//			for (Component c : e.getComponents()) {
-//				if (c instanceof Disposable) ((Disposable) c).dispose();
-//			}
-//		}
 	}
 
 }

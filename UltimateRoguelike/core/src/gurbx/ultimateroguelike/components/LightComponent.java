@@ -12,7 +12,7 @@ public class LightComponent implements Component, Disposable {
 	
 	@Override
 	public void dispose() {
-		light.dispose();
+		light.remove(true);
 	}
 	
 }
