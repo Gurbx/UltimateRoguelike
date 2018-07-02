@@ -43,7 +43,8 @@ public class PlayerFactory {
 		entity.add(texture);
 		
 		DamageComponent damageComponent = new DamageComponent();
-		damageComponent.damage = 3;
+		damageComponent.damage = 1;
+		damageComponent.pushBack = 1000f;
 		entity.add(damageComponent);
 		
 		BodyComponent bodyComponent = new BodyComponent();

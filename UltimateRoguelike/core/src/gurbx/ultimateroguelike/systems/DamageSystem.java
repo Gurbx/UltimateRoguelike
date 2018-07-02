@@ -9,6 +9,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.utils.Disposable;
@@ -32,15 +33,19 @@ public class DamageSystem extends EntitySystem implements CollisionListener {
 		
 		if (entityA == null || entityB == null) return;
 		
-		damageEntity(entityA, entityB, fixtureA.getBody());
-		damageEntity(entityB, entityA, fixtureB.getBody());
+		damageEntity(entityA, entityB, fixtureA.getBody(), fixtureB.getBody());
+		damageEntity(entityB, entityA, fixtureB.getBody(), fixtureA.getBody());
 	}
 
-	private void damageEntity(Entity entityA, Entity entityB, Body body) {
+	private void damageEntity(Entity entityA, Entity entityB, Body bodyA, Body bodyB) {
 		LifeComponent life = entityA.getComponent(LifeComponent.class);
 		DamageComponent damage = entityB.getComponent(DamageComponent.class);
 		
 		if (life == null || damage == null) return;
+		
+		//Apply pushback
+//		bodyA.applyForce(damage.pushBack, damage.pushBack, bodyA.getWorldCenter().x, bodyA.getWorldCenter().y, true);
+//		bodyA.applyForce(, point, wake);
 		
 		//TODO -- PLAY SOUND AND PARTICLE EFFECTS AND STUFF HERE -- !!
 		//DAMAGE
@@ -49,7 +54,7 @@ public class DamageSystem extends EntitySystem implements CollisionListener {
 		//DEATH
 		if (life.health <= 0) {
 			DeathComponent deathComponent = new DeathComponent();
-			deathComponent.body = body;
+			deathComponent.body = bodyA;
 			entityA.add(deathComponent);
 		}
 	}

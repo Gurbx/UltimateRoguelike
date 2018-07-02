@@ -30,7 +30,7 @@ public class DeathSystem extends EntitySystem {
 		for (int i = 0; i < entities.size(); i++) {
 			
 			DeathComponent deathComp = DeathComponent.MAPPER.get(entities.get(i));
-			world.destroyBody(deathComp.body);
+			if (deathComp.body != null) world.destroyBody(deathComp.body);
 			
 			//Dispose all disposable components
 			for (Component comp : entities.get(i).getComponents()) {
