@@ -21,8 +21,7 @@ public class MovementSystem extends IteratingSystem {
 	protected void processEntity(Entity entity, float deltaTime) {
 		BodyComponent bodyComp = BodyComponent.MAPPER.get(entity);
 		MovementComponent moveComp = MovementComponent.MAPPER.get(entity);
-				
-		//Normalize velocity
+		
 		if (moveComp.velocity.len() > 0) {
 			moveComp.velocity = moveComp.velocity.nor().scl(moveComp.speed * deltaTime);
 		}

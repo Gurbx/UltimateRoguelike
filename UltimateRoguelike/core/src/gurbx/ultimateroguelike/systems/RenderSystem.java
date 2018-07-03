@@ -28,6 +28,9 @@ public class RenderSystem extends SortedIteratingSystem {
 	private OrthographicCamera camera;
 	private Dungeon dungeon;
 	
+	private float width;
+	private float height;
+	
 	public RenderSystem(SpriteBatch batch, OrthographicCamera camera, Dungeon dungeon) {
 		super(Family.all(TransformComponent.class, TextureComponent.class).get(), comparator);
 		this.batch = batch;
@@ -48,7 +51,7 @@ public class RenderSystem extends SortedIteratingSystem {
 			batch.setProjectionMatrix(camera.combined);
 			batch.begin();
 
-//			dungeon.render(batch);
+			dungeon.render(batch);
 			
 			for (Entity entity : renderQueue) {
 				TextureComponent texComp = TextureComponent.MAPPER.get(entity);
@@ -61,9 +64,16 @@ public class RenderSystem extends SortedIteratingSystem {
 					texComp.region.flip(true, false);
 				}
 				
+				width = texComp.region.getRegionWidth();
+				height = texComp.region.getRegionHeight();
+				
 				batch.draw(texComp.region, 
-						transComp.position.x * Constants.PPM - texComp.region.getRegionWidth() * 0.5f ,
-						transComp.position.y * Constants.PPM - texComp.region.getRegionHeight() * 0.5f);
+						transComp.position.x * Constants.PPM - width * 0.5f ,
+						transComp.position.y * Constants.PPM - height * 0.5f,
+						width*0.5f, height*0.5f, //Origin
+						width, height, // Dimensions
+						transComp.scale.x, transComp.scale.y,
+						transComp.rotation);
 			}
 			batch.end();
 			renderQueue.clear();

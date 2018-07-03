@@ -13,6 +13,7 @@ import com.badlogic.gdx.math.Vector2;
 import gurbx.ultimateroguelike.Application;
 import gurbx.ultimateroguelike.components.TransformComponent;
 import gurbx.ultimateroguelike.factories.PlayerFactory;
+import gurbx.ultimateroguelike.factories.ProjectileFactory;
 import gurbx.ultimateroguelike.factories.PropFactory;
 import gurbx.ultimateroguelike.systems.CameraSystem;
 import gurbx.ultimateroguelike.utils.Constants;
@@ -53,7 +54,7 @@ public class PlayScreen extends GameScreen {
 	
 	@Override
 	public void dispose() {
-		atlas.dispose();
+		playerAtlas.dispose();
 		enemyAtlas.dispose();
 		dungeonAtlas.dispose();
 		super.dispose();

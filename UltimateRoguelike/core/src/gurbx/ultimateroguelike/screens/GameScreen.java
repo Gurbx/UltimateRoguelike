@@ -24,7 +24,9 @@ import gurbx.ultimateroguelike.systems.DeathSystem;
 import gurbx.ultimateroguelike.systems.LightSystem;
 import gurbx.ultimateroguelike.systems.MovementSystem;
 import gurbx.ultimateroguelike.systems.PhysicsSystem;
+import gurbx.ultimateroguelike.systems.PlayerCombatSystem;
 import gurbx.ultimateroguelike.systems.PlayerMovementSystem;
+import gurbx.ultimateroguelike.systems.ProjectileSystem;
 import gurbx.ultimateroguelike.systems.RenderSystem;
 import gurbx.ultimateroguelike.utils.CollisionListener;
 import gurbx.ultimateroguelike.utils.CollisionSystem;
@@ -40,7 +42,7 @@ public class GameScreen implements Screen {
 	protected RayHandler rayHandler;
 	protected Dungeon dungeon;
 	
-	protected TextureAtlas atlas;
+	protected TextureAtlas playerAtlas;
 	protected TextureAtlas enemyAtlas;
 	protected TextureAtlas dungeonAtlas;
 	
@@ -63,7 +65,7 @@ public class GameScreen implements Screen {
 		engine = new PooledEngine();
 		world = new World(new Vector2(0,0), false);
 		rayHandler = new RayHandler(world);
-//		dungeon = DungeonGenerator.generateWorld(dungeonAtlas, world);
+		dungeon = DungeonGenerator.generateWorld(dungeonAtlas, world);
 		
 		CollisionSystem collisionSystem = new CollisionSystem(world, collisionListeners);
 		
@@ -77,8 +79,14 @@ public class GameScreen implements Screen {
 		PlayerMovementSystem playerSystem = new PlayerMovementSystem();
 		engine.addSystem(playerSystem);
 		
+		PlayerCombatSystem playerCombatSystem = new PlayerCombatSystem(engine, app.camera, playerAtlas, world, rayHandler);
+		engine.addSystem(playerCombatSystem);
+		
 		MovementSystem movementSystem = new MovementSystem();
 		engine.addSystem(movementSystem);
+		
+		ProjectileSystem projectileSystem = new ProjectileSystem();
+		engine.addSystem(projectileSystem);
 		
 		PhysicsSystem physicsSystem = new PhysicsSystem(world);
 		engine.addSystem(physicsSystem);
@@ -105,7 +113,7 @@ public class GameScreen implements Screen {
 	}
 
 	private void initTextureAtlases() {
-		atlas =  app.assets.get("img_packed/generalPack.atlas", TextureAtlas.class);
+		playerAtlas =  app.assets.get("img_packed/playerPack.atlas", TextureAtlas.class);
 		enemyAtlas = app.assets.get("img_packed/enemiesPack.atlas", TextureAtlas.class);
 		dungeonAtlas = app.assets.get("img_packed/dungeonPack.atlas", TextureAtlas.class);
 	}

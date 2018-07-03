@@ -11,7 +11,7 @@ import gurbx.ultimateroguelike.xtests.WorldMapTestRenderer;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		//Pack texutres
-//		TexturePacker.process("img_raw", "img_packed", "generalPack");
+//		TexturePacker.process("img_raw/player", "img_packed", "playerPack");
 //		TexturePacker.process("img_raw/enemies", "img_packed", "enemiesPack");
 //		TexturePacker.process("img_raw/dungeon", "img_packed", "dungeonPack");
 		

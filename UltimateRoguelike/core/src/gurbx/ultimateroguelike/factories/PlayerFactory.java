@@ -60,7 +60,6 @@ public class PlayerFactory {
 		entity.add(lightComponent);
 		
 		MovementComponent mc = new MovementComponent();
-		mc.acceleration = 10;
 		mc.speed = 100;
 		entity.add(mc);
 		

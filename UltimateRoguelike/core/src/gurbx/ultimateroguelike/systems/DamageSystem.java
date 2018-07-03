@@ -19,6 +19,7 @@ import gurbx.ultimateroguelike.components.BodyComponent;
 import gurbx.ultimateroguelike.components.DamageComponent;
 import gurbx.ultimateroguelike.components.DeathComponent;
 import gurbx.ultimateroguelike.components.LifeComponent;
+import gurbx.ultimateroguelike.components.ProjectileComponent;
 import gurbx.ultimateroguelike.utils.CollisionListener;
 
 public class DamageSystem extends EntitySystem implements CollisionListener {
@@ -30,6 +31,9 @@ public class DamageSystem extends EntitySystem implements CollisionListener {
 	public void onBeginContact(Fixture fixtureA, Fixture fixtureB) {
 		Entity entityA = (Entity) fixtureA.getUserData();
 		Entity entityB = (Entity) fixtureB.getUserData();
+		
+		if (entityA != null) destroyBullet(entityA, fixtureA.getBody()); // if bullets, destroy them
+		if (entityB != null) destroyBullet(entityB, fixtureB.getBody());
 		
 		if (entityA == null || entityB == null) return;
 		
@@ -52,13 +56,28 @@ public class DamageSystem extends EntitySystem implements CollisionListener {
 		
 		//DAMAGE
 		life.health -= damage.damage;
-		CameraSystem.shakeScreen(10, 10, false);
 		
-		//DEATH
+		//DEATH (if target dies)
 		if (life.health <= 0) {
 			DeathComponent deathComponent = new DeathComponent();
 			deathComponent.body = bodyA;
 			entityA.add(deathComponent);
+			
+			CameraSystem.shakeScreen(8, 15, true); // Bigger shake
+		} else {
+			CameraSystem.shakeScreen(4, 10, false); // smaller shake
 		}
 	}	
+	
+
+	private void destroyBullet(Entity entity, Body body) {
+		ProjectileComponent projectile = entity.getComponent(ProjectileComponent.class);
+		if (projectile == null) return;
+		
+		DeathComponent deathComponent = new DeathComponent();
+		deathComponent.body = body;
+		entity.add(deathComponent);
+		
+		CameraSystem.shakeScreen(3, 3, false);
+	}
 }

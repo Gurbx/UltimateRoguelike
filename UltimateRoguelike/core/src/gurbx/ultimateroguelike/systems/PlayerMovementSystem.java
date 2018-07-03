@@ -29,13 +29,12 @@ public class PlayerMovementSystem extends IteratingSystem {
 	@Override
 	protected void processEntity(Entity entity, float deltaTime) {
 		moveComp = MovementComponent.MAPPER.get(entity);
-		transComp = TransformComponent.MAPPER.get(entity);
 		stateComp = StateComponent.MAPPER.get(entity);
 		textureComp = TextureComponent.MAPPER.get(entity);
 		
 		//MOVEMENT 
 		handleMovement();
-		
+
 		//STATES
 		handleStates();
 	}
