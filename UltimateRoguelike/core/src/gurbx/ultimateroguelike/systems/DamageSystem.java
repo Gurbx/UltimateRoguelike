@@ -43,20 +43,22 @@ public class DamageSystem extends EntitySystem implements CollisionListener {
 		
 		if (life == null || damage == null) return;
 		
-		//Apply pushback
-//		bodyA.applyForce(damage.pushBack, damage.pushBack, bodyA.getWorldCenter().x, bodyA.getWorldCenter().y, true);
-//		bodyA.applyForce(, point, wake);
+		//APPLY PUSHBACK
+		Vector2 force = bodyA.getPosition().sub(bodyB.getPosition());
+		force.nor().scl(damage.pushBack);
+		bodyA.applyForce(force, bodyA.getWorldCenter(), true);
 		
 		//TODO -- PLAY SOUND AND PARTICLE EFFECTS AND STUFF HERE -- !!
+		
 		//DAMAGE
 		life.health -= damage.damage;
 		CameraSystem.shakeScreen(10, 10, false);
+		
 		//DEATH
 		if (life.health <= 0) {
 			DeathComponent deathComponent = new DeathComponent();
 			deathComponent.body = bodyA;
 			entityA.add(deathComponent);
 		}
-	}
-	
+	}	
 }

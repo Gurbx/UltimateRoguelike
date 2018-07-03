@@ -48,7 +48,7 @@ public class RenderSystem extends SortedIteratingSystem {
 			batch.setProjectionMatrix(camera.combined);
 			batch.begin();
 
-			dungeon.render(batch);
+//			dungeon.render(batch);
 			
 			for (Entity entity : renderQueue) {
 				TextureComponent texComp = TextureComponent.MAPPER.get(entity);

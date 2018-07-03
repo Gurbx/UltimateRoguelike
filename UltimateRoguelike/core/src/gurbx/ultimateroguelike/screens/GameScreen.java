@@ -63,7 +63,7 @@ public class GameScreen implements Screen {
 		engine = new PooledEngine();
 		world = new World(new Vector2(0,0), false);
 		rayHandler = new RayHandler(world);
-		dungeon = DungeonGenerator.generateWorld(dungeonAtlas, world);
+//		dungeon = DungeonGenerator.generateWorld(dungeonAtlas, world);
 		
 		CollisionSystem collisionSystem = new CollisionSystem(world, collisionListeners);
 		

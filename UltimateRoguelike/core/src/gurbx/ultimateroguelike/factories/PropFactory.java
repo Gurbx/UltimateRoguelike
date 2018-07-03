@@ -36,7 +36,7 @@ public class PropFactory {
 		BodyComponent bodyComponent = new BodyComponent();
 		bodyComponent.body = BodyBuilder.createDynamicBody(tfc.position, tc.region.getRegionWidth(), tc.region.getRegionHeight(),
 				world, e);
-		bodyComponent.body.setLinearDamping(5f);
+		bodyComponent.body.setLinearDamping(8f);
 		e.add(bodyComponent);
 		
 		LightComponent lightComponent = new LightComponent();
