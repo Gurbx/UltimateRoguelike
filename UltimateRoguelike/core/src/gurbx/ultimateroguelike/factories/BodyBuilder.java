@@ -23,10 +23,11 @@ public class BodyBuilder {
 
         PolygonShape shape = new PolygonShape();
         shape.setAsBox((float) width*0.5f / Constants.PPM, (float) height*0.5f / Constants.PPM);
-
+        
         FixtureDef fixture = new FixtureDef();
         fixture.shape = shape;
         fixture.density = 1.0f;
+        fixture.filter.categoryBits = Constants.WORLD;
 
         body.createFixture(fixture);
         shape.dispose();

@@ -37,4 +37,7 @@ public class Tile {
 				x - Constants.TILE_SIZE*0.5f, 
 				y - Constants.TILE_SIZE*0.5f);
 	}
+	
+	public int getCoordX() { return coordX; }
+	public int getCoordY() { return coordY; }
 }

@@ -5,6 +5,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.World;
 
 import box2dLight.PointLight;
@@ -19,6 +20,7 @@ import gurbx.ultimateroguelike.components.StateComponent;
 import gurbx.ultimateroguelike.components.TextureComponent;
 import gurbx.ultimateroguelike.components.TransformComponent;
 import gurbx.ultimateroguelike.systems.CameraSystem;
+import gurbx.ultimateroguelike.utils.Constants;
 
 public class PlayerFactory {
 	
@@ -57,6 +59,9 @@ public class PlayerFactory {
 		lightComponent.light.attachToBody(bodyComponent.body);
 		lightComponent.light.setColor(1f, 0.6f, 0.6f, 0.8f);
 		lightComponent.light.setDistance(14f);
+		Filter filter = new Filter();
+		filter.maskBits = Constants.WORLD;
+		lightComponent.light.setContactFilter(filter);
 		entity.add(lightComponent);
 		
 		MovementComponent mc = new MovementComponent();
