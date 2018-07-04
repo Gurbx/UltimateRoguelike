@@ -37,9 +37,8 @@ public class PlayerFactory {
 		entity.add(stateComp);
 		
 		AnimationComponent ac = new AnimationComponent();
-		ac.animations.put(StateComponent.IDLE, AnimationBuilder.createAnimation(atlas, "tentaclebrain_idle", 8, 1/6f));
-		ac.animations.put(StateComponent.RUN, AnimationBuilder.createAnimation(atlas, "tentaclebrain_idle", 8, 1/12f));
-		ac.animations.put(StateComponent.ATTACK, AnimationBuilder.createAnimation(atlas, "tentaclebrain_attack", 8, 1/12f));
+		ac.animations.put(StateComponent.IDLE, AnimationBuilder.createAnimation(atlas, "blob_idle", 5, 1/6f));
+		ac.animations.put(StateComponent.RUN, AnimationBuilder.createAnimation(atlas, "blob_idle", 5, 1/12f));
 		entity.add(ac);
 		
 		TextureComponent texture = new TextureComponent();

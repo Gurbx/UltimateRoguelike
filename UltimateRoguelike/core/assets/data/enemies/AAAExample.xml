@@ -9,21 +9,22 @@
 	linearDampling ="15"
 	
 	speed = "50"
-	behaviour = "chase"
+	behaviour = "none"
 	
 	health = "5"
 	damage = "1"
 	critChance = "0"
 	attackRange = "100"
 	attackCooldown = "0.5"
+	attackType = "melee"
 	
-	attackParticleEffect="attack.p"
-	attackSound="attack.wav"
+	attackParticleEffect = "none"
+	attackSound = "none"
 	
-	hitParticleEffect="hit.p"
-	hitSound="hit.wav"
+	hitParticleEffect = "none"
+	hitSound="none"
 	
-	deathParticleEffect="death.p"
+	deathParticleEffect = "none"
 	deathSound = "none"
 	
 	deathEffect = "none" > 

@@ -60,16 +60,12 @@ public class PlayerMovementSystem extends IteratingSystem {
 	}
 
 	private void handleStates() {
-//		if ((moveComp.velocity.x == 0 && moveComp.velocity.y == 0) == false) {
-//			if (stateComp.getState().equals(StateComponent.RUN) == false) {
-//				stateComp.set(StateComponent.RUN);
-//			}
-//		} else if (stateComp.getState().equals(StateComponent.IDLE) == false) {
-//			stateComp.set(StateComponent.IDLE);
-//		}
-		
-		if (stateComp.getState().equals(StateComponent.ATTACK) == false) {
-			stateComp.set(StateComponent.ATTACK);
+		if ((moveComp.velocity.x == 0 && moveComp.velocity.y == 0) == false) {
+			if (stateComp.getState().equals(StateComponent.RUN) == false) {
+				stateComp.set(StateComponent.RUN);
+			}
+		} else if (stateComp.getState().equals(StateComponent.IDLE) == false) {
+			stateComp.set(StateComponent.IDLE);
 		}
 	}
 	
