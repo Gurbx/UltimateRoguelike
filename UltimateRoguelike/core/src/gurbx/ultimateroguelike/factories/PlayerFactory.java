@@ -37,17 +37,18 @@ public class PlayerFactory {
 		entity.add(stateComp);
 		
 		AnimationComponent ac = new AnimationComponent();
-		ac.animations.put(StateComponent.IDLE, AnimationBuilder.createAnimation(atlas, "blob_idle", 5, 1/6f));
-		ac.animations.put(StateComponent.RUN, AnimationBuilder.createAnimation(atlas, "blob_idle", 5, 1/12f));
+		ac.animations.put(StateComponent.IDLE, AnimationBuilder.createAnimation(atlas, "tentaclebrain_idle", 8, 1/6f));
+		ac.animations.put(StateComponent.RUN, AnimationBuilder.createAnimation(atlas, "tentaclebrain_idle", 8, 1/12f));
+		ac.animations.put(StateComponent.ATTACK, AnimationBuilder.createAnimation(atlas, "tentaclebrain_attack", 8, 1/12f));
 		entity.add(ac);
 		
 		TextureComponent texture = new TextureComponent();
 		entity.add(texture);
 		
-		DamageComponent damageComponent = new DamageComponent();
-		damageComponent.damage = 1;
-		damageComponent.pushBack = 2500f;
-		entity.add(damageComponent);
+//		DamageComponent damageComponent = new DamageComponent();
+//		damageComponent.damage = 1;
+//		damageComponent.pushBack = 2500f;
+//		entity.add(damageComponent);
 		
 		BodyComponent bodyComponent = new BodyComponent();
 		bodyComponent.body = BodyBuilder.createDynamicBody(transform.position, 32, 32, world, entity);

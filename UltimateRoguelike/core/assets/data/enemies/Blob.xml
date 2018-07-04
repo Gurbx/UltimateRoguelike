@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Enemy 
+	name="Blob" 
+	health="10"
+	
+	width="24" height="24"
+	offsetX="0" offsetY="0"
+	linearDampling ="15"> 
+	
+	<States> 
+		<Animation state="idle" path="blob_idle" frames="5" fps="0.166"/>
+		<Animation state="run" path="blob_idle" frames="5" fps="0.083"/>
+	</States>
+	
+	<Light
+		rays="6" 
+		range="3">
+		<color r="0.5" g="0" b="0.5" a="1" />
+	</Light>
+	
+</Enemy>
+

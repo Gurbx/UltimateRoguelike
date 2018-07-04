@@ -51,7 +51,7 @@ public class ProjectileFactory {
 		LightComponent lightComponent = new LightComponent();
 		lightComponent.light = new PointLight(rayHandler, 16);
 		lightComponent.light.attachToBody(bodyComp.body);
-		lightComponent.light.setColor(1f, 0f, 0f, 1f);
+		lightComponent.light.setColor(0f, 1f, 0.25f, 1f);
 		lightComponent.light.setDistance(2f);
 		entity.add(lightComponent);
 		

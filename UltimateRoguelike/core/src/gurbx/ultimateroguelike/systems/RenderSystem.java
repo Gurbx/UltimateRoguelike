@@ -68,8 +68,8 @@ public class RenderSystem extends SortedIteratingSystem {
 				height = texComp.region.getRegionHeight();
 				
 				batch.draw(texComp.region, 
-						transComp.position.x * Constants.PPM - width * 0.5f ,
-						transComp.position.y * Constants.PPM - height * 0.5f,
+						transComp.position.x * Constants.PPM - width * 0.5f + transComp.offsetX,
+						transComp.position.y * Constants.PPM - height * 0.5f + transComp.offsetY,
 						width*0.5f, height*0.5f, //Origin
 						width, height, // Dimensions
 						transComp.scale.x, transComp.scale.y,

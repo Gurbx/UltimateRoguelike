@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Enemy 
+	name="Tentacle Brain" 
+	health="10"
+	
+	width="28" height="28"
+	offsetX="0" offsetY="8"
+	
+	linearDampling ="15"> 
+	
+	<States> 
+		<Animation state="idle" path="tentaclebrain_idle" frames="8" fps="0.166"/>
+		<Animation state="run" path="tentaclebrain_idle" frames="8" fps="0.083"/>
+		<Animation state="attack" path="tentaclebrain_attack" frames="8" fps="0.083"/>
+	</States>
+	
+	<Light
+		rays="12" 
+		range="6">
+		<color r="0.5" g="1" b="0.5" a="1" />
+	</Light>
+	
+</Enemy>
+

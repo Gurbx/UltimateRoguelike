@@ -17,6 +17,7 @@ import gurbx.ultimateroguelike.factories.ProjectileFactory;
 import gurbx.ultimateroguelike.factories.PropFactory;
 import gurbx.ultimateroguelike.systems.CameraSystem;
 import gurbx.ultimateroguelike.utils.Constants;
+import gurbx.ultimateroguelike.utils.EnemyLoader;
 import gurbx.ultimateroguelike.world.Dungeon;
 import gurbx.ultimateroguelike.world.generator.DungeonGenerator;
 
@@ -30,6 +31,10 @@ public class PlayScreen extends GameScreen {
 	@Override
 	public void show() {
 		super.show();
+		
+		EnemyLoader enemyLoader = new EnemyLoader(enemyAtlas, world, rayHandler);
+		engine.addEntity(enemyLoader.loadEnemy("data/enemies/TentacleBrain.xml",
+				20*Constants.TILE_SIZE, 20*Constants.TILE_SIZE - 10));
 		
 		Entity player = PlayerFactory.createPlayer(20*Constants.TILE_SIZE, 20*Constants.TILE_SIZE, enemyAtlas, world, rayHandler);
 		engine.addEntity(player);
@@ -47,7 +52,7 @@ public class PlayScreen extends GameScreen {
 	
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClearColor(0.5f, 0.5f, 0.5f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		super.render(delta);
 	}
