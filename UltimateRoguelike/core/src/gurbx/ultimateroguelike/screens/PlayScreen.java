@@ -35,6 +35,8 @@ public class PlayScreen extends GameScreen {
 		EnemyLoader enemyLoader = new EnemyLoader(enemyAtlas, world, rayHandler);
 		engine.addEntity(enemyLoader.loadEnemy("data/enemies/Blob.xml",
 				20*Constants.TILE_SIZE, 20*Constants.TILE_SIZE - 10));
+		engine.addEntity(enemyLoader.loadEnemy("data/enemies/TentacleBrain.xml",
+				20*Constants.TILE_SIZE, 20*Constants.TILE_SIZE + 10));
 		
 		Entity player = PlayerFactory.createPlayer(20*Constants.TILE_SIZE, 20*Constants.TILE_SIZE, enemyAtlas, world, rayHandler);
 		engine.addEntity(player);
