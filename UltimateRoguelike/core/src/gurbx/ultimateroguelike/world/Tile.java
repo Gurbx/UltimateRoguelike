@@ -14,6 +14,7 @@ public class Tile {
 	private Body body;
 	private TextureRegion texture;
 	private boolean empty;
+	private int walkCost = 10;
 	
 	public Tile(int coordX, int coordY, TextureRegion texture, boolean empty, boolean wall, World world) {
 		this.empty = empty;
@@ -40,4 +41,8 @@ public class Tile {
 	
 	public int getCoordX() { return coordX; }
 	public int getCoordY() { return coordY; }
+	public int getWalkCost() { return walkCost; }
+	public boolean isWalkable() {
+		return body == null;
+	}
 }

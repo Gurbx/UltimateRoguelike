@@ -28,6 +28,7 @@ import gurbx.ultimateroguelike.systems.PlayerCombatSystem;
 import gurbx.ultimateroguelike.systems.PlayerMovementSystem;
 import gurbx.ultimateroguelike.systems.ProjectileSystem;
 import gurbx.ultimateroguelike.systems.RenderSystem;
+import gurbx.ultimateroguelike.systems.SteeringSystem;
 import gurbx.ultimateroguelike.utils.CollisionListener;
 import gurbx.ultimateroguelike.utils.CollisionSystem;
 import gurbx.ultimateroguelike.world.Dungeon;
@@ -75,6 +76,9 @@ public class GameScreen implements Screen {
 		
 		DeathSystem deathSystem = new DeathSystem(world);
 		engine.addSystem(deathSystem);
+		
+		SteeringSystem steeringSystem = new SteeringSystem();
+		engine.addSystem(steeringSystem);
 		
 		PlayerMovementSystem playerSystem = new PlayerMovementSystem();
 		engine.addSystem(playerSystem);

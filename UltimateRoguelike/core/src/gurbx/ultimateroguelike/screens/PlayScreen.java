@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 
 import gurbx.ultimateroguelike.Application;
+import gurbx.ultimateroguelike.components.BodyComponent;
 import gurbx.ultimateroguelike.components.TransformComponent;
 import gurbx.ultimateroguelike.factories.PlayerFactory;
 import gurbx.ultimateroguelike.factories.ProjectileFactory;
@@ -32,14 +33,19 @@ public class PlayScreen extends GameScreen {
 	public void show() {
 		super.show();
 		
-		EnemyLoader enemyLoader = new EnemyLoader(enemyAtlas, world, rayHandler);
-		engine.addEntity(enemyLoader.loadEnemy("data/enemies/Blob.xml",
-				20*Constants.TILE_SIZE, 20*Constants.TILE_SIZE - 10));
-		engine.addEntity(enemyLoader.loadEnemy("data/enemies/TentacleBrain.xml",
-				20*Constants.TILE_SIZE, 20*Constants.TILE_SIZE + 10));
-		
 		Entity player = PlayerFactory.createPlayer(20*Constants.TILE_SIZE, 20*Constants.TILE_SIZE, enemyAtlas, world, rayHandler);
 		engine.addEntity(player);
+		
+		EnemyLoader enemyLoader = new EnemyLoader(enemyAtlas, world, rayHandler);
+		
+		engine.addEntity(enemyLoader.loadEnemy("data/enemies/Blob.xml",
+				20*Constants.TILE_SIZE, 20*Constants.TILE_SIZE - 10, player.getComponent(BodyComponent.class).body));
+		engine.addEntity(enemyLoader.loadEnemy("data/enemies/Blob.xml",
+				20*Constants.TILE_SIZE, 20*Constants.TILE_SIZE - 10, player.getComponent(BodyComponent.class).body));
+		engine.addEntity(enemyLoader.loadEnemy("data/enemies/Blob.xml",
+				20*Constants.TILE_SIZE, 20*Constants.TILE_SIZE - 10, player.getComponent(BodyComponent.class).body));
+		engine.addEntity(enemyLoader.loadEnemy("data/enemies/Blob.xml",
+				20*Constants.TILE_SIZE, 20*Constants.TILE_SIZE - 10, player.getComponent(BodyComponent.class).body));
 		
 		for (int i = 0; i < 2; i++) {
 			Entity chest = PropFactory.createDestructible(20*Constants.TILE_SIZE, 20*Constants.TILE_SIZE, dungeonAtlas, world, rayHandler);

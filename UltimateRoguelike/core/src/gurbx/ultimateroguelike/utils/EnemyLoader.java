@@ -4,7 +4,10 @@ import java.io.IOException;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.ai.steer.behaviors.Arrive;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.XmlReader;
@@ -12,6 +15,8 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 
 import box2dLight.PointLight;
 import box2dLight.RayHandler;
+import gurbx.ultimateroguelike.ai.EntityLocation;
+import gurbx.ultimateroguelike.ai.SteeringAgentComponent;
 import gurbx.ultimateroguelike.components.AnimationComponent;
 import gurbx.ultimateroguelike.components.BodyComponent;
 import gurbx.ultimateroguelike.components.LifeComponent;
@@ -36,7 +41,7 @@ public class EnemyLoader {
 	}
 	
 	//LOAD ENEMY
-	public Entity loadEnemy(String path, float x, float y) {
+	public Entity loadEnemy(String path, float x, float y, Body playerBody) {
 		Entity entity = new Entity();
 		
 		Element root;
@@ -92,6 +97,24 @@ public class EnemyLoader {
 			lc.light.setContactFilter(filter);
 			entity.add(lc);
 		}
+		
+		//AI TEST ///!!! TODO
+		SteeringAgentComponent steeringAgentComponent = new SteeringAgentComponent(
+				bodyComponent.body, 32, true);
+		steeringAgentComponent.maxAngularAcceleration = 10;
+		steeringAgentComponent.maxLinearAcceleration = 100;
+		steeringAgentComponent.maxLinearSpeed = 60;
+		steeringAgentComponent.maxAngularSpeed = 10;
+		
+		SteeringAgentComponent target = new SteeringAgentComponent(playerBody, 32, false);
+		final Arrive<Vector2> arriveSB = new Arrive<Vector2>(steeringAgentComponent, 
+				new EntityLocation(playerBody.getPosition()))
+	                .setTimeToTarget(1f)
+	                .setArrivalTolerance(1f)
+	                .setDecelerationRadius(6f);
+		steeringAgentComponent.setBehavior(arriveSB);
+		entity.add(steeringAgentComponent);
+		//AI TEST END
 		
 		return entity;
 	}
