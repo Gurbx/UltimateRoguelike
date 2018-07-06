@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import gurbx.ultimateroguelike.screens.LoadingScreen;
+import gurbx.ultimateroguelike.screens.MenuScreen;
 import gurbx.ultimateroguelike.screens.PlayScreen;
 import gurbx.ultimateroguelike.screens.ScreenDispatcher;
 import gurbx.ultimateroguelike.utils.Constants;
@@ -26,6 +27,7 @@ public class Application extends Game {
 	
 	public LoadingScreen loadingScreen;
 	public PlayScreen playScreen;
+	public MenuScreen menuScreen;
 	
 	@Override
 	public void create () {
@@ -39,6 +41,7 @@ public class Application extends Game {
 		//Init screens
 		loadingScreen = new LoadingScreen(this);
 		playScreen = new PlayScreen(this);
+		menuScreen = new MenuScreen(this);
 		setScreen(loadingScreen);
 	}
 
@@ -54,5 +57,6 @@ public class Application extends Game {
 		batch.dispose();
 		loadingScreen.dispose();
 		playScreen.dispose();
+		menuScreen.dispose();
 	}
 }
