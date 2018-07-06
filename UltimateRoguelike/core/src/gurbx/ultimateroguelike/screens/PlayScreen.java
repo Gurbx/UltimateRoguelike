@@ -6,9 +6,11 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.loaders.ParticleEffectLoader;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 
 import gurbx.ultimateroguelike.Application;
 import gurbx.ultimateroguelike.components.BodyComponent;
@@ -19,11 +21,11 @@ import gurbx.ultimateroguelike.factories.PropFactory;
 import gurbx.ultimateroguelike.systems.CameraSystem;
 import gurbx.ultimateroguelike.utils.Constants;
 import gurbx.ultimateroguelike.utils.EnemyLoader;
+import gurbx.ultimateroguelike.utils.particles.ParticleFactory;
 import gurbx.ultimateroguelike.world.Dungeon;
 import gurbx.ultimateroguelike.world.generator.DungeonGenerator;
 
 public class PlayScreen extends GameScreen {
-	
 	
 	public PlayScreen(Application app) {
 		super(app);

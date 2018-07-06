@@ -9,6 +9,7 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g3d.particles.ParticleSystem;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
@@ -23,6 +24,7 @@ import gurbx.ultimateroguelike.systems.DamageSystem;
 import gurbx.ultimateroguelike.systems.DeathSystem;
 import gurbx.ultimateroguelike.systems.LightSystem;
 import gurbx.ultimateroguelike.systems.MovementSystem;
+import gurbx.ultimateroguelike.systems.ParticleEffectSystem;
 import gurbx.ultimateroguelike.systems.PhysicsSystem;
 import gurbx.ultimateroguelike.systems.PlayerCombatSystem;
 import gurbx.ultimateroguelike.systems.PlayerMovementSystem;
@@ -66,7 +68,7 @@ public class GameScreen implements Screen {
 		engine = new PooledEngine();
 		world = new World(new Vector2(0,0), false);
 		rayHandler = new RayHandler(world);
-		dungeon = DungeonGenerator.generateWorld(dungeonAtlas, world);
+//		dungeon = DungeonGenerator.generateWorld(dungeonAtlas, world);
 		
 		CollisionSystem collisionSystem = new CollisionSystem(world, collisionListeners);
 		
@@ -103,6 +105,9 @@ public class GameScreen implements Screen {
 		
 		RenderSystem renderSystem = new RenderSystem(app.batch, app.camera, dungeon);
 		engine.addSystem(renderSystem);
+		
+		ParticleEffectSystem particleEffectSystem = new ParticleEffectSystem(app.batch, app.camera);
+		engine.addSystem(particleEffectSystem);
 		
 		//Add light system if not debug mode
 		if (Application.DEBUG) {

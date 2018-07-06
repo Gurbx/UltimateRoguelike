@@ -4,7 +4,11 @@ import java.io.IOException;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.ai.pfa.PathFinderRequest;
 import com.badlogic.gdx.ai.steer.behaviors.Arrive;
+import com.badlogic.gdx.ai.steer.behaviors.Flee;
+import com.badlogic.gdx.ai.steer.behaviors.Pursue;
+import com.badlogic.gdx.ai.steer.behaviors.Wander;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -102,11 +106,10 @@ public class EnemyLoader {
 		SteeringAgentComponent steeringAgentComponent = new SteeringAgentComponent(
 				bodyComponent.body, 32, true);
 		steeringAgentComponent.maxAngularAcceleration = 10;
-		steeringAgentComponent.maxLinearAcceleration = 100;
-		steeringAgentComponent.maxLinearSpeed = 60;
+		steeringAgentComponent.maxLinearAcceleration = 30;
+		steeringAgentComponent.maxLinearSpeed = 20;
 		steeringAgentComponent.maxAngularSpeed = 10;
 		
-		SteeringAgentComponent target = new SteeringAgentComponent(playerBody, 32, false);
 		final Arrive<Vector2> arriveSB = new Arrive<Vector2>(steeringAgentComponent, 
 				new EntityLocation(playerBody.getPosition()))
 	                .setTimeToTarget(1f)
@@ -114,6 +117,7 @@ public class EnemyLoader {
 	                .setDecelerationRadius(6f);
 		steeringAgentComponent.setBehavior(arriveSB);
 		entity.add(steeringAgentComponent);
+		
 		//AI TEST END
 		
 		return entity;
