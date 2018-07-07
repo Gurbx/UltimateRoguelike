@@ -1,7 +1,8 @@
 package gurbx.ultimateroguelike.utils.particles;
 
 public enum ParticleEffects {
-	HIT(0, "particles/hit.p", 0.75f, 5, 20);
+	CRATE_HIT(0, "particles/crateHit.p", 1, 5, 20),
+	HIT(1, "particles/hit.p", 0.75f, 5, 20);
 	
 	public final int ID;
 	public final String path;

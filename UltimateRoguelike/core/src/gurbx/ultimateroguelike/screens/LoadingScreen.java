@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 import gurbx.ultimateroguelike.Application;
+import gurbx.ultimateroguelike.utils.Constants;
 import gurbx.ultimateroguelike.utils.particles.ParticleEffects;
 
 public class LoadingScreen implements Screen {
@@ -22,6 +23,7 @@ public class LoadingScreen implements Screen {
 		app.assets.load("img_packed/playerPack.atlas", TextureAtlas.class);
 		app.assets.load("img_packed/enemiesPack.atlas", TextureAtlas.class);
 		app.assets.load("img_packed/dungeonPack.atlas", TextureAtlas.class);
+		app.assets.load("img_packed/uiPack.atlas", TextureAtlas.class);
 		
 		//PARTICLES
 		for (ParticleEffects effect : ParticleEffects.values()) {
@@ -33,16 +35,18 @@ public class LoadingScreen implements Screen {
 		app.assets.update();
 		System.out.println(app.assets.getProgress());
 		if (app.assets.getProgress() >= 1) {
-			app.setScreen(app.playScreen);
+			app.setScreen(app.menuScreen);
 		}
 	}
 
 	@Override
 	public void render(float delta) {
 		update(delta);
-		Gdx.gl.glClearColor(0, 1, 0, 1);
+		Gdx.gl.glClearColor(0.25f, 0.25f, 0.25f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		app.batch.setProjectionMatrix(app.uiCamera.combined);
 		app.batch.begin();
+		app.font1.draw(app.batch, "LOADING...", 0, 0);
 		app.batch.end();	
 	}
 

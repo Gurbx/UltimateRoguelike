@@ -89,9 +89,9 @@ public class PlayScreen extends GameScreen {
 	
 	@Override
 	public void dispose() {
-		playerAtlas.dispose();
-		enemyAtlas.dispose();
-		dungeonAtlas.dispose();
+		if (playerAtlas != null) playerAtlas.dispose();
+		if (enemyAtlas != null) enemyAtlas.dispose();
+		if (dungeonAtlas != null) dungeonAtlas.dispose();
 		super.dispose();
 	}
 }

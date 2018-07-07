@@ -15,6 +15,7 @@ import gurbx.ultimateroguelike.components.LightComponent;
 import gurbx.ultimateroguelike.components.TextureComponent;
 import gurbx.ultimateroguelike.components.TransformComponent;
 import gurbx.ultimateroguelike.utils.Constants;
+import gurbx.ultimateroguelike.utils.particles.ParticleEffects;
 
 public class PropFactory {
 	
@@ -31,6 +32,8 @@ public class PropFactory {
 		
 		LifeComponent lifeComponent = new LifeComponent();
 		lifeComponent.health = 10;
+		lifeComponent.hitEffect = ParticleEffects.CRATE_HIT;
+		lifeComponent.deathEffect = ParticleEffects.CRATE_HIT;
 		e.add(lifeComponent);
 		
 		BodyComponent bodyComponent = new BodyComponent();
