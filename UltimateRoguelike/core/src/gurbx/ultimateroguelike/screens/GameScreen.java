@@ -33,6 +33,7 @@ import gurbx.ultimateroguelike.systems.RenderSystem;
 import gurbx.ultimateroguelike.systems.SteeringSystem;
 import gurbx.ultimateroguelike.utils.CollisionListener;
 import gurbx.ultimateroguelike.utils.CollisionSystem;
+import gurbx.ultimateroguelike.utils.particles.ParticleFactory;
 import gurbx.ultimateroguelike.world.Dungeon;
 import gurbx.ultimateroguelike.world.generator.DungeonGenerator;
 
@@ -48,6 +49,9 @@ public class GameScreen implements Screen {
 	protected TextureAtlas playerAtlas;
 	protected TextureAtlas enemyAtlas;
 	protected TextureAtlas dungeonAtlas;
+	
+	//Particles
+	protected ParticleFactory particleFactory;
 	
 	//Collision
 	private final List<CollisionListener> collisionListeners;
@@ -68,11 +72,13 @@ public class GameScreen implements Screen {
 		engine = new PooledEngine();
 		world = new World(new Vector2(0,0), false);
 		rayHandler = new RayHandler(world);
-//		dungeon = DungeonGenerator.generateWorld(dungeonAtlas, world);
+		dungeon = DungeonGenerator.generateWorld(dungeonAtlas, world);
+		
+		particleFactory = new ParticleFactory(app.assets);
 		
 		CollisionSystem collisionSystem = new CollisionSystem(world, collisionListeners);
 		
-		DamageSystem damageSystem = new DamageSystem();
+		DamageSystem damageSystem = new DamageSystem(particleFactory);
 		collisionListeners.add(damageSystem);
 		engine.addSystem(damageSystem);
 		
@@ -172,6 +178,7 @@ public class GameScreen implements Screen {
 		if (debugSystem!= null) debugSystem.dispose();
 		if (lightSystem != null) lightSystem.dispose();
 		rayHandler.dispose();
+		particleFactory.dispose();
 	}
 
 }

@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 
 import gurbx.ultimateroguelike.components.ParticleEffectComponent;
+import gurbx.ultimateroguelike.utils.Constants;
 
 public class ParticleEffectSystem extends IteratingSystem {
 
@@ -26,8 +27,6 @@ public class ParticleEffectSystem extends IteratingSystem {
 	public void update(float deltaTime) {
 		super.update(deltaTime);
 		
-		System.out.println(renderQueue.size);
-		
 		batch.setProjectionMatrix(camera.combined);
     	batch.enableBlending();
 
@@ -44,19 +43,19 @@ public class ParticleEffectSystem extends IteratingSystem {
 	@Override
 	protected void processEntity(Entity entity, float deltaTime) {
 		ParticleEffectComponent pec = ParticleEffectComponent.MAPPER.get(entity);
-		if(pec.isDead){
-			pec.timeTilDeath -= deltaTime;
-		}
+//		if(pec.isDead){
+//			pec.timeTilDeath -= deltaTime;
+//		}
 		
 		 // Move PE if attached
 		if(pec.isAttached){
 			pec.particleEffect.setPosition(
-					pec.attachedBody.getPosition().x + pec.xOffset,
-					pec.attachedBody.getPosition().y + pec.yOffset);
+					pec.attachedBody.getPosition().x * Constants.PPM + pec.xOffset,
+					pec.attachedBody.getPosition().y * Constants.PPM + pec.yOffset);
 		}
 		
 		 // free PE if completed
-		if(pec.particleEffect.isComplete() || pec.timeTilDeath <= 0){
+		if(pec.particleEffect.isComplete()){
 			getEngine().removeEntity(entity);
 		}else{
 			renderQueue.add(entity);

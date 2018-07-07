@@ -14,18 +14,24 @@ import com.badlogic.gdx.physics.box2d.Body;
 
 import gurbx.ultimateroguelike.Application;
 import gurbx.ultimateroguelike.components.BodyComponent;
+import gurbx.ultimateroguelike.components.ParticleEffectComponent;
 import gurbx.ultimateroguelike.components.TransformComponent;
+import gurbx.ultimateroguelike.factories.EnemyLoader;
 import gurbx.ultimateroguelike.factories.PlayerFactory;
 import gurbx.ultimateroguelike.factories.ProjectileFactory;
 import gurbx.ultimateroguelike.factories.PropFactory;
 import gurbx.ultimateroguelike.systems.CameraSystem;
 import gurbx.ultimateroguelike.utils.Constants;
-import gurbx.ultimateroguelike.utils.EnemyLoader;
+import gurbx.ultimateroguelike.utils.particles.ParticleEffects;
 import gurbx.ultimateroguelike.utils.particles.ParticleFactory;
 import gurbx.ultimateroguelike.world.Dungeon;
 import gurbx.ultimateroguelike.world.generator.DungeonGenerator;
 
 public class PlayScreen extends GameScreen {
+	
+	private Body palyerBody;
+	
+	Entity box;
 	
 	public PlayScreen(Application app) {
 		super(app);
@@ -38,6 +44,8 @@ public class PlayScreen extends GameScreen {
 		Entity player = PlayerFactory.createPlayer(20*Constants.TILE_SIZE, 20*Constants.TILE_SIZE, enemyAtlas, world, rayHandler);
 		engine.addEntity(player);
 		
+		palyerBody = player.getComponent(BodyComponent.class).body;
+		
 		EnemyLoader enemyLoader = new EnemyLoader(enemyAtlas, world, rayHandler);
 		
 		engine.addEntity(enemyLoader.loadEnemy("data/enemies/Blob.xml",
@@ -49,15 +57,27 @@ public class PlayScreen extends GameScreen {
 		engine.addEntity(enemyLoader.loadEnemy("data/enemies/Blob.xml",
 				20*Constants.TILE_SIZE, 20*Constants.TILE_SIZE - 10, player.getComponent(BodyComponent.class).body));
 		
-		for (int i = 0; i < 2; i++) {
-			Entity chest = PropFactory.createDestructible(20*Constants.TILE_SIZE, 20*Constants.TILE_SIZE, dungeonAtlas, world, rayHandler);
-			engine.addEntity(chest);
+		for (int i = 0; i < 1; i++) {
+			box = PropFactory.createDestructible(20*Constants.TILE_SIZE, 20*Constants.TILE_SIZE, dungeonAtlas, world, rayHandler);
+			engine.addEntity(box);
 		}
 	}
 	
 	@Override
 	protected void update(float delta) {
 		super.update(delta);
+		
+		//DEBUG
+		if (Gdx.input.isKeyJustPressed(Keys.R)) {
+//			Entity e = particleFactory.makeParticleEffect(ParticleEffects.HIT.ID, palyerBody);
+//			engine.addEntity(e);
+			
+			CameraSystem.setCameraTarget(box.getComponent(BodyComponent.class).body.getPosition());
+		}
+		
+		if (Gdx.input.isKeyJustPressed(Keys.T)) {
+			CameraSystem.setCameraTarget(palyerBody.getPosition());
+		}
 	}
 	
 	@Override

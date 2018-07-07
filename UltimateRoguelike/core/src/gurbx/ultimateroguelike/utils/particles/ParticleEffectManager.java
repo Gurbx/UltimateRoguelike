@@ -7,9 +7,9 @@ import com.badlogic.gdx.utils.IntMap;
 
 public class ParticleEffectManager {
 	// DEFINE constants for particleEffects
-	public static final int SMOKE = 0;
-	public static final int WATER = 1;
-	public static final int FIRE = 2;
+//	public static final int SMOKE = 0;
+//	public static final int WATER = 1;
+//	public static final int FIRE = 2;
  
 	// create intmaps for effects and pools
 	private IntMap<ParticleEffect> partyEffects;
@@ -58,5 +58,10 @@ public class ParticleEffectManager {
 	public PooledEffect getPooledParticleEffect(int type){
 		return partyEffectPool.get(type).obtain();
 	}
-
+	
+	public void dispose() {
+		for (int i = 0; i < partyEffects.size; i++) {
+			partyEffects.get(i).dispose();
+		}
+	}
 }

@@ -14,7 +14,11 @@ public class ParticleFactory {
 		particleEffectManager = new ParticleEffectManager();
 		
 		//Init effects
-		particleEffectManager.addParticleEffect(ParticleEffectManager.SMOKE, assets.get("particles/hit.p", ParticleEffect.class), 1f/64f);
+		for (ParticleEffects effect : ParticleEffects.values()) {
+			particleEffectManager.addParticleEffect(effect.ID,
+					assets.get(effect.path, ParticleEffect.class),
+					effect.scale, effect.startCapacity, effect.maxCapacity);
+		}
 	}
 	
 	public Entity makeParticleEffect(int type, float x, float y){
@@ -42,5 +46,9 @@ public class ParticleFactory {
 		pec.attachedBody = body;
 		entPE.add(pec);
 		return entPE;
+	}
+	
+	public void dispose() {
+		particleEffectManager.dispose();
 	}
 }

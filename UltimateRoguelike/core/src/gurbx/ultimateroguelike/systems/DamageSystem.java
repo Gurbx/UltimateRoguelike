@@ -21,12 +21,17 @@ import gurbx.ultimateroguelike.components.DeathComponent;
 import gurbx.ultimateroguelike.components.LifeComponent;
 import gurbx.ultimateroguelike.components.ProjectileComponent;
 import gurbx.ultimateroguelike.utils.CollisionListener;
+import gurbx.ultimateroguelike.utils.Constants;
+import gurbx.ultimateroguelike.utils.particles.ParticleEffects;
+import gurbx.ultimateroguelike.utils.particles.ParticleFactory;
 
 public class DamageSystem extends EntitySystem implements CollisionListener {
-//	private ImmutableArray<Entity> entities;
+	private ParticleFactory particleFactory;
 
-	private LifeComponent lifeComponent;
-
+	public DamageSystem(ParticleFactory particleFactory) {
+		this.particleFactory = particleFactory;
+	}
+	
 	@Override
 	public void onBeginContact(Fixture fixtureA, Fixture fixtureB) {
 		Entity entityA = (Entity) fixtureA.getUserData();
@@ -53,22 +58,50 @@ public class DamageSystem extends EntitySystem implements CollisionListener {
 		bodyA.applyForce(force, bodyA.getWorldCenter(), true);
 		
 		//TODO -- PLAY SOUND AND PARTICLE EFFECTS AND STUFF HERE -- !!
+		//BELLOW IN THE DAMAGED AND KILLED PLACES
 		
 		//DAMAGE
 		life.health -= damage.damage;
 		
 		//DEATH (if target dies)
-		if (life.health <= 0) {
-			DeathComponent deathComponent = new DeathComponent();
-			deathComponent.body = bodyA;
-			entityA.add(deathComponent);
-			
-			CameraSystem.shakeScreen(8, 15, true); // Bigger shake
+		if (life.health <= 0) {			
+			entityKilled(entityA, life, bodyA);
 		} else {
-			CameraSystem.shakeScreen(4, 10, false); // smaller shake
+			entityDamaged(entityA, life, bodyA);
 		}
 	}	
 	
+
+	private void entityKilled(Entity entity, LifeComponent life, Body body) {
+		CameraSystem.shakeScreen(8, 15, true); // Bigger shake
+		
+		//PARTICLE EFFECT
+		if (life.deathEffect != null) {
+			Entity particleE = particleFactory.makeParticleEffect(
+					life.deathEffect.ID, 
+					body.getPosition().x * Constants.PPM,
+					body.getPosition().y * Constants.PPM);
+			getEngine().addEntity(particleE);
+		}
+		
+		DeathComponent deathComponent = new DeathComponent();
+		deathComponent.body = body;
+		entity.add(deathComponent);
+	}
+
+	private void entityDamaged(Entity entity, LifeComponent life, Body body) {
+		CameraSystem.shakeScreen(4, 10, false); // smaller shake
+		
+		//PARTICLE EFFECT
+		if (life.hitEffect != null) {
+			Entity particleE = particleFactory.makeParticleEffect(
+					life.hitEffect.ID, 
+					body.getPosition().x * Constants.PPM,
+					body.getPosition().y * Constants.PPM);
+			getEngine().addEntity(particleE);
+		}
+		
+	}
 
 	private void destroyBullet(Entity entity, Body body) {
 		ProjectileComponent projectile = entity.getComponent(ProjectileComponent.class);

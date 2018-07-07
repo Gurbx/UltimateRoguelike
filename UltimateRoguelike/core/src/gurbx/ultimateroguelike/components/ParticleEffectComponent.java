@@ -13,8 +13,8 @@ public class ParticleEffectComponent implements Component, Poolable {
 	public boolean isAttached = false;
 	public float xOffset = 0;
 	public float yOffset = 0;
-	public float timeTilDeath = 0.5f; // add a 1 second delay
-	public boolean isDead = false;
+//	public float timeTilDeath = 0.5f; // add a 1 second delay
+//	public boolean isDead = false;
 	public Body attachedBody;
 	
 	@Override
@@ -24,8 +24,8 @@ public class ParticleEffectComponent implements Component, Poolable {
 		xOffset = 0;
 		yOffset = 0;
 		isAttached = false;
-		isDead = false;
+//		isDead = false;
 		attachedBody = null;
-		timeTilDeath = 0.5f;
+//		timeTilDeath = 0.5f;
 	}
 }

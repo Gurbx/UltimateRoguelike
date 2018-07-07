@@ -20,10 +20,10 @@
 	attackParticleEffect="attack.p"
 	attackSound="attack.wav"
 	
-	hitParticleEffect="hit.p"
+	hitParticleEffect="particles/hit.p"
 	hitSound="hit.wav"
 	
-	deathParticleEffect="death.p"
+	deathParticleEffect="particles/hit.p"
 	deathSound = "none"
 	
 	deathEffect = "none" > 

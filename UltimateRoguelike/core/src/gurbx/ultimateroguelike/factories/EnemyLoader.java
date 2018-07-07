@@ -1,6 +1,7 @@
-package gurbx.ultimateroguelike.utils;
+package gurbx.ultimateroguelike.factories;
 
 import java.io.IOException;
+import java.util.Iterator;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
@@ -28,8 +29,8 @@ import gurbx.ultimateroguelike.components.LightComponent;
 import gurbx.ultimateroguelike.components.StateComponent;
 import gurbx.ultimateroguelike.components.TextureComponent;
 import gurbx.ultimateroguelike.components.TransformComponent;
-import gurbx.ultimateroguelike.factories.AnimationBuilder;
-import gurbx.ultimateroguelike.factories.BodyBuilder;
+import gurbx.ultimateroguelike.utils.Constants;
+import gurbx.ultimateroguelike.utils.particles.ParticleEffects;
 
 public class EnemyLoader {
 	private XmlReader reader;
@@ -75,6 +76,16 @@ public class EnemyLoader {
 		
 		LifeComponent lifeComponent = new LifeComponent();
 		lifeComponent.health = root.getInt("health");
+		//PARTICLES
+		String hitEffectPath = root.get("hitParticleEffect");
+		String deathEffectPath = root.get("deathParticleEffect");
+		if (hitEffectPath != null && deathEffectPath != null) {
+			for (ParticleEffects effect : ParticleEffects.values()) {
+				if (effect.path.equals(hitEffectPath)) lifeComponent.hitEffect = effect;
+				if (effect.path.equals(deathEffectPath)) lifeComponent.deathEffect = effect;
+			}
+		}
+		
 		entity.add(lifeComponent);
 		
 		//ANIMATION AND STATES
@@ -100,21 +111,21 @@ public class EnemyLoader {
 			filter.maskBits = Constants.WORLD;
 			lc.light.setContactFilter(filter);
 			entity.add(lc);
-		}
+		}		
 		
 		//AI TEST ///!!! TODO
 		SteeringAgentComponent steeringAgentComponent = new SteeringAgentComponent(
 				bodyComponent.body, 32, true);
 		steeringAgentComponent.maxAngularAcceleration = 10;
-		steeringAgentComponent.maxLinearAcceleration = 30;
-		steeringAgentComponent.maxLinearSpeed = 20;
+		steeringAgentComponent.maxLinearAcceleration = 100;
+		steeringAgentComponent.maxLinearSpeed = 100;
 		steeringAgentComponent.maxAngularSpeed = 10;
 		
 		final Arrive<Vector2> arriveSB = new Arrive<Vector2>(steeringAgentComponent, 
 				new EntityLocation(playerBody.getPosition()))
 	                .setTimeToTarget(1f)
-	                .setArrivalTolerance(1f)
-	                .setDecelerationRadius(6f);
+	                .setArrivalTolerance(1.5f)
+	                .setDecelerationRadius(10f);
 		steeringAgentComponent.setBehavior(arriveSB);
 		entity.add(steeringAgentComponent);
 		

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 import gurbx.ultimateroguelike.Application;
+import gurbx.ultimateroguelike.utils.particles.ParticleEffects;
 
 public class LoadingScreen implements Screen {
 	private final Application app;
@@ -17,9 +18,15 @@ public class LoadingScreen implements Screen {
 	
 	@Override
 	public void show() {
+		//IMG ATLASES
 		app.assets.load("img_packed/playerPack.atlas", TextureAtlas.class);
 		app.assets.load("img_packed/enemiesPack.atlas", TextureAtlas.class);
 		app.assets.load("img_packed/dungeonPack.atlas", TextureAtlas.class);
+		
+		//PARTICLES
+		for (ParticleEffects effect : ParticleEffects.values()) {
+			app.assets.load(effect.path, ParticleEffect.class);
+		}
 	}
 	
 	private void update(float delta) {
