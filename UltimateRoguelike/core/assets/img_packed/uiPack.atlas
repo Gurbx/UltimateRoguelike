@@ -1,26 +1,54 @@
 
 uiPack.png
-size: 1024,64
+size: 1024,128
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 button
+  rotate: false
+  xy: 2, 53
+  size: 187, 49
+  orig: 187, 49
+  offset: 0, 0
+  index: -1
+buttonExit
   rotate: false
   xy: 2, 2
   size: 187, 49
   orig: 187, 49
   offset: 0, 0
   index: -1
-buttonV1
+buttonOptions
+  rotate: false
+  xy: 191, 53
+  size: 187, 49
+  orig: 187, 49
+  offset: 0, 0
+  index: -1
+buttonPlay
   rotate: false
   xy: 191, 2
   size: 187, 49
   orig: 187, 49
   offset: 0, 0
   index: -1
-buttonv2
+buttonPlayHover
+  rotate: false
+  xy: 380, 53
+  size: 187, 49
+  orig: 187, 49
+  offset: 0, 0
+  index: -1
+buttonV1
   rotate: false
   xy: 380, 2
+  size: 187, 49
+  orig: 187, 49
+  offset: 0, 0
+  index: -1
+buttonv2
+  rotate: false
+  xy: 569, 53
   size: 187, 49
   orig: 187, 49
   offset: 0, 0

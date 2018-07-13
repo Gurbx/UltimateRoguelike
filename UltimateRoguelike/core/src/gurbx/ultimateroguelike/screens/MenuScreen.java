@@ -9,7 +9,9 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveByAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
@@ -23,6 +25,7 @@ public class MenuScreen implements Screen {
 	private TextureAtlas atlas;
 	
 	private Button playButton;
+//	private Table table;
 	
 	public MenuScreen(Application app) {
 		this.app = app;
@@ -33,22 +36,24 @@ public class MenuScreen implements Screen {
 		stage = new Stage(app.uiViewport);
 		atlas = app.assets.get("img_packed/uiPack.atlas", TextureAtlas.class);
 		initButtons();
+		
+		Gdx.input.setInputProcessor(stage);
 	}
 
 	private void initButtons() {
         Skin skin = new Skin(atlas);
-        TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
-        style.font = app.font1;
-        style.up = skin.getDrawable("button");
+        ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle();
+//        style.font = app.font1;
+        style.up = skin.getDrawable("buttonPlay");
+        style.over = skin.getDrawable("buttonPlayHover");
         style.down = skin.getDrawable("button");
-        style.over = skin.getDrawable("button");
         
-        playButton = new TextButton("PLAY", style);
+        playButton = new ImageButton(style);
         playButton.setPosition(Constants.VIRTUAL_UI_WIDTH*0.5f-49, Constants.VIRTUAL_UI_HEIGHT*0.5f - 40);
         playButton.addListener( new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-//            	app.setScreen(app.introScreen);
+            	app.setScreen(app.playScreen);
             };
         });
         stage.addActor(playButton);
@@ -87,8 +92,6 @@ public class MenuScreen implements Screen {
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

@@ -79,11 +79,11 @@ public class Application extends Game {
 	@Override
 	public void dispose () {
 		super.dispose();
+		font1.dispose();
 		assets.dispose();
 		batch.dispose();
 		loadingScreen.dispose();
 		playScreen.dispose();
 		menuScreen.dispose();
-		font1.dispose();
 	}
 }
