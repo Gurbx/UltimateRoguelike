@@ -1,13 +1,258 @@
 
 playerPack.png
-size: 32,32
+size: 512,128
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-projectile1
+arms_run1
   rotate: false
-  xy: 2, 2
+  xy: 168, 73
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+arms_run5
+  rotate: false
+  xy: 168, 73
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+arms_run2
+  rotate: false
+  xy: 202, 73
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+arms_run6
+  rotate: false
+  xy: 202, 73
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+arms_run3
+  rotate: false
+  xy: 236, 73
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+arms_run7
+  rotate: false
+  xy: 236, 73
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+arms_run4
+  rotate: false
+  xy: 270, 73
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+arms_run8
+  rotate: false
+  xy: 270, 73
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+body_run1
+  rotate: false
+  xy: 304, 73
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+body_run2
+  rotate: false
+  xy: 338, 73
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+body_run3
+  rotate: false
+  xy: 372, 73
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+body_run4
+  rotate: false
+  xy: 406, 73
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+body_run5
+  rotate: false
+  xy: 440, 73
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+body_run6
+  rotate: false
+  xy: 474, 73
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+body_run7
+  rotate: false
+  xy: 51, 7
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+body_run8
+  rotate: false
+  xy: 85, 29
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+gun_run1
+  rotate: false
+  xy: 68, 73
+  size: 48, 42
+  orig: 48, 42
+  offset: 0, 0
+  index: -1
+gun_run2
+  rotate: false
+  xy: 68, 73
+  size: 48, 42
+  orig: 48, 42
+  offset: 0, 0
+  index: -1
+gun_run5
+  rotate: false
+  xy: 68, 73
+  size: 48, 42
+  orig: 48, 42
+  offset: 0, 0
+  index: -1
+gun_run6
+  rotate: false
+  xy: 68, 73
+  size: 48, 42
+  orig: 48, 42
+  offset: 0, 0
+  index: -1
+gun_run3
+  rotate: false
+  xy: 118, 73
+  size: 48, 42
+  orig: 48, 42
+  offset: 0, 0
+  index: -1
+gun_run4
+  rotate: false
+  xy: 118, 73
+  size: 48, 42
+  orig: 48, 42
+  offset: 0, 0
+  index: -1
+gun_run7
+  rotate: false
+  xy: 118, 73
+  size: 48, 42
+  orig: 48, 42
+  offset: 0, 0
+  index: -1
+gun_run8
+  rotate: false
+  xy: 118, 73
+  size: 48, 42
+  orig: 48, 42
+  offset: 0, 0
+  index: -1
+head_run1
+  rotate: false
+  xy: 119, 29
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+head_run5
+  rotate: false
+  xy: 119, 29
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+head_run2
+  rotate: false
+  xy: 153, 29
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+head_run4
+  rotate: false
+  xy: 153, 29
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+head_run6
+  rotate: false
+  xy: 153, 29
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+head_run8
+  rotate: false
+  xy: 153, 29
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+head_run3
+  rotate: false
+  xy: 187, 29
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+head_run7
+  rotate: false
+  xy: 187, 29
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+particle99
+  rotate: false
+  xy: 221, 46
   size: 26, 25
   orig: 26, 25
+  offset: 0, 0
+  index: -1
+projectile1
+  rotate: false
+  xy: 221, 46
+  size: 26, 25
+  orig: 26, 25
+  offset: 0, 0
+  index: -1
+particleBlur
+  rotate: false
+  xy: 2, 51
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+particleShadow
+  rotate: false
+  xy: 2, 2
+  size: 47, 47
+  orig: 47, 47
   offset: 0, 0
   index: -1

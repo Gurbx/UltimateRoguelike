@@ -34,7 +34,7 @@ public class MenuScreen implements Screen {
 	@Override
 	public void show() {
 		stage = new Stage(app.uiViewport);
-		atlas = app.assets.get("img_packed/uiPack.atlas", TextureAtlas.class);
+		atlas = app.assets.get("img_packed/menuPack.atlas", TextureAtlas.class);
 		initButtons();
 		
 		Gdx.input.setInputProcessor(stage);

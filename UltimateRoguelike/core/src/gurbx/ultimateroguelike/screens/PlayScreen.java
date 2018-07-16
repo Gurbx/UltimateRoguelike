@@ -41,7 +41,7 @@ public class PlayScreen extends GameScreen {
 	public void show() {
 		super.show();
 		
-		Entity player = PlayerFactory.createPlayer(20*Constants.TILE_SIZE, 20*Constants.TILE_SIZE, enemyAtlas, world, rayHandler);
+		Entity player = PlayerFactory.createPlayer(20*Constants.TILE_SIZE, 20*Constants.TILE_SIZE, playerAtlas, world, rayHandler);
 		engine.addEntity(player);
 		
 		palyerBody = player.getComponent(BodyComponent.class).body;

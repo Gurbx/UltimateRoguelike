@@ -36,11 +36,14 @@ public class PlayerFactory {
 		StateComponent stateComp = new StateComponent();
 		entity.add(stateComp);
 		
-		AnimationComponent ac = new AnimationComponent();
-		ac.animations.put(StateComponent.IDLE, AnimationBuilder.createAnimation(atlas, "blob_idle", 5, 1/6f));
-		ac.animations.put(StateComponent.RUN, AnimationBuilder.createAnimation(atlas, "blob_idle", 5, 1/12f));
-		entity.add(ac);
+		AnimationComponent body = new AnimationComponent();
+		body.animations.put(StateComponent.RUN, AnimationBuilder.createAnimation(atlas, "body_run", 8, 1/12f));
+		entity.add(body);
 		
+//		AnimationComponent head = new AnimationComponent();
+//		head.animations.put(StateComponent.RUN, AnimationBuilder.createAnimation(atlas, "head_run", 8, 1/12f));
+//		entity.add(head);
+//		
 		TextureComponent texture = new TextureComponent();
 		entity.add(texture);
 		

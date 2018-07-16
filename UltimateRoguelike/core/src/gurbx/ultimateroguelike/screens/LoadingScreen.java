@@ -23,7 +23,7 @@ public class LoadingScreen implements Screen {
 		app.assets.load("img_packed/playerPack.atlas", TextureAtlas.class);
 		app.assets.load("img_packed/enemiesPack.atlas", TextureAtlas.class);
 		app.assets.load("img_packed/dungeonPack.atlas", TextureAtlas.class);
-		app.assets.load("img_packed/uiPack.atlas", TextureAtlas.class);
+		app.assets.load("img_packed/menuPack.atlas", TextureAtlas.class);
 		
 		//PARTICLES
 		for (ParticleEffects effect : ParticleEffects.values()) {
