@@ -17,6 +17,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import gurbx.ultimateroguelike.Application;
 import gurbx.ultimateroguelike.utils.Constants;
+import gurbx.ultimateroguelike.utils.sound.SoundHandler;
+import gurbx.ultimateroguelike.utils.sound.Sounds;
 
 public class MenuScreen implements Screen {
 	private final Application app;
@@ -36,7 +38,6 @@ public class MenuScreen implements Screen {
 		stage = new Stage(app.uiViewport);
 		atlas = app.assets.get("img_packed/menuPack.atlas", TextureAtlas.class);
 		initButtons();
-		
 		Gdx.input.setInputProcessor(stage);
 	}
 
@@ -53,6 +54,7 @@ public class MenuScreen implements Screen {
         playButton.addListener( new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	SoundHandler.playSound(Sounds.OUT_OF_AMMO);
             	app.setScreen(app.playScreen);
             };
         });

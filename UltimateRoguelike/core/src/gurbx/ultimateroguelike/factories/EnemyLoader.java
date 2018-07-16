@@ -31,6 +31,7 @@ import gurbx.ultimateroguelike.components.TextureComponent;
 import gurbx.ultimateroguelike.components.TransformComponent;
 import gurbx.ultimateroguelike.utils.Constants;
 import gurbx.ultimateroguelike.utils.particles.ParticleEffects;
+import gurbx.ultimateroguelike.utils.sound.Sounds;
 
 public class EnemyLoader {
 	private XmlReader reader;
@@ -85,7 +86,13 @@ public class EnemyLoader {
 				if (effect.path.equals(deathEffectPath)) lifeComponent.deathEffect = effect;
 			}
 		}
-		
+		//SOUNDS
+		String hitSoundPath = root.get("hitSound");
+		String deathSoundPath = root.get("deathSound");
+		for (Sounds sound : Sounds.values()) {
+			if (sound.path.equals(hitSoundPath)) lifeComponent.hitSound = sound;
+			if (sound.path.equals(deathSoundPath)) lifeComponent.deathSound = sound;
+		}
 		entity.add(lifeComponent);
 		
 		//ANIMATION AND STATES

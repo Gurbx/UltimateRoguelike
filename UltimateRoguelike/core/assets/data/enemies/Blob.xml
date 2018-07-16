@@ -18,13 +18,13 @@
 	attackCooldown = "0.5"
 	
 	attackParticleEffect="attack.p"
-	attackSound="attack.wav"
+	attackSound="none"
 	
 	hitParticleEffect="particles/hit.p"
-	hitSound="hit.wav"
+	hitSound="sound/slime_hit.wav"
 	
 	deathParticleEffect="particles/hit.p"
-	deathSound = "none"
+	deathSound = "sound/slime_hit.wav"
 	
 	deathEffect = "none" > 
 	

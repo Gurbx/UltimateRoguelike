@@ -24,6 +24,7 @@ import gurbx.ultimateroguelike.utils.CollisionListener;
 import gurbx.ultimateroguelike.utils.Constants;
 import gurbx.ultimateroguelike.utils.particles.ParticleEffects;
 import gurbx.ultimateroguelike.utils.particles.ParticleFactory;
+import gurbx.ultimateroguelike.utils.sound.SoundHandler;
 
 public class DamageSystem extends EntitySystem implements CollisionListener {
 	private ParticleFactory particleFactory;
@@ -74,6 +75,7 @@ public class DamageSystem extends EntitySystem implements CollisionListener {
 
 	private void entityKilled(Entity entity, LifeComponent life, Body body) {
 		CameraSystem.shakeScreen(8, 15, true); // Bigger shake
+		if (life.deathSound != null) SoundHandler.playSound(life.deathSound);
 		
 		//PARTICLE EFFECT
 		if (life.deathEffect != null) {
@@ -91,6 +93,7 @@ public class DamageSystem extends EntitySystem implements CollisionListener {
 
 	private void entityDamaged(Entity entity, LifeComponent life, Body body) {
 		CameraSystem.shakeScreen(4, 10, false); // smaller shake
+		if (life.hitSound != null) SoundHandler.playSound(life.hitSound);
 		
 		//PARTICLE EFFECT
 		if (life.hitEffect != null) {

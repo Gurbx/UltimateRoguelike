@@ -18,9 +18,11 @@ import gurbx.ultimateroguelike.screens.MenuScreen;
 import gurbx.ultimateroguelike.screens.PlayScreen;
 import gurbx.ultimateroguelike.screens.ScreenDispatcher;
 import gurbx.ultimateroguelike.utils.Constants;
+import gurbx.ultimateroguelike.utils.sound.SoundHandler;
 
 public class Application extends Game {
 	public final static boolean DEBUG = false;
+	public final static boolean SOUND_ON = true;
 	
 	public SpriteBatch batch;
 	public OrthographicCamera camera, uiCamera;
@@ -32,6 +34,8 @@ public class Application extends Game {
 	public LoadingScreen loadingScreen;
 	public PlayScreen playScreen;
 	public MenuScreen menuScreen;
+	
+	public SoundHandler soundHandler;
 	
 	//FONTS
 	public static BitmapFont font1;
@@ -51,6 +55,8 @@ public class Application extends Game {
 		uiViewport = new StretchViewport(Constants.VIRTUAL_UI_WIDTH, Constants.VIRTUAL_UI_HEIGHT, uiCamera);
 		uiViewport.apply();
 		uiCamera.position.set(Constants.VIRTUAL_UI_WIDTH/2, Constants.VIRTUAL_UI_HEIGHT/2, 0);
+		
+		soundHandler = new SoundHandler();
 		
 		initFonts();
 		
@@ -74,16 +80,18 @@ public class Application extends Game {
 	@Override
 	public void render () {
 		super.render();
+		soundHandler.update(Gdx.graphics.getDeltaTime());
 	}
 	
 	@Override
 	public void dispose () {
 		super.dispose();
 		font1.dispose();
+		soundHandler.dispose();
 		assets.dispose();
 		batch.dispose();
-		loadingScreen.dispose();
-		playScreen.dispose();
-		menuScreen.dispose();
+		if (loadingScreen!=null) loadingScreen.dispose();
+		if (playScreen!=null) playScreen.dispose();
+		if (menuScreen != null) menuScreen.dispose();
 	}
 }

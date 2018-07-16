@@ -2,6 +2,7 @@ package gurbx.ultimateroguelike.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import gurbx.ultimateroguelike.Application;
 import gurbx.ultimateroguelike.utils.Constants;
 import gurbx.ultimateroguelike.utils.particles.ParticleEffects;
+import gurbx.ultimateroguelike.utils.sound.Sounds;
 
 public class LoadingScreen implements Screen {
 	private final Application app;
@@ -29,12 +31,18 @@ public class LoadingScreen implements Screen {
 		for (ParticleEffects effect : ParticleEffects.values()) {
 			app.assets.load(effect.path, ParticleEffect.class);
 		}
+		
+		//SOUNDS
+		for (Sounds soundType : Sounds.values()) {
+			 app.assets.load(soundType.path, Sound.class);
+		}
 	}
 	
 	private void update(float delta) {
 		app.assets.update();
 		System.out.println(app.assets.getProgress());
 		if (app.assets.getProgress() >= 1) {
+			app.soundHandler.initSounds(app);
 			app.setScreen(app.menuScreen);
 		}
 	}
