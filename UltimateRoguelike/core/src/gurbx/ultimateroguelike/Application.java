@@ -86,6 +86,15 @@ public class Application extends Game {
 	}
 	
 	@Override
+	public void resize(int width, int height) {
+		super.resize(width, height);
+		viewport.update(width, height);
+		uiViewport.update(width, height);
+		camera.update();
+		uiCamera.update();
+	}
+	
+	@Override
 	public void dispose () {
 		super.dispose();
 		font1.dispose();
