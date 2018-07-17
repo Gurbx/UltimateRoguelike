@@ -40,7 +40,6 @@ public class LoadingScreen implements Screen {
 	
 	private void update(float delta) {
 		app.assets.update();
-		System.out.println(app.assets.getProgress());
 		if (app.assets.getProgress() >= 1) {
 			app.soundHandler.initSounds(app);
 			app.setScreen(app.menuScreen);

@@ -1,7 +1,5 @@
 package gurbx.ultimateroguelike.menu;
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Interpolation;
@@ -44,7 +42,7 @@ public class MainMenu {
 		this.y = y;
 		initButtons();
 		initTable();
-		fadeIn();
+		fadeInActions();
 	}
 
 
@@ -65,7 +63,9 @@ public class MainMenu {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				SoundHandler.playSound(Sounds.OUT_OF_AMMO);
-				fadeOut();
+				app.menuScreen.settingsMenu.show();
+				hide();
+				
 			}
 		});
 		
@@ -93,7 +93,7 @@ public class MainMenu {
 		stage.addActor(table);
 	}
 	
-	public void fadeIn() {
+	public void fadeInActions() {
 		table.addAction(Actions.alpha(0f));
 		table.addAction(Actions.moveTo(x, y+20f));
 		
@@ -101,16 +101,38 @@ public class MainMenu {
 		action.setPosition(x, y);
 		action.setDuration(0.75f);
 		action.setInterpolation(Interpolation.fade);
-		table.addAction(Actions.parallel(action, Actions.fadeIn(0.75f)));
+		table.addAction(Actions.sequence(Actions.delay(0.5f), Actions.parallel(action, Actions.fadeIn(0.75f))));
+	}
+//	
+//	public void hide() {
+//		table.addAction(Actions.moveTo(x, y));
+//		
+//		MoveToAction action = Actions.action(MoveToAction.class);
+//		action.setPosition(x, y-360);
+//		action.setDuration(0.5f);
+//		action.setInterpolation(Interpolation.pow4);
+//		table.addAction(action);
+//	}
+	
+	public void show() {
+		table.setVisible(true);
+		table.addAction(Actions.alpha(0f));
+		table.addAction(Actions.moveTo(x-800f, y));
+		
+		MoveToAction action = Actions.action(MoveToAction.class);
+		action.setPosition(x, y);
+		action.setDuration(0.5f);
+		action.setInterpolation(Interpolation.pow3);
+		table.addAction(Actions.sequence(Actions.delay(0.0f), Actions.parallel(action, Actions.fadeIn(0.5f))));
 	}
 	
-	public void fadeOut() {
+	public void hide() {
 		table.addAction(Actions.moveTo(x, y));
 		
 		MoveToAction action = Actions.action(MoveToAction.class);
-		action.setPosition(x, y-360);
+		action.setPosition(x-800f, y);
 		action.setDuration(0.5f);
-		action.setInterpolation(Interpolation.pow4);
-		table.addAction(action);
+		action.setInterpolation(Interpolation.pow3);
+		table.addAction(Actions.parallel(action, Actions.fadeOut(0.5f)));
 	}
 }

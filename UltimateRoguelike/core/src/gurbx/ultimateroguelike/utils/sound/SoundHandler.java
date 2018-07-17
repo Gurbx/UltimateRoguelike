@@ -5,6 +5,7 @@ import java.util.HashMap;
 import com.badlogic.gdx.audio.Sound;
 
 import gurbx.ultimateroguelike.Application;
+import gurbx.ultimateroguelike.data.SettingsDataHandler;
 
 public class SoundHandler {
 	private static HashMap<Sounds, Sound> sounds;
@@ -27,12 +28,12 @@ public class SoundHandler {
 	}
 	
 	public static void playSound(Sounds sound) {
-		if (!Application.SOUND_ON) return;
-		sounds.get(sound).play(sound.volume);
+		if (SettingsDataHandler.settings.soundMuted) return;
+		sounds.get(sound).play(sound.volume * SettingsDataHandler.settings.soundVolume);
 	}
 	
 	public static void playSound(Sounds sound, float duration)  {
-		if (!Application.SOUND_ON) return;
+		if (SettingsDataHandler.settings.soundMuted) return;
 //		timedSounds.add(new TimedSound(sounds.get(sound), duration, sound.getVolume()));
 	}
 	

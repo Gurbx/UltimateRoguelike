@@ -28,8 +28,8 @@ public class MenuScreen implements Screen {
 	private Skin skin;
 	private Stage stage;
 	
-	private MainMenu mainMenu;
-	private SettingsMenu settingsMenu;
+	public MainMenu mainMenu;
+	public SettingsMenu settingsMenu;
 	
 	public MenuScreen(Application app) {
 		this.app = app;
