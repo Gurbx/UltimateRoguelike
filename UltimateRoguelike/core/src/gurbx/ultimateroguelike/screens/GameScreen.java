@@ -167,7 +167,7 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void dispose() {
-		
+		if (engine == null) return;
 		//Dispose disposable components
 		for (Entity e : engine.getEntities()) {
 			for (Component c : e.getComponents()) {

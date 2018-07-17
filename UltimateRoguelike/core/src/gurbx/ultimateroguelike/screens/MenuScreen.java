@@ -16,18 +16,20 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import gurbx.ultimateroguelike.Application;
+import gurbx.ultimateroguelike.menu.MainMenu;
+import gurbx.ultimateroguelike.menu.SettingsMenu;
 import gurbx.ultimateroguelike.utils.Constants;
 import gurbx.ultimateroguelike.utils.sound.SoundHandler;
 import gurbx.ultimateroguelike.utils.sound.Sounds;
 
 public class MenuScreen implements Screen {
 	private final Application app;
-	
+
+	private Skin skin;
 	private Stage stage;
-	private TextureAtlas atlas;
 	
-	private Button playButton;
-//	private Table table;
+	private MainMenu mainMenu;
+	private SettingsMenu settingsMenu;
 	
 	public MenuScreen(Application app) {
 		this.app = app;
@@ -35,34 +37,17 @@ public class MenuScreen implements Screen {
 
 	@Override
 	public void show() {
+		skin = new Skin(Gdx.files.internal("ui/uiskin.json")); //LOAD WITH ASSETLOADER
 		stage = new Stage(app.uiViewport);
-		atlas = app.assets.get("img_packed/menuPack.atlas", TextureAtlas.class);
-		initButtons();
+		
+		mainMenu = new MainMenu(Constants.VIRTUAL_UI_WIDTH*0.5f ,Constants.VIRTUAL_UI_HEIGHT*0.5f, stage, skin, app);
+		settingsMenu = new SettingsMenu(Constants.VIRTUAL_UI_WIDTH*0.5f ,Constants.VIRTUAL_UI_HEIGHT*0.5f, stage, skin, app);
+		
 		Gdx.input.setInputProcessor(stage);
-	}
-
-	private void initButtons() {
-        Skin skin = new Skin(atlas);
-        ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle();
-//        style.font = app.font1;
-        style.up = skin.getDrawable("buttonPlay");
-        style.over = skin.getDrawable("buttonPlayHover");
-        style.down = skin.getDrawable("button");
-        
-        playButton = new ImageButton(style);
-        playButton.setPosition(Constants.VIRTUAL_UI_WIDTH*0.5f-49, Constants.VIRTUAL_UI_HEIGHT*0.5f - 40);
-        playButton.addListener( new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-            	SoundHandler.playSound(Sounds.OUT_OF_AMMO);
-            	app.setScreen(app.playScreen);
-            };
-        });
-        stage.addActor(playButton);
 	}
 	
 	private void update(float delta) {
-		stage.act();
+		stage.act(delta);
 	}
 
 	@Override
@@ -99,6 +84,6 @@ public class MenuScreen implements Screen {
 	@Override
 	public void dispose() {
 		stage.dispose();
+		skin.dispose();
 	}
-
 }

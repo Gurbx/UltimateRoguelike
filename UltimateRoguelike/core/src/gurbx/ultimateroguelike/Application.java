@@ -13,6 +13,8 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFont
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import gurbx.ultimateroguelike.data.Settings;
+import gurbx.ultimateroguelike.data.SettingsDataHandler;
 import gurbx.ultimateroguelike.screens.LoadingScreen;
 import gurbx.ultimateroguelike.screens.MenuScreen;
 import gurbx.ultimateroguelike.screens.PlayScreen;
@@ -68,7 +70,7 @@ public class Application extends Game {
 	}
 
 	private void initFonts() {
-		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/notomono-regular.ttf"));
+		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("ui/fonts/notomono-regular.ttf"));
 		FreeTypeFontParameter parameter = new FreeTypeFontParameter();
 		parameter.size = 14;
 		parameter.borderWidth = 1f;
@@ -90,8 +92,8 @@ public class Application extends Game {
 		soundHandler.dispose();
 		assets.dispose();
 		batch.dispose();
-		if (loadingScreen!=null) loadingScreen.dispose();
-		if (playScreen!=null) playScreen.dispose();
-		if (menuScreen != null) menuScreen.dispose();
+		loadingScreen.dispose();
+		playScreen.dispose();
+		menuScreen.dispose();
 	}
 }
