@@ -43,6 +43,8 @@ public class MenuScreen implements Screen {
 		mainMenu = new MainMenu(Constants.VIRTUAL_UI_WIDTH*0.5f ,Constants.VIRTUAL_UI_HEIGHT*0.5f, stage, skin, app);
 		settingsMenu = new SettingsMenu(Constants.VIRTUAL_UI_WIDTH*0.5f ,Constants.VIRTUAL_UI_HEIGHT*0.5f, stage, skin, app);
 		
+		SoundHandler.playMusic();
+		
 		Gdx.input.setInputProcessor(stage);
 	}
 	
@@ -53,7 +55,7 @@ public class MenuScreen implements Screen {
 	@Override
 	public void render(float delta) {
 		update(delta);
-		Gdx.gl.glClearColor(0.15f, 0.15f, 0.15f, 1);
+		Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		stage.draw();

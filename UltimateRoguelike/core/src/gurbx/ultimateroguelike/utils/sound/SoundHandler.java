@@ -2,6 +2,7 @@ package gurbx.ultimateroguelike.utils.sound;
 
 import java.util.HashMap;
 
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 
 import gurbx.ultimateroguelike.Application;
@@ -11,7 +12,7 @@ public class SoundHandler {
 	private static HashMap<Sounds, Sound> sounds;
 //	private static ArrayList<TimedSound> timedSounds;
 	
-//	private static Music music;
+	private static Music music;
 	
 	public SoundHandler() {
 		//Sounds
@@ -24,27 +25,34 @@ public class SoundHandler {
 			Sound sound = app.assets.get(soundType.path, Sound.class);
 			sounds.put(soundType, sound);
 		}
-//		music = app.assets.get("sound/music/music1.ogg", Music.class);
+		music = app.assets.get("music/spacewaltz.mp3", Music.class); //TODO
 	}
 	
 	public static void playSound(Sounds sound) {
 		if (SettingsDataHandler.settings.soundMuted) return;
-		sounds.get(sound).play(sound.volume * SettingsDataHandler.settings.soundVolume);
+		sounds.get(sound).play(sound.volume * SettingsDataHandler.settings.getSoundVolume()
+				* SettingsDataHandler.settings.getMasterVolume());
 	}
 	
-	public static void playSound(Sounds sound, float duration)  {
-		if (SettingsDataHandler.settings.soundMuted) return;
+//	public static void playSound(Sounds sound, float duration)  {
+//		if (SettingsDataHandler.settings.soundMuted) return;
 //		timedSounds.add(new TimedSound(sounds.get(sound), duration, sound.getVolume()));
-	}
+//	}
 	
 	public static void playMusic() {
-//		if (!Application.MUSIC_ON) return;
-//		music.stop();
-//		if (music.isPlaying() == false) {
-//			music.setVolume(0.25f);
-//			music.play();
-//			music.setLooping(true);
-//		}
+		if (SettingsDataHandler.settings.musicMuted) return;
+		music.stop();
+		if (music.isPlaying() == false) {
+			music.setVolume(SettingsDataHandler.settings.getMusicVolume());
+			music.play();
+			music.setLooping(true);
+		}
+	}
+	
+	public static void updateMusicVolume() {
+		if (music.isPlaying()) {
+			music.setVolume(SettingsDataHandler.settings.getMusicVolume() * SettingsDataHandler.settings.getMasterVolume());
+		}	
 	}
 	
 	public void update(float delta) {
@@ -64,6 +72,6 @@ public class SoundHandler {
 		for (Sounds key : sounds.keySet()) {
 			sounds.get(key).dispose();
 		}
-//		music.dispose();
+		music.dispose();
 	}
 }
