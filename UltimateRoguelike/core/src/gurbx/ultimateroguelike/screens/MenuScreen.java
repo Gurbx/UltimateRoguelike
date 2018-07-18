@@ -57,7 +57,7 @@ public class MenuScreen implements Screen {
 		rainEffect = new ParticleEffect();
 		rainEffect.load(Gdx.files.internal("particles/rain.p"), Gdx.files.internal("particles"));
 		rainEffect.start();
-		rainEffect.setPosition(Constants.VIRTUAL_UI_WIDTH*0.5f, Constants.VIRTUAL_HEIGHT + 100);
+		rainEffect.setPosition(Constants.VIRTUAL_UI_WIDTH*0.5f, Constants.VIRTUAL_HEIGHT*0.5f);
 		
 		Gdx.input.setInputProcessor(stage);
 	}
@@ -71,7 +71,7 @@ public class MenuScreen implements Screen {
 	@Override
 	public void render(float delta) {
 		update(delta);
-		Gdx.gl.glClearColor(0.16f, 0.26f, 0.31f, 1f);
+		Gdx.gl.glClearColor(0, 0, 0, 1f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		app.batch.setProjectionMatrix(app.camera.combined);
