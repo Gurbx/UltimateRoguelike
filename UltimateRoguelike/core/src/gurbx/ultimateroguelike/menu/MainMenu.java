@@ -53,7 +53,8 @@ public class MainMenu {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				SoundHandler.playSound(Sounds.OUT_OF_AMMO);
-				app.setScreen(app.playScreen);
+//				app.setScreen(app.playScreen);
+				app.menuScreen.loadPlay();
 			}
 		});
 		
@@ -64,7 +65,7 @@ public class MainMenu {
 			public void clicked(InputEvent event, float x, float y) {
 				SoundHandler.playSound(Sounds.OUT_OF_AMMO);
 				app.menuScreen.settingsMenu.show();
-				hide();
+				hideRight();
 				
 			}
 		});
@@ -126,11 +127,21 @@ public class MainMenu {
 		table.addAction(Actions.sequence(Actions.delay(0.0f), Actions.parallel(action, Actions.fadeIn(0.5f))));
 	}
 	
-	public void hide() {
+	public void hideRight() {
 		table.addAction(Actions.moveTo(x, y));
 		
 		MoveToAction action = Actions.action(MoveToAction.class);
 		action.setPosition(x-800f, y);
+		action.setDuration(0.5f);
+		action.setInterpolation(Interpolation.pow3);
+		table.addAction(Actions.parallel(action, Actions.fadeOut(0.5f)));
+	}
+	
+	public void hideDown() {
+		table.addAction(Actions.moveTo(x, y));
+		
+		MoveToAction action = Actions.action(MoveToAction.class);
+		action.setPosition(x, y-800);
 		action.setDuration(0.5f);
 		action.setInterpolation(Interpolation.pow3);
 		table.addAction(Actions.parallel(action, Actions.fadeOut(0.5f)));

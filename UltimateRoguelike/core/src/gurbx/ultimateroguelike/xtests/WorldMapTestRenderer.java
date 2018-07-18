@@ -47,8 +47,8 @@ public class WorldMapTestRenderer extends ApplicationAdapter {
 		viewport.apply();
 		camera.position.set(Constants.VIRTUAL_WIDTH/2, Constants.VIRTUAL_HEIGHT/2, 0);
 		
-		Dungeon world = DungeonGenerator.generateWorld(null, null);
-		this.tiles = world.tiles;
+//		Dungeon world = DungeonGenerator.generateWorld(null, null);
+		this.tiles = DungeonGenerator.generateDungeonTiles();
 		
 		Pixmap pixmap = new Pixmap(SIZE, SIZE, Format.RGBA8888 );
 		pixmap.setColor(1, 1, 1, 1);
@@ -61,7 +61,7 @@ public class WorldMapTestRenderer extends ApplicationAdapter {
 	
 	private void update(float deltaTime) {
 		if (Gdx.input.isKeyJustPressed(Keys.A)) {
-			this.tiles = DungeonGenerator.generateWorld(null, null).tiles;
+			this.tiles = DungeonGenerator.generateDungeonTiles();
 		}
 		
 		if (Gdx.input.isKeyJustPressed(Keys.W)) {
@@ -82,6 +82,7 @@ public class WorldMapTestRenderer extends ApplicationAdapter {
 					if (tiles[i][j].equals(DungeonConstants.GROUND)) sprite.setColor(Color.LIGHT_GRAY);
 					else if (tiles[i][j].equals(DungeonConstants.ROOM)) sprite.setColor(Color.ORANGE);
 					else if (tiles[i][j].equals(DungeonConstants.DOOR)) sprite.setColor(Color.GREEN);
+					else if (tiles[i][j].equals(DungeonConstants.WALL)) sprite.setColor(Color.BLUE);
 					sprite.setPosition(i*SIZE, j*SIZE);
 					sprite.draw(batch);
 				}

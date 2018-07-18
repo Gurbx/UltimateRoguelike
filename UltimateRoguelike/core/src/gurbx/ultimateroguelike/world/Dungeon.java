@@ -12,6 +12,10 @@ public class Dungeon {
 	private final int RENDER_MAX_WIDTH = 5, RENDER_MAX_HEIGHT = 5;
 	private int renderX, renderY, renderWidth, renderHeight;
 	
+	public Dungeon(String[][] tiles) {
+		this.tiles = tiles;
+	}
+
 	public void setRenderPosition(Vector2 renderPosition) {
 		this.renderPosition = renderPosition;
 	}

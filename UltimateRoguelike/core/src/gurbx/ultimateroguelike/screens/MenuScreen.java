@@ -3,6 +3,7 @@ package gurbx.ultimateroguelike.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -17,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import gurbx.ultimateroguelike.Application;
 import gurbx.ultimateroguelike.menu.MainMenu;
+import gurbx.ultimateroguelike.menu.PlayScreenLoader;
 import gurbx.ultimateroguelike.menu.SettingsMenu;
 import gurbx.ultimateroguelike.utils.Constants;
 import gurbx.ultimateroguelike.utils.sound.SoundHandler;
@@ -31,8 +33,13 @@ public class MenuScreen implements Screen {
 	public MainMenu mainMenu;
 	public SettingsMenu settingsMenu;
 	
+	private ParticleEffect rainEffect;
+	
+	private PlayScreenLoader playLoader;
+	
 	public MenuScreen(Application app) {
 		this.app = app;
+		playLoader = new PlayScreenLoader(app);
 	}
 
 	@Override
@@ -43,18 +50,35 @@ public class MenuScreen implements Screen {
 		mainMenu = new MainMenu(Constants.VIRTUAL_UI_WIDTH*0.5f ,Constants.VIRTUAL_UI_HEIGHT*0.5f, stage, skin, app);
 		settingsMenu = new SettingsMenu(Constants.VIRTUAL_UI_WIDTH*0.5f ,Constants.VIRTUAL_UI_HEIGHT*0.5f, stage, skin, app);
 		
+		SoundHandler.playMusic();
+		
+		playLoader.setLoadPlay(false);
+		
+		rainEffect = new ParticleEffect();
+		rainEffect.load(Gdx.files.internal("particles/rain.p"), Gdx.files.internal("particles"));
+		rainEffect.start();
+		rainEffect.setPosition(Constants.VIRTUAL_UI_WIDTH*0.5f, Constants.VIRTUAL_HEIGHT*0.5f);
+		
 		Gdx.input.setInputProcessor(stage);
 	}
 	
 	private void update(float delta) {
+		playLoader.update(delta);
 		stage.act(delta);
+		rainEffect.update(delta);
 	}
 
 	@Override
 	public void render(float delta) {
 		update(delta);
-		Gdx.gl.glClearColor(0.15f, 0.15f, 0.15f, 1);
+		Gdx.gl.glClearColor(0, 0, 0, 1f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
+		app.batch.setProjectionMatrix(app.camera.combined);
+		app.camera.update();
+		app.batch.begin();
+		rainEffect.draw(app.batch);
+		app.batch.end();
 		
 		stage.draw();
 	}
@@ -85,5 +109,13 @@ public class MenuScreen implements Screen {
 	public void dispose() {
 		stage.dispose();
 		skin.dispose();
+		rainEffect.dispose();
+	}
+
+	public void loadPlay() {
+		mainMenu.hideDown();
+		playLoader.show(stage, skin);
+		playLoader.loadPlay();
+		playLoader.setLoadPlay(true);
 	}
 }

@@ -2,6 +2,7 @@ package gurbx.ultimateroguelike.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
@@ -22,20 +23,22 @@ public class LoadingScreen implements Screen {
 	@Override
 	public void show() {
 		//IMG ATLASES
-		app.assets.load("img_packed/playerPack.atlas", TextureAtlas.class);
-		app.assets.load("img_packed/enemiesPack.atlas", TextureAtlas.class);
-		app.assets.load("img_packed/dungeonPack.atlas", TextureAtlas.class);
-		app.assets.load("img_packed/menuPack.atlas", TextureAtlas.class);
-		
-		//PARTICLES
-		for (ParticleEffects effect : ParticleEffects.values()) {
-			app.assets.load(effect.path, ParticleEffect.class);
-		}
+//		app.assets.load("img_packed/playerPack.atlas", TextureAtlas.class);
+//		app.assets.load("img_packed/enemiesPack.atlas", TextureAtlas.class);
+//		app.assets.load("img_packed/dungeonPack.atlas", TextureAtlas.class);
+//		app.assets.load("img_packed/menuPack.atlas", TextureAtlas.class);
+//		
+//		//PARTICLES
+//		for (ParticleEffects effect : ParticleEffects.values()) {
+//			app.assets.load(effect.path, ParticleEffect.class);
+//		}
 		
 		//SOUNDS
 		for (Sounds soundType : Sounds.values()) {
 			 app.assets.load(soundType.path, Sound.class);
 		}
+		//MUSIC
+		app.assets.load("music/spacewaltz.mp3", Music.class);
 	}
 	
 	private void update(float delta) {

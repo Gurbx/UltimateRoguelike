@@ -24,6 +24,7 @@ import gurbx.ultimateroguelike.systems.CameraSystem;
 import gurbx.ultimateroguelike.utils.Constants;
 import gurbx.ultimateroguelike.utils.particles.ParticleEffects;
 import gurbx.ultimateroguelike.utils.particles.ParticleFactory;
+import gurbx.ultimateroguelike.utils.sound.SoundHandler;
 import gurbx.ultimateroguelike.world.Dungeon;
 import gurbx.ultimateroguelike.world.generator.DungeonGenerator;
 
@@ -40,6 +41,8 @@ public class PlayScreen extends GameScreen {
 	@Override
 	public void show() {
 		super.show();
+		
+		SoundHandler.playMusic();
 		
 		Entity player = PlayerFactory.createPlayer(20*Constants.TILE_SIZE, 20*Constants.TILE_SIZE, playerAtlas, world, rayHandler);
 		engine.addEntity(player);
