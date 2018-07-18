@@ -43,7 +43,7 @@ public class SoundHandler {
 		if (SettingsDataHandler.settings.musicMuted) return;
 		music.stop();
 		if (music.isPlaying() == false) {
-			music.setVolume(SettingsDataHandler.settings.getMusicVolume());
+			music.setVolume(SettingsDataHandler.settings.getMusicVolume() * SettingsDataHandler.settings.getMasterVolume());
 			music.play();
 			music.setLooping(true);
 		}
