@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFont
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import gurbx.ultimateroguelike.data.DungeonData;
 import gurbx.ultimateroguelike.data.Settings;
 import gurbx.ultimateroguelike.data.SettingsDataHandler;
 import gurbx.ultimateroguelike.screens.LoadingScreen;
@@ -38,6 +39,8 @@ public class Application extends Game {
 	public MenuScreen menuScreen;
 	
 	public SoundHandler soundHandler;
+	
+	public DungeonData dungeonData;
 	
 	//FONTS
 	public static BitmapFont font1;

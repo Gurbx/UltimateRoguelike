@@ -61,14 +61,14 @@ public class SettingsMenu {
 		//SELECT BOX
 		selectBox = new SelectBox(skin);
 
+		selectBox.setItems("1280 x 800", "640 x 400", "600 x 360"); //TODO
+		selectBox.setSelected("1280 x 800");
 		selectBox.addListener(new ChangeListener() {
 			public void changed (ChangeEvent event, Actor actor) {
 				System.out.println(selectBox.getSelected());
+				SoundHandler.playSound(Sounds.OUT_OF_AMMO);
 			}
 		});
-		
-		selectBox.setItems("1280 x 800", "640 x 400", "600 x 360"); //TODO
-		selectBox.setSelected("1280 x 800");
 		
 		//CHECKBOX
 		fullscreenCheckBox = new CheckBox("Fullscreen", skin);

@@ -3,6 +3,7 @@ package gurbx.ultimateroguelike.world.generator;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.physics.box2d.World;
 
@@ -14,37 +15,43 @@ import gurbx.ultimateroguelike.world.utils.DungeonConstants;
 
 public class DungeonGenerator {
 	
-	public static Dungeon generateWorld(TextureAtlas atlas, World b2world) {
+	public static String[][] generateDungeonTiles() {
 		Random random = new Random();
-		Dungeon world = new Dungeon();
+//		Dungeon world = new Dungeon();
 		int width = 50; 
 		int height = 50;
 	
-		world.tiles = new String[width][height];
+		String[][] tiles = new String[width][height];
 		//Make tiles empty
-		for (int i = 0; i < world.tiles.length; i++) {
-			for (int j = 0; j < world.tiles[i].length; j++) {
-				world.tiles[i][j] = DungeonConstants.EMPTY;
+		for (int i = 0; i < tiles.length; i++) {
+			for (int j = 0; j < tiles[i].length; j++) {
+				tiles[i][j] = DungeonConstants.EMPTY;
 			}
 		}
 		
-		ArrayList<Room> rooms = generateRooms(world.tiles, 500, random);
+		ArrayList<Room> rooms = generateRooms(tiles, 500, random);
 		
 //		System.out.println("Number of rooms: " + rooms.size());
 		
 		MazeGenerator mazeGen = new MazeGenerator(random);
-		mazeGen.generateMaze(world.tiles);
+		mazeGen.generateMaze(tiles);
 		
-		DungeonConnector connector = new DungeonConnector(world.tiles, rooms);
+		DungeonConnector connector = new DungeonConnector(tiles, rooms);
 		connector.connectDungeon(random);
 		
-		removeDeadEnds(world.tiles, 999);
+		removeDeadEnds(tiles, 999);
 		
-		WallCreator.createWalls(world.tiles);
+		WallCreator.createWalls(tiles);
 		
-		initializeTiles(world, atlas, b2world);
+//		initializeTiles(world, atlas, b2world);
 		
-		return world;
+		return tiles;
+	}
+	
+	public static Dungeon generateDungeon(String[][] tiles, TextureAtlas atlas, World b2world) {
+		Dungeon dungeon = new Dungeon(tiles);
+		initializeTiles(dungeon, atlas, b2world);
+		return dungeon;
 	}
 
 	//Draws the rooms to the given tile map and returns an array list of them

@@ -27,5 +27,6 @@ public class DesktopLauncher {
 		config.height = SettingsDataHandler.settings.screenHeight;
 		config.fullscreen = SettingsDataHandler.settings.fullscreen;
 		new LwjglApplication(new Application(), config);
+//		new LwjglApplication(new WorldMapTestRenderer(), config);
 	}
 }
