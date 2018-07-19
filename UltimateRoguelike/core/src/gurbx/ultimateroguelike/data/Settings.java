@@ -9,9 +9,6 @@ public class Settings implements Serializable {
 	private float masterVolume;
 	private float soundVolume;
 	private float musicVolume;
-	public boolean masterMuted;
-	public boolean soundMuted;
-	public boolean musicMuted;
 	//RESOLUTION
 	public boolean fullscreen;
 	public int screenWidth;
@@ -21,9 +18,6 @@ public class Settings implements Serializable {
 		masterVolume = 1f;
 		soundVolume = 1f;
 		musicVolume = 1f;
-		masterMuted = false;
-		soundMuted = false;
-		musicMuted = false;
 		
 		fullscreen = false;
 		screenWidth = Constants.VIRTUAL_WIDTH;

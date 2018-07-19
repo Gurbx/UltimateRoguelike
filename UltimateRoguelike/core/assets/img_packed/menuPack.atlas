@@ -53,3 +53,17 @@ buttonv2
   orig: 187, 49
   offset: 0, 0
   index: -1
+copper
+  rotate: false
+  xy: 569, 19
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+inventorySlot
+  rotate: false
+  xy: 758, 70
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

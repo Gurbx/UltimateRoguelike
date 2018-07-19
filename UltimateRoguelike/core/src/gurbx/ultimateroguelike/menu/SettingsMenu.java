@@ -98,12 +98,6 @@ public class SettingsMenu {
 				masterVolumeLabel.setText(""+ (int) (SettingsDataHandler.settings.getMasterVolume()*100f));
 				
 				SoundHandler.updateMusicVolume();
-				
-				if (masterSlider.getValue() == 0) {
-					SettingsDataHandler.settings.masterMuted = true;
-				} else { 
-					SettingsDataHandler.settings.masterMuted = false;
-				}
 			}
 		});
 		
@@ -115,12 +109,6 @@ public class SettingsMenu {
 			public void changed(ChangeEvent event, Actor actor) {
 				SettingsDataHandler.settings.setSoundVolume(soundSlider.getValue()/100f);
 				soundVolumeLabel.setText(""+ (int) (SettingsDataHandler.settings.getSoundVolume()*100f));
-				
-				if (soundSlider.getValue() == 0) {
-					SettingsDataHandler.settings.soundMuted = true;
-				} else { 
-					SettingsDataHandler.settings.soundMuted = false;
-				}
 			}
 		});
 		
@@ -134,12 +122,6 @@ public class SettingsMenu {
 				musicVolumeLabel.setText(""+ (int) (SettingsDataHandler.settings.getMusicVolume()*100f));
 				
 				SoundHandler.updateMusicVolume();
-				
-				if (musicSlider.getValue() == 0) {
-					SettingsDataHandler.settings.musicMuted = true;
-				} else { 
-					SettingsDataHandler.settings.musicMuted = false;
-				}
 			}
 		});
 	}
