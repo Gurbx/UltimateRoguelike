@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class Inventory {
-	private ArrayList<InventorySlot> inventorySlots = new ArrayList<InventorySlot>();
+	private ArrayList<InventoryItem> inventorySlots = new ArrayList<InventoryItem>();
 	private int inventorySize;
 	
 	private boolean addItem(Item item) {
@@ -24,11 +24,11 @@ public class Inventory {
 		if (inventorySlots.size() >= inventorySize) return false;
 		
 		//add item to inventory
-		inventorySlots.add(new InventorySlot(item, 1));
+//		inventorySlots.add(new InventoryItem(item, 1));
 		return true;
 	}
 	
-	public ArrayList<InventorySlot> getSlots() {
+	public ArrayList<InventoryItem> getSlots() {
 		return inventorySlots;
 	}
 }

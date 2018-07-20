@@ -1,5 +1,7 @@
 package gurbx.ultimateroguelike.screens;
 
+import javax.xml.soap.Text;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -17,7 +19,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import gurbx.ultimateroguelike.Application;
-import gurbx.ultimateroguelike.menu.MainMenu;
+import gurbx.ultimateroguelike.menu.HomeMenu;
+import gurbx.ultimateroguelike.menu.InventoryTestMenu;
 import gurbx.ultimateroguelike.menu.PlayScreenLoader;
 import gurbx.ultimateroguelike.menu.SettingsMenu;
 import gurbx.ultimateroguelike.utils.Constants;
@@ -26,11 +29,12 @@ import gurbx.ultimateroguelike.utils.sound.Sounds;
 
 public class MenuScreen implements Screen {
 	private final Application app;
-
+	private TextureAtlas menuAtlas;
+	
 	private Skin skin;
 	private Stage stage;
 	
-	public MainMenu mainMenu;
+	public HomeMenu mainMenu;
 	public SettingsMenu settingsMenu;
 	
 	private ParticleEffect rainEffect;
@@ -46,9 +50,13 @@ public class MenuScreen implements Screen {
 	public void show() {
 		skin = new Skin(Gdx.files.internal("ui/uiskin.json")); //LOAD WITH ASSETLOADER
 		stage = new Stage(app.uiViewport);
+		menuAtlas = app.assets.get("img_packed/menuPack.atlas", TextureAtlas.class);
 		
-		mainMenu = new MainMenu(Constants.VIRTUAL_UI_WIDTH*0.5f ,Constants.VIRTUAL_UI_HEIGHT*0.5f, stage, skin, app);
-		settingsMenu = new SettingsMenu(Constants.VIRTUAL_UI_WIDTH*0.5f ,Constants.VIRTUAL_UI_HEIGHT*0.5f, stage, skin, app);
+//		mainMenu = new HomeMenu(Constants.VIRTUAL_UI_WIDTH*0.5f ,Constants.VIRTUAL_UI_HEIGHT*0.5f, stage, skin, app);
+//		settingsMenu = new SettingsMenu(Constants.VIRTUAL_UI_WIDTH*0.5f ,Constants.VIRTUAL_UI_HEIGHT*0.5f, stage, skin, app);
+		
+		InventoryTestMenu inventoryTestMenu = new InventoryTestMenu(Constants.VIRTUAL_UI_WIDTH*0.5f ,Constants.VIRTUAL_UI_HEIGHT*0.5f, stage, skin,
+				app, menuAtlas);
 		
 		SoundHandler.playMusic();
 		
@@ -107,6 +115,7 @@ public class MenuScreen implements Screen {
 
 	@Override
 	public void dispose() {
+		menuAtlas.dispose();
 		stage.dispose();
 		skin.dispose();
 		rainEffect.dispose();

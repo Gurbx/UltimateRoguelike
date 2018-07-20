@@ -1,7 +1,11 @@
 package gurbx.ultimateroguelike.inventory;
 
 public enum Item {
-	BONE ("bone", 1, 2, true, 32);
+	IRON ("iron", 5, 2, true, 32),
+	SILVER ("silver", 15, 2, true, 32),
+	MAGIC_STONE ("stone", 200, 2, true, 32),
+	CRYSTAL ("crystal", 100, 2, true, 32),
+	COPPER ("copper", 2, 2, true, 32);
 	
 	public String path;
 	public int sellPrice;

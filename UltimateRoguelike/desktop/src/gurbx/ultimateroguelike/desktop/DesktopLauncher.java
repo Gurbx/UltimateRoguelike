@@ -16,7 +16,7 @@ public class DesktopLauncher {
 //		TexturePacker.process("img_raw/player", "img_packed", "playerPack");
 //		TexturePacker.process("img_raw/enemies", "img_packed", "enemiesPack");
 //		TexturePacker.process("img_raw/dungeon", "img_packed", "dungeonPack");
-//		TexturePacker.process("img_raw/menu", "img_packed", "menuPack");
+		TexturePacker.process("img_raw/menu", "img_packed", "menuPack");
 		
 		SettingsDataHandler.load();
 		
