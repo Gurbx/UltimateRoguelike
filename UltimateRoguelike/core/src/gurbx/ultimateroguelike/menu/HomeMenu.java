@@ -24,7 +24,7 @@ import gurbx.ultimateroguelike.utils.Constants;
 import gurbx.ultimateroguelike.utils.sound.SoundHandler;
 import gurbx.ultimateroguelike.utils.sound.Sounds;
 
-public class MainMenu {
+public class HomeMenu {
 	private final Application app;
 	private float x, y;
 	
@@ -34,7 +34,7 @@ public class MainMenu {
 	private Table table;
 	private TextButton playButton, settingsButton, exitButton;
 	
-	public MainMenu(float x, float y, Stage stage, Skin skin, Application app) {
+	public HomeMenu(float x, float y, Stage stage, Skin skin, Application app) {
 		this.app = app;
 		this.stage = stage;
 		this.skin = skin;
@@ -44,7 +44,6 @@ public class MainMenu {
 		initTable();
 		fadeInActions();
 	}
-
 
 	private void initButtons() {
 		//PLAY

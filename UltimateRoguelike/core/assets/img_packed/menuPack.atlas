@@ -6,63 +6,98 @@ filter: Nearest,Nearest
 repeat: none
 button
   rotate: false
-  xy: 2, 53
+  xy: 2, 63
   size: 187, 49
   orig: 187, 49
   offset: 0, 0
   index: -1
 buttonExit
   rotate: false
-  xy: 2, 2
+  xy: 2, 12
   size: 187, 49
   orig: 187, 49
   offset: 0, 0
   index: -1
 buttonOptions
   rotate: false
-  xy: 191, 53
+  xy: 191, 63
   size: 187, 49
   orig: 187, 49
   offset: 0, 0
   index: -1
 buttonPlay
   rotate: false
-  xy: 191, 2
+  xy: 191, 12
   size: 187, 49
   orig: 187, 49
   offset: 0, 0
   index: -1
 buttonPlayHover
   rotate: false
-  xy: 380, 53
+  xy: 380, 63
   size: 187, 49
   orig: 187, 49
   offset: 0, 0
   index: -1
 buttonV1
   rotate: false
-  xy: 380, 2
+  xy: 380, 12
   size: 187, 49
   orig: 187, 49
   offset: 0, 0
   index: -1
 buttonv2
   rotate: false
-  xy: 569, 53
+  xy: 569, 63
   size: 187, 49
   orig: 187, 49
   offset: 0, 0
   index: -1
+coin
+  rotate: false
+  xy: 2, 2
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
 copper
   rotate: false
-  xy: 569, 19
+  xy: 569, 29
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+crystal
+  rotate: false
+  xy: 758, 80
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 inventorySlot
   rotate: false
-  xy: 758, 70
+  xy: 603, 29
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+iron
+  rotate: false
+  xy: 792, 80
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+silver
+  rotate: false
+  xy: 637, 29
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+stone
+  rotate: false
+  xy: 826, 80
   size: 32, 32
   orig: 32, 32
   offset: 0, 0

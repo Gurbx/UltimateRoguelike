@@ -24,8 +24,7 @@ public class MovementSystem extends IteratingSystem {
 		
 		if (moveComp.velocity.len() > 0) {
 			moveComp.velocity = moveComp.velocity.nor().scl(moveComp.speed * deltaTime);
-		}
-		
+		}	
 		bodyComp.body.applyLinearImpulse(moveComp.velocity, bodyComp.body.getWorldCenter(), true);		
 	}
 }
