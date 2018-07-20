@@ -29,7 +29,6 @@ public class SoundHandler {
 	}
 	
 	public static void playSound(Sounds sound) {
-		if (SettingsDataHandler.settings.soundMuted) return;
 		sounds.get(sound).play(sound.volume * SettingsDataHandler.settings.getSoundVolume()
 				* SettingsDataHandler.settings.getMasterVolume());
 	}
@@ -40,7 +39,6 @@ public class SoundHandler {
 //	}
 	
 	public static void playMusic() {
-		if (SettingsDataHandler.settings.musicMuted) return;
 		music.stop();
 		if (music.isPlaying() == false) {
 			music.setVolume(SettingsDataHandler.settings.getMusicVolume() * SettingsDataHandler.settings.getMasterVolume());
