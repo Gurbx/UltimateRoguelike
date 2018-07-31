@@ -41,6 +41,9 @@ public class MenuScreen implements Screen {
 	
 	private PlayScreenLoader playLoader;
 	
+	//TEST
+	InventoryTestMenu inventoryTestMenu;
+	
 	public MenuScreen(Application app) {
 		this.app = app;
 		playLoader = new PlayScreenLoader(app);
@@ -55,7 +58,7 @@ public class MenuScreen implements Screen {
 //		mainMenu = new HomeMenu(Constants.VIRTUAL_UI_WIDTH*0.5f ,Constants.VIRTUAL_UI_HEIGHT*0.5f, stage, skin, app);
 //		settingsMenu = new SettingsMenu(Constants.VIRTUAL_UI_WIDTH*0.5f ,Constants.VIRTUAL_UI_HEIGHT*0.5f, stage, skin, app);
 		
-		InventoryTestMenu inventoryTestMenu = new InventoryTestMenu(Constants.VIRTUAL_UI_WIDTH*0.5f ,Constants.VIRTUAL_UI_HEIGHT*0.5f, stage, skin,
+		inventoryTestMenu = new InventoryTestMenu(Constants.VIRTUAL_UI_WIDTH*0.5f ,Constants.VIRTUAL_UI_HEIGHT*0.5f, stage, skin,
 				app, menuAtlas);
 		
 		SoundHandler.playMusic();
@@ -79,13 +82,20 @@ public class MenuScreen implements Screen {
 	@Override
 	public void render(float delta) {
 		update(delta);
-		Gdx.gl.glClearColor(0, 0, 0, 1f);
+		Gdx.gl.glClearColor(0.25f, 0.25f, 0.25f, 1f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		app.batch.setProjectionMatrix(app.camera.combined);
 		app.camera.update();
 		app.batch.begin();
-		rainEffect.draw(app.batch);
+//		rainEffect.draw(app.batch);
+		app.batch.end();
+		
+		//TEST
+		app.batch.setProjectionMatrix(app.uiCamera.combined);
+		app.uiCamera.update();
+		app.batch.begin();
+		inventoryTestMenu.render(app.batch);
 		app.batch.end();
 		
 		stage.draw();

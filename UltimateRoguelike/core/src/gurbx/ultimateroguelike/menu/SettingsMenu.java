@@ -61,16 +61,22 @@ public class SettingsMenu {
 		//SELECT BOX
 		selectBox = new SelectBox(skin);
 
-		selectBox.setItems("1280 x 800", "640 x 400", "600 x 360"); //TODO
-		selectBox.setSelected("1280 x 800");
+		selectBox.setItems("1280 x 800", "800 x 480", "600 x 360"); //TODO
+		selectBox.setSelected(SettingsDataHandler.settings.getScreenWidth() + " x " + SettingsDataHandler.settings.getScreenHeight());
 		selectBox.addListener(new ChangeListener() {
 			public void changed (ChangeEvent event, Actor actor) {
-				System.out.println(selectBox.getSelected());
+				String[] selected = ((String) selectBox.getSelected()).split("x");
+				int width = Integer.parseInt(selected[0].replaceAll(" ", ""));
+				int height = Integer.parseInt(selected[1].replaceAll(" ", ""));
+				
+				SettingsDataHandler.settings.setScreenWidth(width);
+				SettingsDataHandler.settings.setScreenHeight(height);
+				
 				SoundHandler.playSound(Sounds.OUT_OF_AMMO);
 			}
 		});
 		
-		//CHECKBOX
+		//CHECKBOX (FULLSCREEN)
 		fullscreenCheckBox = new CheckBox("Fullscreen", skin);
 		fullscreenCheckBox.setChecked(SettingsDataHandler.settings.fullscreen);
 		fullscreenCheckBox.addListener(new ChangeListener() {

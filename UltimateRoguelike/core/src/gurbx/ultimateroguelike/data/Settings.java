@@ -63,5 +63,20 @@ public class Settings implements Serializable {
 			this.musicVolume = musicVolume;
 	}
 	
+	public void setScreenWidth(int width) {
+		this.screenWidth = width;
+	}
+	
+	public void setScreenHeight(int height) {
+		this.screenHeight = height;
+	}
+	
+	public int getScreenWidth() {
+		return screenWidth;
+	}
+	
+	public int getScreenHeight() {
+		return screenHeight;
+	}
 	
 }
