@@ -56,6 +56,7 @@ public class InventoryRenderer {
 				float px = posX+x*SLOT_SIZE;
 				float py = posY-y*SLOT_SIZE;
 				batch.draw(icons[x][y], px, py);
+				if (inventory.getinventorySlots()[x][y].ammount == 1) continue; //don't draw text if only 1
 				if (inventory.getinventorySlots()[x][y].ammount >= 10) px -= 9;
 				font.draw(batch, "" + inventory.getinventorySlots()[x][y].ammount, px+21, py+13);
 			}

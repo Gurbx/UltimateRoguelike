@@ -5,9 +5,14 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.List;
@@ -21,9 +26,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
 import gurbx.ultimateroguelike.Application;
 import gurbx.ultimateroguelike.components.InventoryItemComponent;
 import gurbx.ultimateroguelike.inventory.InventoryStack;
+import gurbx.ultimateroguelike.inventory.InventoryUI;
 import gurbx.ultimateroguelike.inventory.Inventory;
 import gurbx.ultimateroguelike.inventory.InventoryRenderer;
 import gurbx.ultimateroguelike.inventory.Item;
+import gurbx.ultimateroguelike.utils.Constants;
 import gurbx.ultimateroguelike.utils.sound.SoundHandler;
 import gurbx.ultimateroguelike.utils.sound.Sounds;
 
@@ -38,7 +45,7 @@ public class InventoryTestMenu {
 //	private InventoryList inventory;
 //	private InventoryList sell;
 	
-	InventoryRenderer invRenderer1, invRenderer2;
+//	InventoryRenderer invRenderer1, invRenderer2;
 	Inventory inventory1, inventory2;
 
 	
@@ -50,18 +57,37 @@ public class InventoryTestMenu {
 		this.x = x;
 		this.y = y;
 		
-		inventory1 = new Inventory(7, 2);
+		inventory1 = new Inventory(4, 2);
 		inventory1.addItem(Item.COPPER, 64);
-		inventory1.addItem(Item.SILVER, 5);
+		inventory1.addItem(Item.SILVER, 1);
 		inventory1.addItem(Item.CRYSTAL, 9);
+		inventory1.addItem(Item.MAGIC_STONE, 23);
+		inventory1.addItem(Item.IRON, 82);
 		
-		invRenderer1 = new InventoryRenderer(inventory1, 100, 100, atlas, app.font1);
+		InventoryUI inventoryUI = new InventoryUI(inventory1, atlas, skin);
+		inventoryUI.setPosition(100, 100);
+//		inventoryUI.setBounds(100, 100, inventoryUI.getWidth(), inventoryUI.getHeight());
+//		System.out.println(inventoryUI.getHeight());
+//		inventoryUI.addListener(new InputListener() {
+//			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+//				System.out.println("Y: " + y + " X: " + x);
+//				return true;
+//			}
+//		});
 		
-		inventory2 = new Inventory(4, 2);
-		inventory2.addItem(Item.IRON, 11);
-		inventory2.addItem(Item.MAGIC_STONE, 85);
+		stage.addActor(inventoryUI);
 		
-		invRenderer2 = new InventoryRenderer(inventory2, 500, 100, atlas, app.font1);
+
+//		inventoryUI.addAction(Actions.sequence(Actions.fadeOut(2f), Actions.delay(1f), Actions.fadeIn(2f)));
+//		inventoryUI.addAction(Actions.moveBy(50, 50, 3f));
+//		
+//		invRenderer1 = new InventoryRenderer(inventory1, 100, 100, atlas, app.font1);
+//		
+//		inventory2 = new Inventory(4, 2);
+//		inventory2.addItem(Item.IRON, 11);
+//		inventory2.addItem(Item.MAGIC_STONE, 85);
+//		
+//		invRenderer2 = new InventoryRenderer(inventory2, 500, 100, atlas, app.font1);
 		
 //		//init table
 //		table = new Table(skin);
@@ -90,8 +116,8 @@ public class InventoryTestMenu {
 	}
 	
 	public void render(SpriteBatch batch) {
-		invRenderer1.render(batch);
-		invRenderer2.render(batch);
+//		invRenderer1.render(batch);
+//		invRenderer2.render(batch);
 	}
 
 //	private void initDragAndDrop() {

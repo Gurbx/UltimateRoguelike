@@ -92,11 +92,11 @@ public class MenuScreen implements Screen {
 		app.batch.end();
 		
 		//TEST
-		app.batch.setProjectionMatrix(app.uiCamera.combined);
-		app.uiCamera.update();
-		app.batch.begin();
-		inventoryTestMenu.render(app.batch);
-		app.batch.end();
+//		app.batch.setProjectionMatrix(app.uiCamera.combined);
+//		app.uiCamera.update();
+//		app.batch.begin();
+//		inventoryTestMenu.render(app.batch);
+//		app.batch.end();
 		
 		stage.draw();
 	}
